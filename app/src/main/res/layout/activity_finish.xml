@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".finish">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:text="தங்களது அழைப்பு பெறப்பட்டது
+நாங்கள் உங்களை தொடர்பு கொள்வோம் மிக விரைவில்"
+    android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/submit"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/outline_blue_button"
+        android:text="முகப்பு செல்க"
+        android:textColor="@color/colorPrimary"
+        android:textSize="19sp" />
+</LinearLayout>

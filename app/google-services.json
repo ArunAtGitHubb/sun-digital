@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "558127608117",
+    "project_id": "sun-digital-india-jobs",
+    "storage_bucket": "sun-digital-india-jobs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558127608117:android:fc3c494122e5be87f9dc7c",
+        "android_client_info": {
+          "package_name": "com.jellysoft.sundigitalindia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558127608117-a7be4pcmeupuli0ka7lr7hldlg5n44vo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHIVEslV6mAcUHxWExNy-lpfH2jH5dSl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558127608117-a7be4pcmeupuli0ka7lr7hldlg5n44vo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_go_home"
+            android:checked="true"
+            fontPath="font/customBold.otf"
+            android:icon="@drawable/ic_job_list"
+            android:title="@string/menu_home"
+            tools:ignore="MissingPrefix" />
+        <item
+            android:id="@+id/menu_go_search"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_categories"
+            android:title="வேலை தேடல்" />
+        <item
+            android:id="@+id/menu_go_city"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_categories"
+            android:title="நகரம் வாரியாக வேலை" />
+        <item
+            android:id="@+id/menu_go_category"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_categories"
+            android:title="வேலை பிரிவு" />
+        <item
+            android:id="@+id/menu_go_latest"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_categories"
+            android:title="புதிய வேலை வாய்ப்புகள்" />
+
+        <item
+            android:id="@+id/menu_go_about"
+            android:checkable="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="எங்களை பற்றி" />
+
+        <item
+            android:id="@+id/menu_go_privacy"
+            android:checkable="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="தனியுரிமை கொள்கை" />
+        <item
+            android:id="@+id/menu_go_contact"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="தொடர்பு" />
+        <item
+            android:id="@+id/menu_go_setting"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="டெவலப்பர் தொடர்பு" />
+
+        <item
+            android:id="@+id/menu_go_enquiry"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="வேலை வழங்குபவர் தொடர்புக்கு" />
+
+        <item
+            android:id="@+id/menu_go_share"
+            android:checked="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_latest"
+            android:title="பகிர்க" />
+        <item
+            android:id="@+id/menu_go_logout"
+            android:checkable="false"
+            fontPath="fonts/customBold.otf"
+            tools:ignore="MissingPrefix"
+            android:icon="@drawable/ic_logout"
+            android:title="வெளியேறு" />
+<!--        <item-->
+<!--            android:id="@+id/menu_go_login"-->
+<!--            android:checkable="false"-->
+<!--            android:icon="@drawable/ic_login"-->
+<!--            android:title="@string/menu_login" />-->
+
+    </group>
+</menu>

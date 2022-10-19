@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".privacy">
+    <include
+        android:id="@+id/toolbar_main"
+        layout="@layout/row_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRIVACY AND POLICY"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:fontFamily="@font/tamil"
+            android:textColor="@color/colorPrimary"
+            tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/ploicy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRIVACY AND POLICY"
+            android:gravity="left"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:fontFamily="@font/tamil"
+            tools:ignore="MissingConstraints" />
+
+
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
