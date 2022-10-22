@@ -70,7 +70,10 @@ public class JobDetailsActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ItemJob objBean;
-    TextView jobTitle, companyTitle, jobDate, jobDesignation,salary,text_job_address, jobAddress, jobVacancy, jobPhone, jobMail, jobWebsite,text_job_id,text_job_category,text_city,last_date,whatsapp_num,mail_id;
+    TextView jobTitle, companyTitle, jobDate, jobDesignation,
+            salary, text_job_address, jobAddress, jobVacancy,
+            jobPhone, jobMail, jobWebsite, text_job_id, text_job_category,
+            text_city, last_date, whatsapp_num, mail_id, text_area, jobPhone2;
     ImageView image;
     String Id;
     DatabaseHelper databaseHelper;
@@ -121,11 +124,13 @@ public class JobDetailsActivity extends AppCompatActivity {
         image = findViewById(R.id.image);
         salary = findViewById(R.id.salary);
         jobTitle = findViewById(R.id.text_job_title);
+        text_area = findViewById(R.id.text_area);
         companyTitle = findViewById(R.id.text_job_company);
         jobDate = findViewById(R.id.text_job_date);
         jobDesignation = findViewById(R.id.text_job_designation);
         jobAddress = findViewById(R.id.text_job_address);
         jobPhone = findViewById(R.id.text_phone);
+        jobPhone2 = findViewById(R.id.text_phone2);
         jobWebsite = findViewById(R.id.text_website);
         jobMail = findViewById(R.id.text_email);
         jobVacancy = findViewById(R.id.text_vacancy);
@@ -204,8 +209,10 @@ public class JobDetailsActivity extends AppCompatActivity {
                                 objBean.setJobDesignation(objJson.getString(Constant.JOB_DESIGNATION));
                                 objBean.setJobAddress(objJson.getString(Constant.JOB_ADDRESS));
                                 objBean.setJobImage(objJson.getString(Constant.JOB_IMAGE));
+                                objBean.setJobArea(objJson.getString(Constant.JOB_AREA));
                                 objBean.setJobVacancy(objJson.getString(Constant.JOB_VACANCY));
                                 objBean.setJobPhoneNumber(objJson.getString(Constant.JOB_PHONE_NO));
+                                objBean.setJobPhoneNumber2(objJson.getString(Constant.JOB_PHONE_NO2));
                                 objBean.setJobMail(objJson.getString(Constant.JOB_MAIL));
                                 objBean.setJobCompanyWebsite(objJson.getString(Constant.JOB_SITE));
                                 objBean.setJobDesc(objJson.getString(Constant.JOB_DESC));
@@ -256,30 +263,31 @@ public class JobDetailsActivity extends AppCompatActivity {
         text_job_id.setText("SDI00"+objBean.getId());
         text_job_category.setText(objBean.getJobCategoryName());
         text_city.setText(objBean.getCity());
+        text_area.setText(objBean.getJobArea());
         companyTitle.setText(objBean.getJobCompanyName());
         jobDate.setText(objBean.getJobDate());
         last_date.setText(objBean.getpLate());
+
         SpannableString content = new SpannableString(objBean.getJobPhoneNumber());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-
-
         jobPhone.setText(content);
+
+        SpannableString content2 = new SpannableString(objBean.getJobPhoneNumber2());
+        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
+        jobPhone2.setText(content2);
+
         whatsapp_num.setText(content);
         jobDesignation.setText(objBean.getJobDesignation());
-        SpannableString content2 = new SpannableString(objBean.getJobMail());
-        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
-        mail_id.setText(content2);
         jobVacancy.setText(objBean.getJobVacancy());
+
+        SpannableString content3 = new SpannableString(objBean.getJobMail());
+        content3.setSpan(new UnderlineSpan(), 0, content3.length(), 0);
+        mail_id.setText(content3);
+
+
         Picasso.get().load(objBean.getJobImage()).into(image);
-        Log.d("bvm",objBean.getUrl());
-//        Uri uri = Uri.parse(objBean.getUrl());
-//
-//        videoView.setVideoURI(uri);
-//        MediaController mediaController = new MediaController(this);
-//        mediaController.setAnchorView(videoView);
-//        mediaController.setMediaPlayer(videoView);
-//        videoView.setMediaController(mediaController);
-//        videoView.start();
+
+
         if(objBean.getUrl() !=""){
             videoView.getSettings().setJavaScriptEnabled(true);
             videoView.getSettings().setPluginState(WebSettings.PluginState.ON);

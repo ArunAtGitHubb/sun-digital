@@ -89,25 +89,24 @@
 android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-
+                        <TextView
                             fontPath="fonts/customBold.otf"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="வேலை பிரிவு : "
+                            android:text="பொருள் பிரிவு : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_job_category"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -120,31 +119,29 @@ android:gravity="center"
 
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-
+                        <TextView
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="சம்பளம் : "
+                            android:text="அசல் விலை : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-                            android:id="@+id/salary"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            android:id="@+id/text_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -153,7 +150,6 @@ android:gravity="center"
                             android:textColor="@color/white"
                             android:textSize="14sp"
                             tools:ignore="MissingPrefix" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -162,23 +158,55 @@ android:gravity="center"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-
+                        <TextView
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="இடம் : "
+                            android:text="விற்பனை விலை : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            android:id="@+id/text_selling_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            tools:ignore="MissingPrefix" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            fontPath="fonts/customBold.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:gravity="center"
+                            android:text="மாவட்டம் : "
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -198,32 +226,30 @@ android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:fontFamily="@font/calibrib"
                             fontPath="fonts/customBold.otf"
-
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="காலி இடம் : "
+                            android:text="பகுதி : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-                            android:id="@+id/text_vacancy"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            android:id="@+id/text_area"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
-                               android:layout_marginTop="5dp"
-
-                               android:textColor="@color/white"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
                             android:textSize="14sp"
                             tools:ignore="MissingPrefix" />
-
                     </LinearLayout>
 
                     <LinearLayout
@@ -232,15 +258,15 @@ android:gravity="center"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
+                        <TextView
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="வேலை எண் : "
+                            android:text="பொருள் எண் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="10sp"
@@ -518,22 +544,22 @@ android:gravity="center"
                     android:src="@drawable/ic_call"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
+                    android:fontFamily="@font/calibrib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"
-                       android:textSize="16sp"
+                    android:textSize="16sp"
                     android:text="தொலைபேசி எண் :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
+                    android:fontFamily="@font/calibrib"
                     android:id="@+id/text_phone"
-                       android:textSize="13sp"
+                    android:textSize="13sp"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -541,7 +567,45 @@ android:gravity="center"
                     android:paddingTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_call"
+                    android:tint="@color/login_line" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="தொலைபேசி எண் 2 :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:id="@+id/text_phone2"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout

@@ -63,7 +63,7 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         final ItemJob singleItem = (ItemJob) dataList.get(position);
         holder.jobTitle.setText(singleItem.getJobName());
-        holder.jobid.setText("SDI00"+singleItem.getId());
+        holder.jobid.setText("SDI00" + singleItem.getId());
 //        holder.jobCat.setText(singleItem.getJobCategoryName());
         holder.company.setText(singleItem.getJobCompanyName());
         holder.city.setText(singleItem.getCity());
@@ -72,12 +72,9 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //        holder.pdate.setText(singleItem.getJobDate());
 //        holder.ldate.setText(singleItem.getpLate());
         holder.salary.setText(singleItem.getJobSalary());
-
         holder.jobType.setText(singleItem.getJobType());
 
-
         Picasso.get().load(singleItem.getJobLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
-
 
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,48 +90,39 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }
         });
 
-        holder.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,
-                        singleItem.getJobName() + "\n" +
-                                mContext.getString(R.string.job_company_lbl) + singleItem.getJobCompanyName() + "\n" +
-                                mContext.getString(R.string.job_designation_lbl) + singleItem.getJobDesignation() + "\n" +
-                                mContext.getString(R.string.job_phone_lbl) + singleItem.getJobPhoneNumber() + "\n" +
-                                mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
-                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
-                sendIntent.setType("text/plain");
-                mContext.startActivity(sendIntent);
-            }
+        holder.share.setOnClickListener(view -> {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    singleItem.getJobName() + "\n" +
+                            mContext.getString(R.string.job_company_lbl) + singleItem.getJobCompanyName() + "\n" +
+                            mContext.getString(R.string.job_designation_lbl) + singleItem.getJobDesignation() + "\n" +
+                            mContext.getString(R.string.job_phone_lbl) + singleItem.getJobPhoneNumber() + "\n" +
+                            mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
+                            "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
+            sendIntent.setType("text/plain");
+            mContext.startActivity(sendIntent);
         });
-        holder.call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("bvm",String.valueOf(singleItem.getJobPhoneNumber()));
-                String phone = singleItem.getJobPhoneNumber();
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+phone));
-                mContext.startActivity(intent);
-            }
+        holder.call.setOnClickListener(view -> {
+            Log.d("bvm",String.valueOf(singleItem.getJobPhoneNumber()));
+            String phone = singleItem.getJobPhoneNumber();
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:"+phone));
+            mContext.startActivity(intent);
         });
 
-        holder.whatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = singleItem.getJobPhoneNumber();
-                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
-                PackageManager pm = mContext.getPackageManager();
-                try {
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                mContext.startActivity(i);
+        holder.whatsapp.setOnClickListener(view -> {
+            String phone = singleItem.getJobPhoneNumber();
+            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            PackageManager pm = mContext.getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            mContext.startActivity(i);
         });
 
 
@@ -185,8 +173,8 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //            pdate = itemView.findViewById(R.id.pdate);
 //            ldate = itemView.findViewById(R.id.ldate);
 //            vacancy = itemView.findViewById(R.id.vacancy);
-            company =itemView.findViewById(R.id.company);
-            jobid =itemView.findViewById(R.id.text_job_id);
+            company = itemView.findViewById(R.id.company);
+            jobid = itemView.findViewById(R.id.text_job_id);
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);
             jobImage = itemView.findViewById(R.id.image_job);

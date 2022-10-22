@@ -14,7 +14,9 @@ class ItemProduct : Serializable {
     var productCompanyName: String? = null
     var productCompanyWebsite: String? = null
     var productImage: String? = null
+    var productArea: String? = null
     var productPrice: String? = null
+    var productSellingPrice: String? = null
     var WebsiteLink: String? = null
     var productLogo: String? = null
     var productDate: String? = null
@@ -33,6 +35,7 @@ class ItemProduct : Serializable {
     var isProductFavourite = false
 
     var productPhoneNumber: String? = null
+    var productPhoneNumber2: String? = null
     var productMail: String? = null
 
     var productVacancy: String? = null

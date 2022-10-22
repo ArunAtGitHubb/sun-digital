@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.jellysoft.sundigitalindia">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,13 +32,8 @@
         <activity
             android:name=".devcontact"
             android:exported="true"
-           />
-        <activity
-            android:name=".CatJob"
-            android:exported="true" />
-        <activity
-            android:name=".CityJob"
-            android:exported="true" />
+            />
+
         <activity
             android:name=".contact"
             android:exported="true"
@@ -50,17 +44,24 @@
             android:exported="true"
             android:theme="@style/AppTheme"
             tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".LatestJob"
-            android:exported="true" />
 
-        <activity android:name=".LatestProduct"
-            android:exported="true" />
+        <activity android:name=".LatestJob" android:exported="true" />
+        <activity android:name=".LatestProduct" android:exported="true" />
+        <activity android:name=".LatestService" android:exported="true" />
+        <activity android:name=".LatestMatrimony" android:exported="true" />
 
-        <activity android:name=".CityProduct"
-            android:exported="true" />
-        <activity android:name=".CatProduct"
-            android:exported="true" />
+        <activity android:name=".CatJob" android:exported="true" />
+        <activity android:name=".CityJob" android:exported="true" />
+
+        <activity android:name=".CityProduct" android:exported="true" />
+        <activity android:name=".CatProduct" android:exported="true" />
+
+        <activity android:name=".CatService" android:exported="true" />
+        <activity android:name=".CityService" android:exported="true" />
+
+        <activity android:name=".CatMatrimony" android:exported="true" />
+        <activity android:name=".CityMatrimony" android:exported="true" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -77,22 +78,13 @@
             android:exported="true"
             android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".JobDetailsActivity"
-            android:exported="true"/>
-
+        <activity android:name=".JobDetailsActivity" android:exported="true"/>
         <activity android:name=".ProductDetailsActivity" android:exported="true" />
+        <activity android:name=".ServiceDetailsActivity" android:exported="true" />
+        <activity android:name=".MatrimonyDetailsActivity" android:exported="true" />
 
-        <activity android:name=".SearchActivity"
-            android:exported="true"/>
-
-        <activity android:name=".FilterSearchResultActivity"
-            android:exported="true"/>
-
-
-
-
-
-
+        <activity android:name=".SearchActivity" android:exported="true"/>
+        <activity android:name=".FilterSearchResultActivity" android:exported="true"/>
     </application>
 
 </manifest>

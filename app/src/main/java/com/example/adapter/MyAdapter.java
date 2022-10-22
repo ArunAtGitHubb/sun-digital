@@ -11,8 +11,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.example.fragment.CategoryFragment;
 import com.example.fragment.CityFragment;
 import com.example.fragment.HomeFragment;
+import com.example.fragment.MatrimonyCategoryFragment;
+import com.example.fragment.MatrimonyCityFragment;
 import com.example.fragment.ProductCategoryFragment;
 import com.example.fragment.ProductCityFragment;
+import com.example.fragment.ServiceCategoryFragment;
+import com.example.fragment.ServiceCityFragment;
 
 public class MyAdapter extends FragmentStatePagerAdapter {
 
@@ -43,6 +47,18 @@ public class MyAdapter extends FragmentStatePagerAdapter {
             case 4:
                 ProductCityFragment productCityFragment = new ProductCityFragment();
                 return productCityFragment;
+            case 5:
+                ServiceCategoryFragment serviceCategoryFragment = new ServiceCategoryFragment();
+                return serviceCategoryFragment;
+            case 6:
+                ServiceCityFragment serviceCityFragment = new ServiceCityFragment();
+                return serviceCityFragment;
+            case 7:
+                MatrimonyCategoryFragment matrimonyCategoryFragment = new MatrimonyCategoryFragment();
+                return matrimonyCategoryFragment;
+            case 8:
+                MatrimonyCityFragment matrimonyCityFragment = new MatrimonyCityFragment();
+                return matrimonyCityFragment;
             default:
                 return null;
         }
@@ -50,8 +66,7 @@ public class MyAdapter extends FragmentStatePagerAdapter {
     // this counts total number of tabs
     @Override
     public int getCount() {
-        return 5;
+        return 9;
     }
-
 
 }

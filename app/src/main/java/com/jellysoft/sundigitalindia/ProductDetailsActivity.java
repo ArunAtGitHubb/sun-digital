@@ -3,7 +3,6 @@ package com.jellysoft.sundigitalindia;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,11 +18,9 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,19 +32,12 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.db.DatabaseHelper;
-import com.example.fragment.JobDetailsFragment;
 import com.example.fragment.ProductDetailsFragment;
-import com.example.fragment.SimilarJobFragment;
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.API;
-import com.example.util.ApplyJob;
-import com.example.util.BannerAds;
 import com.example.util.Constant;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.SaveClickListener;
-import com.example.util.SaveJob;
 import com.example.util.UserUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -72,13 +62,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ItemProduct objBean;
-    TextView jobTitle, companyTitle, jobDate, jobDesignation,salary,text_job_address, jobAddress, jobVacancy, jobPhone, jobMail, jobWebsite,text_job_id,text_job_category,text_city,last_date,whatsapp_num,mail_id;
+    TextView productTitle, companyTitle, productDate,
+            text_product_address, productAddress, productPhone, productPhone2,
+            productMail, productWebsite, text_product_id, text_product_category,
+            text_city, last_date, whatsapp_num, mail_id, text_area, text_price, text_selling_price;
     ImageView image;
     String Id;
     DatabaseHelper databaseHelper;
     Button btnSave;
     LinearLayout mAdViewLayout;
-    Button btnApplyJob,btn_whats;
+    Button btnApplyJob, btn_whats;
     MyApplication MyApp;
     boolean isFromNotification = false;
     CoordinatorLayout lytParent;
@@ -121,24 +114,25 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         btn_whats = findViewById(R.id.btn_whats);
         image = findViewById(R.id.image);
-        salary = findViewById(R.id.salary);
-        jobTitle = findViewById(R.id.text_job_title);
+        productTitle = findViewById(R.id.text_job_title);
         companyTitle = findViewById(R.id.text_job_company);
-        jobDate = findViewById(R.id.text_job_date);
-        jobDesignation = findViewById(R.id.text_job_designation);
-        jobAddress = findViewById(R.id.text_job_address);
-        jobPhone = findViewById(R.id.text_phone);
-        jobWebsite = findViewById(R.id.text_website);
-        jobMail = findViewById(R.id.text_email);
-        jobVacancy = findViewById(R.id.text_vacancy);
+        productDate = findViewById(R.id.text_job_date);
+        productAddress = findViewById(R.id.text_job_address);
+        productPhone = findViewById(R.id.text_phone);
+        productPhone2 = findViewById(R.id.text_phone2);
+        productWebsite = findViewById(R.id.text_website);
+        productMail = findViewById(R.id.text_email);
         lytParent = findViewById(R.id.lytParent);
-        text_job_id  = findViewById(R.id.text_job_id);
+        text_product_id = findViewById(R.id.text_job_id);
         btnApplyJob = findViewById(R.id.btn_apply_job);
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-        text_job_category  = findViewById(R.id.text_job_category);
+        text_product_category = findViewById(R.id.text_job_category);
         text_city  = findViewById(R.id.text_city);
+        text_area = findViewById(R.id.text_area);
+        text_price = findViewById(R.id.text_price);
+        text_selling_price = findViewById(R.id.text_selling_price);
         last_date  = findViewById(R.id.last_date);
         whatsapp_num  = findViewById(R.id.whatsapp_num);
         mail_id  = findViewById(R.id.mail_id);
@@ -149,20 +143,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
 
 
-        jobPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialNumber();
-            }
-        });
-
-
-        btnApplyJob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialNumber();
-            }
-        });
+        productPhone.setOnClickListener(v -> dialNumber());
+        btnApplyJob.setOnClickListener(v -> dialNumber());
     }
 
     private void getDetails() {
@@ -188,6 +170,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 lytParent.setVisibility(View.VISIBLE);
 
                 String result = new String(responseBody);
+                Log.d("result", result);
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
@@ -198,13 +181,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             if (objJson.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
-                                Log.d("products", "before objBean.toString()");
                                 objBean.setId(objJson.getString(Constant.PRODUCT_ID));
                                 objBean.setProductName(objJson.getString(Constant.PRODUCT_NAME));
                                 objBean.setProductDate(objJson.getString(Constant.PRODUCT_START_DATE));
                                 objBean.setProductAddress(objJson.getString(Constant.PRODUCT_ADDRESS));
                                 objBean.setProductImage(objJson.getString(Constant.PRODUCT_IMAGE));
+                                objBean.setProductArea(objJson.getString(Constant.PRODUCT_AREA));
+                                objBean.setProductPrice(objJson.getString(Constant.PRODUCT_PRICE));
+                                objBean.setProductSellingPrice(objJson.getString(Constant.PRODUCT_SELLING_PRICE));
                                 objBean.setProductPhoneNumber(objJson.getString(Constant.PRODUCT_PHONE_NO));
+                                objBean.setProductPhoneNumber2(objJson.getString(Constant.PRODUCT_PHONE_NO2));
                                 objBean.setProductMail(objJson.getString(Constant.PRODUCT_MAIL));
                                 objBean.setProductCompanyWebsite(objJson.getString(Constant.PRODUCT_SITE));
                                 objBean.setProductDesc(objJson.getString(Constant.PRODUCT_DESC));
@@ -214,10 +200,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 objBean.setProductMail(objJson.getString(Constant.PRODUCT_MAIL));
                                 objBean.setProductCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objBean.setProductType(objJson.getString(Constant.PRODUCT_TYPE));
-                                Log.d("products", "objBean.toString()");
                             }
                         }
-                        Log.d("products", objBean.toString());
                         setResult();
                     } else {
                         mProgressBar.setVisibility(View.GONE);
@@ -238,39 +222,37 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void setResult() {
         firstFavourite();
 
-        Log.d("productDetails", objBean.toString());
-
-        jobAddress.setText("objBean.getProductAddress()");
-        jobTitle.setText(objBean.getProductName());
-        text_job_id.setText("SDI00"+objBean.getId());
-        text_job_category.setText(objBean.getProductCategoryName());
+        productAddress.setText(objBean.getProductAddress());
+        productTitle.setText(objBean.getProductName());
+        text_product_id.setText("SDI00" + objBean.getId());
+        text_product_category.setText(objBean.getProductCategoryName());
         text_city.setText(objBean.getCity());
+        text_area.setText(objBean.getProductArea());
+        text_price.setText(objBean.getProductPrice());
         companyTitle.setText(objBean.getProductCompanyName());
-        jobDate.setText(objBean.getProductDate());
+        productDate.setText(objBean.getProductDate());
         last_date.setText(objBean.getPLate());
+
         SpannableString content = new SpannableString(objBean.getProductPhoneNumber());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
-
-
-        jobPhone.setText(content);
+        productPhone.setText(content);
         whatsapp_num.setText(content);
-        SpannableString content2 = new SpannableString(objBean.getProductMail());
+
+        SpannableString content2 = new SpannableString(objBean.getProductPhoneNumber2());
         content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
-        mail_id.setText(content2);
+        productPhone2.setText(content2);
+
+        SpannableString content3 = new SpannableString(objBean.getProductMail());
+        content3.setSpan(new UnderlineSpan(), 0, content3.length(), 0);
+        mail_id.setText(content3);
+
         Picasso.get().load(objBean.getProductImage()).into(image);
-        Log.d("bvm",objBean.getUrl());
-//        Uri uri = Uri.parse(objBean.getUrl());
-//
-//        videoView.setVideoURI(uri);
-//        MediaController mediaController = new MediaController(this);
-//        mediaController.setAnchorView(videoView);
-//        mediaController.setMediaPlayer(videoView);
-//        videoView.setMediaController(mediaController);
-//        videoView.start();
-        if(objBean.getUrl() !=""){
+
+        if(objBean.getUrl() != ""){
             videoView.getSettings().setJavaScriptEnabled(true);
             videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
             videoView.loadUrl(objBean.getUrl());
@@ -281,37 +263,31 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-        btn_whats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = objBean.getProductPhoneNumber();
-                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
-                PackageManager pm = getPackageManager();
-                try {
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+        btn_whats.setOnClickListener(view -> {
+            String phone = objBean.getProductPhoneNumber();
+            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            PackageManager pm = getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
-        whatsapp_num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = objBean.getProductPhoneNumber();
-                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
-                PackageManager pm = getPackageManager();
-                try {
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+        whatsapp_num.setOnClickListener(view -> {
+            String phone = objBean.getProductPhoneNumber();
+            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            PackageManager pm = getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
         mail_id.setOnClickListener(new View.OnClickListener() {
             @Override

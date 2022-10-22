@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
     String versionName;
     TabLayout tabLayout;
     ViewPager viewPager;
-     MyAdapter adapter;
-     String vi;
+    MyAdapter adapter;
+    String vi;
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one)));
         tabLayout.addTab(tabLayout.newTab().setText("Products Categories"));
         tabLayout.addTab(tabLayout.newTab().setText("Products City"));
+        tabLayout.addTab(tabLayout.newTab().setText("சேவை வகைகள்"));
+        tabLayout.addTab(tabLayout.newTab().setText("சேவை ஊர்"));
+        tabLayout.addTab(tabLayout.newTab().setText("சாதி"));
+        tabLayout.addTab(tabLayout.newTab().setText("ஊர்"));
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -224,10 +228,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(sendIntent);
                         return true;
                     case R.id.menu_go_search:
-                         FilterSearchFragment filterSearchFragment = new FilterSearchFragment();
-                         filterSearchFragment.show(fragmentManager, "Square");
-                         break;
-
+                        FilterSearchFragment filterSearchFragment = new FilterSearchFragment();
+                        filterSearchFragment.show(fragmentManager, "Square");
+                        break;
                 }
                 return false;
             }
@@ -257,10 +260,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadFrag(Fragment f1, String name, FragmentManager fm) {
-
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
-
         }
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.Container, f1, name);
@@ -328,23 +329,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setHeader() {
-
         if (MyApp.getIsLogin()) {
-
-
             View header = navigationView.getHeaderView(0);
 
-
             final CircleImageView imageUser = header.findViewById(R.id.header_image);
-
 
             Log.e("image", MyApp.getUserImage());
             if (!MyApp.getUserImage().isEmpty()) {
                 Picasso.get().load(MyApp.getUserImage()).into(imageUser);
             }
         } else {
-
-
         }
     }
 
@@ -374,7 +368,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void getAdmin() {
-        Log.d("raky","hi");
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
@@ -392,22 +385,17 @@ public class MainActivity extends AppCompatActivity {
 
                 String result = new String(responseBody);
                 try {
-                    Log.d("raky","1");
                     JSONObject mainJson = new JSONObject(result);
-                    Log.d("raky", String.valueOf(mainJson));
-                    Log.d("raky",Constant.ARRAY_NAME);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
-                    Log.d("raky","3");
                     JSONObject objJson;
-                    Log.d("raky",String.valueOf(jsonArray.length()));
                     for (int i = 0; i < jsonArray.length(); i++) {
                         ItemAdmin objItem = new ItemAdmin();
                         objJson = jsonArray.getJSONObject(i);
                         objItem.setPhone(objJson.getString("phone"));
                         objItem.setPhone1(objJson.getString("phone1"));
                         objItem.setAddress(objJson.getString("address"));
-                        phone.setText("+91 "+objJson.getString("phone"));
-                        phone1.setText("+91 "+objJson.getString("phone1"));
+                        phone.setText("+91 " + objJson.getString("phone"));
+                        phone1.setText("+91 " + objJson.getString("phone1"));
                         vi = objJson.getString("views");
                     }
                 } catch (JSONException e) {

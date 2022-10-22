@@ -169,8 +169,8 @@
                     android:id="@+id/textCategoryViewAll1"
                     style="?android:attr/buttonBarButtonStyle"
                     fontPath="fonts/customBold.otf"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
+                    android:layout_width="99dp"
+                    android:layout_height="33dp"
                     android:layout_gravity="center"
                     android:background="@drawable/yellow_button"
                     android:gravity="center"
@@ -182,76 +182,6 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     tools:ignore="MissingPrefix" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lytHomeRecent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-                        android:layout_toStartOf="@+id/textRecentViewAll"
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            fontPath="fonts/customBold.otf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="சமீபத்தில் பார்த்தது"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <View
-                            android:id="@+id/viewRecent"
-                            android:layout_width="40dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/login_bottom" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textRecentViewAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="@string/view_all"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="13sp" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_recent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-
-                </RelativeLayout>
-
             </LinearLayout>
 
 
@@ -274,12 +204,13 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:gravity="start"
-                            android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="start"
+                        android:orientation="vertical">
 
                             <TextView
                                 fontPath="fonts/customBold.otf"
@@ -484,6 +415,254 @@
 
                     <Button
                         android:id="@+id/textProductAllCities"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View All Cities"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:id="@+id/lytHomeLatest2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                fontPath="fonts/customBold.otf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/services"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewLatest2"
+                                android:layout_width="127dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="300px"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/login_bottom"
+                                android:textAlignment="textEnd" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_service"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </RelativeLayout>
+
+                    <Button
+                        android:id="@+id/viewAllServices"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View All Services"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
+                        android:id="@+id/textServiceCategories"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text=" View Service Categories"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
+                        android:id="@+id/textServiceAllCities"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View All Cities"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:id="@+id/lytHomeLatest3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                fontPath="fonts/customBold.otf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/matrimony_services"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewLatest3"
+                                android:layout_width="127dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="300px"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/login_bottom"
+                                android:textAlignment="textEnd" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_matrimony"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                    </RelativeLayout>
+
+                    <Button
+                        android:id="@+id/viewAllMatrimony"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View All Matrimony"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
+                        android:id="@+id/textMatrimonyCategories"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text=" View Matrimony Castes"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
+                        android:id="@+id/textMatrimonyAllCities"
                         style="?android:attr/buttonBarButtonStyle"
                         fontPath="fonts/customBold.otf"
                         android:layout_width="match_parent"

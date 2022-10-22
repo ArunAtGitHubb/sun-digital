@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.JobAdapter;
+import com.example.adapter.ProductAdapter;
 import com.example.item.ItemJob;
+import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
@@ -39,9 +41,9 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class CatProduct extends AppCompatActivity {
-    ArrayList<ItemJob> mListItem;
+    ArrayList<ItemProduct> mListItem;
     public RecyclerView recyclerView;
-    JobAdapter adapter;
+    ProductAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -51,12 +53,11 @@ public class CatProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_item);
-      
-            categoryId = getIntent().getStringExtra("categoryId");
+        categoryId = getIntent().getStringExtra("categoryId");
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("பிரிவு வேலை பட்டியல்");
+        toolbar.setTitle("Product Category List");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -64,9 +65,7 @@ public class CatProduct extends AppCompatActivity {
         }
         mListItem = new ArrayList<>();
         lyt_not_found = findViewById(R.id.lyt_not_found);
-   
         progressBar = findViewById(R.id.progressBar);
- 
         recyclerView = findViewById(R.id.vertical_courses_list);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(CatProduct.this, 1);
@@ -109,7 +108,6 @@ public class CatProduct extends AppCompatActivity {
         });
     }
     private void getCategoryItem() {
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
@@ -144,17 +142,17 @@ public class CatProduct extends AppCompatActivity {
                             if (jsonObject.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
-                                ItemJob objItem = new ItemJob();
-                                objItem.setJobLogo(jsonObject.getString(Constant.PRODUCT_LOGO));
+                                ItemProduct objItem = new ItemProduct();
+                                objItem.setProductLogo(jsonObject.getString(Constant.PRODUCT_LOGO));
                                 objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
-                                objItem.setJobType(jsonObject.getString(Constant.PRODUCT_TYPE));
-                                objItem.setJobName(jsonObject.getString(Constant.PRODUCT_NAME));
-                                objItem.setJobCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
+                                objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
+                                objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                                objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
-                                objItem.setJobDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
-                                objItem.setpLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
+                                objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
+                                objItem.setPLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
                                 objItem.setViews(jsonObject.getString("views"));
-                                objItem.setJobFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
+                                objItem.setProductFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
                                 mListItem.add(objItem);
                             }
                         }
@@ -175,7 +173,6 @@ public class CatProduct extends AppCompatActivity {
                 showProgress(false);
                 lyt_not_found.setVisibility(View.VISIBLE);
             }
-
         });
     }
 
@@ -183,11 +180,10 @@ public class CatProduct extends AppCompatActivity {
         if (mListItem.size() == 0) {
             lyt_not_found.setVisibility(View.VISIBLE);
         } else {
-
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new JobAdapter(CatProduct.this, mListItem);
+                adapter = new ProductAdapter(CatProduct.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
@@ -198,7 +194,7 @@ public class CatProduct extends AppCompatActivity {
                 public void onItemClick(int position) {
                     String jobId = mListItem.get(position).getId();
                     new SaveJob(CatProduct.this).userSave(jobId);
-                    Intent intent = new Intent(CatProduct.this, JobDetailsActivity.class);
+                    Intent intent = new Intent(CatProduct.this, ProductDetailsActivity.class);
                     intent.putExtra("Id", jobId);
                     startActivity(intent);
                 }

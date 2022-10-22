@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.JobAdapter;
+import com.example.adapter.ProductAdapter;
 import com.example.item.ItemJob;
+import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
@@ -42,9 +44,9 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class CityProduct extends AppCompatActivity {
-    ArrayList<ItemJob> mListItem;
+    ArrayList<ItemProduct> mListItem;
     public RecyclerView recyclerView;
-    JobAdapter adapter;
+    ProductAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -60,7 +62,7 @@ public class CityProduct extends AppCompatActivity {
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("நகரம் வேலை பட்டியல்");
+        toolbar.setTitle("Product City List");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -111,7 +113,6 @@ public class CityProduct extends AppCompatActivity {
                 }
             }
         });
-     
     }
 
     private void getCategoryItem() {
@@ -141,7 +142,6 @@ public class CityProduct extends AppCompatActivity {
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
-                    Log.d("rakba", String.valueOf(jsonArray.length()));
                     JSONObject jsonObject;
                     if (jsonArray.length() > 0) {
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -149,17 +149,17 @@ public class CityProduct extends AppCompatActivity {
                             if (jsonObject.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
-                                ItemJob objItem = new ItemJob();
-                                objItem.setJobLogo(jsonObject.getString(Constant.PRODUCT_LOGO));
+                                ItemProduct objItem = new ItemProduct();
+                                objItem.setProductLogo(jsonObject.getString(Constant.PRODUCT_LOGO));
                                 objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
-                                objItem.setJobType(jsonObject.getString(Constant.PRODUCT_TYPE));
-                                objItem.setJobName(jsonObject.getString(Constant.PRODUCT_NAME));
-                                objItem.setJobCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
+                                objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
+                                objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                                objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
-                                objItem.setJobDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
+                                objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
                                 objItem.setViews(jsonObject.getString("views"));
-                                objItem.setpLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
-                                objItem.setJobFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
+                                objItem.setPLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
+                                objItem.setProductFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
                                 mListItem.add(objItem);
                             }
                         }
@@ -188,11 +188,10 @@ public class CityProduct extends AppCompatActivity {
         if (mListItem.size() == 0) {
             lyt_not_found.setVisibility(View.VISIBLE);
         } else {
-
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new JobAdapter(CityProduct.this, mListItem);
+                adapter = new ProductAdapter(CityProduct.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
@@ -203,12 +202,11 @@ public class CityProduct extends AppCompatActivity {
                 public void onItemClick(int position) {
                     String jobId = mListItem.get(position).getId();
                     new SaveJob(CityProduct.this).userSave(jobId);
-                    Intent intent = new Intent(CityProduct.this, JobDetailsActivity.class);
+                    Intent intent = new Intent(CityProduct.this, ProductDetailsActivity.class);
                     intent.putExtra("Id", jobId);
                     startActivity(intent);
                 }
             });
-
         }
     }
     @Override
@@ -237,7 +235,7 @@ public class CityProduct extends AppCompatActivity {
     public void getSaveJob(Events.SaveJob saveJob) {
         for (int i = 0; i < mListItem.size(); i++) {
             if (mListItem.get(i).getId().equals(saveJob.getJobId())) {
-                mListItem.get(i).setJobFavourite(saveJob.isSave());
+                mListItem.get(i).setProductFavourite(saveJob.isSave());
                 adapter.notifyItemChanged(i);
             }
         }

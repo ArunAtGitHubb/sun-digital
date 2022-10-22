@@ -127,9 +127,8 @@ android:gravity="center"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -142,8 +141,8 @@ android:gravity="center"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             android:id="@+id/salary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -162,8 +161,78 @@ android:gravity="center"
                         android:gravity="center"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            fontPath="fonts/customBold.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="வேலை நேரம் : "
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            android:id="@+id/work_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            tools:ignore="MissingPrefix" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
                            <TextView
                         android:fontFamily="@font/calibrib"
+
+                            fontPath="fonts/customBold.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="மாவட்டம் : "
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+
+                           <TextView
+                        android:fontFamily="@font/calibrib"
+                            android:id="@+id/text_city"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            tools:ignore="MissingPrefix" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:fontFamily="@font/calibrib"
 
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
@@ -177,9 +246,9 @@ android:gravity="center"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-                            android:id="@+id/text_city"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
+                            android:id="@+id/text_area"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -526,7 +595,7 @@ android:gravity="center"
                     android:paddingTop="5dp"
                     android:textStyle="bold"
                        android:textSize="16sp"
-                    android:text="தொலைபேசி எண் :"
+                    android:text="தொலைபேசி எண் 1:"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
 
@@ -534,6 +603,47 @@ android:gravity="center"
                         android:fontFamily="@font/calibrib"
                     android:id="@+id/text_phone"
                        android:textSize="13sp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_call"
+                    android:tint="@color/login_line" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="தொலைபேசி எண் 2 :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:id="@+id/text_phone2"
+                    android:textSize="13sp"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

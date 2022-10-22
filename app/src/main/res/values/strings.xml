@@ -248,10 +248,15 @@
     <string name="isRTL">false</string>
     <string name="play_more_apps">https://play.google.com/store/apps/developer?id=Viaan+Parmar</string>
     <string name="tab_job_details">Job Details</string>
+    <string name="tab_product_details">Product Details</string>
+    <string name="tab_service_details">Service Details</string>
+    <string name="tab_matrimony_details">Matrimony Details</string>
     <string name="tab_job_similar">Similar Jobs</string>
 
     <string name="tool_job_details">Job Details</string>
     <string name="tool_product_details">Product Details</string>
+    <string name="tool_service_details">Service Details</string>
+    <string name="tool_matrimony_details">Matrimony Details</string>
 
     <string name="home_category">Category</string>
     <string name="view_all">View All</string>
@@ -297,5 +302,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="job_vacancies">வேலை வாய்ப்புகள்</string>
-    <string name="products">தயாரிப்புகள்</string>
+    <string name="products">புதிய/உபயோகித்த பொருட்கள்</string>
+    <string name="services">சேவைகள்</string>
+    <string name="matrimony_services">திருமண சேவைகள்</string>
+    <string name="text_job_wage">கூலி :</string>
 </resources>

@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/androidsourcecode.iml" filepath="$PROJECT_DIR$/.idea/modules/androidsourcecode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/androidsourcecode.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/androidsourcecode.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/androidsourcecode.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/androidsourcecode.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sun-digital.iml" filepath="$PROJECT_DIR$/.idea/modules/sun-digital.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/sun-digital.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/sun-digital.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/sun-digital.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/sun-digital.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/sun-digital.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/sun-digital.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/sun-digital.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/sun-digital.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/sun-digital.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/sun-digital.library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/sun-digital.library.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/sun-digital.library.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/sun-digital.library.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/sun-digital.library.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/sun-digital.library.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/sun-digital.library.unitTest.iml" />
     </modules>
   </component>
 </project>

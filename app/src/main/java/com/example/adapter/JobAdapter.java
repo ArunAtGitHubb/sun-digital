@@ -66,19 +66,13 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             final ItemRowHolder holder = (ItemRowHolder) viewHolder;
 
             final ItemJob singleItem = dataList.get(position);
-            holder.jobTitle.setText(singleItem.getJobName());
-            holder.jobid.setText("SDI00"+singleItem.getId());
-            holder.jobCat.setText(singleItem.getJobCategoryName());
-            holder.company.setText(singleItem.getJobCompanyName());
+            holder.text_job_title.setText(singleItem.getJobName());
             holder.city.setText(singleItem.getCity());
-            holder.vacancy.setText(singleItem.getJobVacancy());
-//        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
-            holder.pdate.setText(singleItem.getJobDate());
-            holder.ldate.setText("     : "+singleItem.getpLate());
             holder.salary.setText(singleItem.getJobSalary());
+            holder.company.setText(singleItem.getJobCompanyName());
+//            holder.text_time.setText(singleItem.getJob);
 
-            holder.jobType.setText(singleItem.getJobType());
-
+            holder.jobid.setText("SDI00" + singleItem.getId());
 
 
             Picasso.get().load(singleItem.getJobLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
@@ -124,21 +118,6 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     mContext.startActivity(intent);
                 }
             });
-
-            switch (singleItem.getJobType()) {
-                case Constant.JOB_TYPE_HOURLY:
-                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.hourly_time_text));
-                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.hourly_time_bg));
-                    break;
-                case Constant.JOB_TYPE_HALF:
-                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.half_time_text));
-                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.half_time_bg));
-                    break;
-                case Constant.JOB_TYPE_FULL:
-                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.full_time_text));
-                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.full_time_bg));
-                    break;
-            }
         }
     }
     @Override
@@ -164,7 +143,8 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, jobType,pdate,vacancy,company,jobid,jobCat,city,ldate,salary,call;
+        TextView jobid, call;
+        TextView text_job_title, salary, text_time, city, company;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -173,21 +153,18 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         ItemRowHolder(View itemView) {
             super(itemView);
-            jobTitle = itemView.findViewById(R.id.text_job_title);
-            jobType = itemView.findViewById(R.id.text_job_type);
+            text_job_title = itemView.findViewById(R.id.text_job_title);
+            text_time = itemView.findViewById(R.id.text_time);
             city = itemView.findViewById(R.id.city);
-            jobCat = itemView.findViewById(R.id.jobCat);
-            pdate = itemView.findViewById(R.id.pdate);
+            salary = itemView.findViewById(R.id.salary);
+            company = itemView.findViewById(R.id.company);
+
             call = itemView.findViewById(R.id.call);
-            vacancy = itemView.findViewById(R.id.vacancy);
-            company =itemView.findViewById(R.id.company);
             jobid =itemView.findViewById(R.id.text_job_id);
 
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);
             jobImage = itemView.findViewById(R.id.image_job);
-            ldate = itemView.findViewById(R.id.ldate);
-            salary = itemView.findViewById(R.id.salary);
             share = itemView.findViewById(R.id.share);
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
         }

@@ -83,9 +83,8 @@ public class ProductCityFragment extends Fragment {
             }
         });
 
-        getCity();
         if (NetworkUtils.isConnected(getActivity())) {
-
+            getCity();
         } else {
             Toast.makeText(getActivity(), getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
         }

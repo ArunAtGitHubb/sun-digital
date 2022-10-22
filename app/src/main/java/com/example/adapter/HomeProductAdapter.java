@@ -60,18 +60,15 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 //        holder.jobCat.setText(singleItem.getJobCategoryName());
         holder.company.setText(singleItem.getProductCompanyName());
         holder.city.setText(singleItem.getCity());
+        holder.productPrice.setText(singleItem.getProductPrice());
+        holder.productSellingPrice.setText(singleItem.getProductSellingPrice());
 //        holder.vacancy.setText(singleItem.getProductVacancy());
 //        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
 //        holder.pdate.setText(singleItem.getProductDate());
 //        holder.ldate.setText(singleItem.getpLate());
-        holder.salary.setText(singleItem.getProductSalary());
 
         holder.jobType.setText(singleItem.getProductType());
-
-
         Picasso.get().load(singleItem.getProductLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
-
-
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +155,7 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, jobType,pdate,vacancy,company,jobid,jobCat,city,salary,ldate,call, whatsapp;
+        TextView jobTitle, jobAddress, productPrice, productSellingPrice, jobType, pdate, company, jobid, jobCat, city, salary, ldate, call, whatsapp;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -173,7 +170,8 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             jobTitle = itemView.findViewById(R.id.text_job_title);
             jobType = itemView.findViewById(R.id.text_job_type);
             city = itemView.findViewById(R.id.city);
-            salary= itemView.findViewById(R.id.salary);
+            productPrice = itemView.findViewById(R.id.product_price);
+            productSellingPrice = itemView.findViewById(R.id.product_selling_price);
 //            jobCat = itemView.findViewById(R.id.jobCat);
 //            pdate = itemView.findViewById(R.id.pdate);
 //            ldate = itemView.findViewById(R.id.ldate);

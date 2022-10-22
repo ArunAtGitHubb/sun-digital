@@ -31,12 +31,17 @@ public class ItemJob implements Serializable {
     private boolean isJobFavourite = false;
 
     private String jobPhoneNumber;
+    private String jobPhoneNumber2;
     private String jobMail;
 
     private String jobVacancy;
     private String jobAddress;
     private String jobQualification;
     private String jobSkill;
+    private String jobArea;
+
+    public String getJobArea() { return jobArea; }
+    public void setJobArea(String area) { this.jobArea = area; }
 
     public String getViews() {
         return views;
@@ -68,23 +73,16 @@ public class ItemJob implements Serializable {
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
-    }
-
-    public String getJobName() {
-        return jobName;
-    }
+    public void setJobName(String jobName) { this.jobName = jobName; }
+    public String getJobName() { return jobName; }
 
     public String getJobDesignation() {
         return jobDesignation;
     }
-
     public void setJobDesignation(String jobDesignation) {
         this.jobDesignation = jobDesignation;
     }
@@ -92,7 +90,6 @@ public class ItemJob implements Serializable {
     public String getJobDesc() {
         return jobDesc;
     }
-
     public void setJobDesc(String jobDesc) {
         this.jobDesc = jobDesc;
     }
@@ -100,7 +97,6 @@ public class ItemJob implements Serializable {
     public String getJobSalary() {
         return jobSalary;
     }
-
     public void setJobSalary(String jobSalary) {
         this.jobSalary = jobSalary;
     }
@@ -108,7 +104,6 @@ public class ItemJob implements Serializable {
     public String getJobCompanyName() {
         return jobCompanyName;
     }
-
     public void setJobCompanyName(String jobCompanyName) {
         this.jobCompanyName = jobCompanyName;
     }
@@ -124,15 +119,20 @@ public class ItemJob implements Serializable {
     public String getJobPhoneNumber() {
         return jobPhoneNumber;
     }
-
     public void setJobPhoneNumber(String jobPhoneNumber) {
         this.jobPhoneNumber = jobPhoneNumber;
+    }
+
+    public String getJobPhoneNumber2() {
+        return jobPhoneNumber2;
+    }
+    public void setJobPhoneNumber2(String jobPhoneNumber) {
+        this.jobPhoneNumber2 = jobPhoneNumber;
     }
 
     public String getJobMail() {
         return jobMail;
     }
-
     public void setJobMail(String jobMail) {
         this.jobMail = jobMail;
     }
@@ -140,7 +140,6 @@ public class ItemJob implements Serializable {
     public String getJobVacancy() {
         return jobVacancy;
     }
-
     public void setJobVacancy(String jobVacancy) {
         this.jobVacancy = jobVacancy;
     }
@@ -148,7 +147,6 @@ public class ItemJob implements Serializable {
     public String getJobAddress() {
         return jobAddress;
     }
-
     public void setJobAddress(String jobAddress) {
         this.jobAddress = jobAddress;
     }
@@ -156,7 +154,6 @@ public class ItemJob implements Serializable {
     public String getJobQualification() {
         return jobQualification;
     }
-
     public void setJobQualification(String jobQualification) {
         this.jobQualification = jobQualification;
     }
@@ -164,7 +161,6 @@ public class ItemJob implements Serializable {
     public String getJobSkill() {
         return jobSkill;
     }
-
     public void setJobSkill(String jobSkill) {
         this.jobSkill = jobSkill;
     }
@@ -172,7 +168,6 @@ public class ItemJob implements Serializable {
     public String getJobImage() {
         return jobImage;
     }
-
     public void setJobImage(String jobImage) {
         this.jobImage = jobImage;
     }
@@ -180,7 +175,6 @@ public class ItemJob implements Serializable {
     public String getJobDate() {
         return jobDate;
     }
-
     public void setJobDate(String jobDate) {
         this.jobDate = jobDate;
     }
@@ -188,7 +182,6 @@ public class ItemJob implements Serializable {
     public String getJobApplyTotal() {
         return jobApplyTotal;
     }
-
     public void setJobApplyTotal(String jobApplyTotal) {
         this.jobApplyTotal = jobApplyTotal;
     }
@@ -196,7 +189,6 @@ public class ItemJob implements Serializable {
     public String getJobCategoryName() {
         return jobCategoryName;
     }
-
     public void setJobCategoryName(String jobCategoryName) {
         this.jobCategoryName = jobCategoryName;
     }
@@ -204,7 +196,6 @@ public class ItemJob implements Serializable {
     public String getJobAppliedDate() {
         return jobAppliedDate;
     }
-
     public void setJobAppliedDate(String jobAppliedDate) {
         this.jobAppliedDate = jobAppliedDate;
     }
@@ -212,7 +203,6 @@ public class ItemJob implements Serializable {
     public boolean isJobSeen() {
         return isJobSeen;
     }
-
     public void setJobSeen(boolean jobSeen) {
         isJobSeen = jobSeen;
     }
@@ -220,7 +210,6 @@ public class ItemJob implements Serializable {
     public String getJobType() {
         return jobType;
     }
-
     public void setJobType(String jobType) {
         this.jobType = jobType;
     }
@@ -228,7 +217,6 @@ public class ItemJob implements Serializable {
     public boolean isJobFavourite() {
         return isJobFavourite;
     }
-
     public void setJobFavourite(boolean jobFavourite) {
         isJobFavourite = jobFavourite;
     }

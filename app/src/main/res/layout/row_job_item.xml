@@ -46,14 +46,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="202dp"
 
                 android:orientation="horizontal"
                 android:weightSum="1">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.1"
                     android:orientation="vertical">
@@ -133,13 +133,12 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.9"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/company"
-                        fontPath="fonts/customBold.otf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -156,7 +155,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            fontPath="font/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -182,7 +180,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            fontPath="font/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -203,17 +200,41 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <TextView
-                            fontPath="font/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
-                            android:text="இடம் : "
+                            android:text="நேரம் : "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:text="மாவட்டம் : "
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -245,7 +266,6 @@
 
                 <Button
                     android:id="@+id/call"
-                    fontPath="fonts/customBold.otf"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_marginRight="5dp"
@@ -258,11 +278,10 @@
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
+                    tools:ignore="MissingPrefix,TouchTargetSizeCheck" />
 
                 <Button
                     android:id="@+id/whatsapp"
-                    fontPath="fonts/customBold.otf"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_marginRight="5dp"
@@ -275,11 +294,10 @@
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
+                    tools:ignore="MissingPrefix,TouchTargetSizeCheck" />
 
                 <Button
                     android:id="@+id/btn_apply_job"
-                    fontPath="fonts/customBold.otf"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
@@ -291,11 +309,10 @@
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
-
-
+                    tools:ignore="MissingPrefix,TouchTargetSizeCheck" />
             </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>
