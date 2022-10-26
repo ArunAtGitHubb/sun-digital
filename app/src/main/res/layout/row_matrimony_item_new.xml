@@ -9,15 +9,16 @@
     android:layout_marginBottom="@dimen/item_space"
     android:orientation="vertical"
     tools:ignore="UseCompoundDrawables">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
+        android:outlineSpotShadowColor="@color/black"
         card_view:cardBackgroundColor="@color/white"
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="10dp"
-        android:outlineSpotShadowColor="@color/black"
         card_view:cardUseCompatPadding="false">
 
         <LinearLayout
@@ -25,13 +26,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
 
                 <ImageView
-android:id="@+id/share"
+                    android:id="@+id/share"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -41,6 +43,7 @@ android:id="@+id/share"
                     tools:ignore="UseAppTint" />
 
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,18 +105,6 @@ android:id="@+id/share"
                     android:orientation="vertical">
 
 
-                    <TextView
-                        android:id="@+id/company"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/calibrib"
-                        android:text="@string/app_name"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -174,6 +165,31 @@ android:id="@+id/share"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
+                            android:text="மதம் : "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_religion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:text="வேலை : "
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
@@ -199,7 +215,7 @@ android:id="@+id/share"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
-                            android:text="இடம் : "
+                            android:text="மாவட்டம் : "
                             android:textColor="@color/colorPrimary"
                             android:textSize="15sp"
                             android:textStyle="bold" />
@@ -246,36 +262,21 @@ android:id="@+id/share"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/colorPrimaryDark" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="39dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="invisible">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:contentDescription="@string/app_name" />
-
-                </LinearLayout>
-
                 <Button
                     android:id="@+id/call"
-                    fontPath="fonts/customBold.otf"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_button"
-                    android:fontFamily="@font/calibril"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="2dp"
                     android:text="Call"
                     android:textAllCaps="false"
@@ -285,26 +286,40 @@ android:id="@+id/share"
                     tools:ignore="MissingPrefix" />
 
                 <Button
+                    android:id="@+id/whatsapp"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/calibrib"
+                    android:paddingTop="2dp"
+                    android:text="WhatsApp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+
+                <Button
                     android:id="@+id/btn_apply_job"
-                    fontPath="fonts/customBold.otf"
                     android:layout_width="0dp"
                     android:layout_height="36dp"
                     android:layout_weight="1"
                     android:background="@drawable/round_button"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="2dp"
                     android:text="View More"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/calibril"
                     tools:ignore="MissingPrefix" />
-
-
 
 
             </LinearLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>

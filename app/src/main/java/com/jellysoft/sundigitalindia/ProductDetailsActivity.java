@@ -192,7 +192,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 objBean.setProductPhoneNumber(objJson.getString(Constant.PRODUCT_PHONE_NO));
                                 objBean.setProductPhoneNumber2(objJson.getString(Constant.PRODUCT_PHONE_NO2));
                                 objBean.setProductMail(objJson.getString(Constant.PRODUCT_MAIL));
+                                objBean.setProductNegotiable(objJson.getString(Constant.PRODUCT_NEGOTIABLE));
                                 objBean.setProductCompanyWebsite(objJson.getString(Constant.PRODUCT_SITE));
+                                objBean.setWebsiteLink(objJson.getString(Constant.WEBSITE_LINK));
                                 objBean.setProductDesc(objJson.getString(Constant.PRODUCT_DESC));
                                 objBean.setPLate(objJson.getString(Constant.PRODUCT_END_DATE));
                                 objBean.setCity(objJson.getString(Constant.CITY_NAME));
@@ -233,6 +235,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         text_city.setText(objBean.getCity());
         text_area.setText(objBean.getProductArea());
         text_price.setText(objBean.getProductPrice());
+        text_selling_price.setText(objBean.getProductSellingPrice());
         companyTitle.setText(objBean.getProductCompanyName());
         productDate.setText(objBean.getProductDate());
         last_date.setText(objBean.getPLate());

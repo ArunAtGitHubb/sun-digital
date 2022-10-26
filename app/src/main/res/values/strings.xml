@@ -303,7 +303,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="job_vacancies">வேலை வாய்ப்புகள்</string>
     <string name="products">புதிய/உபயோகித்த பொருட்கள்</string>
-    <string name="services">சேவைகள்</string>
-    <string name="matrimony_services">திருமண சேவைகள்</string>
+    <string name="services">வேலை ஆட்கள்</string>
+    <string name="matrimony_services">திருமண வரன்கள்</string>
     <string name="text_job_wage">கூலி :</string>
 </resources>

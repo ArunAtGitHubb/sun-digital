@@ -191,6 +191,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                 lytParent.setVisibility(View.VISIBLE);
 
                 String result = new String(responseBody);
+                Log.d("result", result);
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     isJobSaved = mainJson.getBoolean(Constant.JOB_ALREADY_SAVED);
@@ -215,6 +216,7 @@ public class JobDetailsActivity extends AppCompatActivity {
                                 objBean.setJobPhoneNumber2(objJson.getString(Constant.JOB_PHONE_NO2));
                                 objBean.setJobMail(objJson.getString(Constant.JOB_MAIL));
                                 objBean.setJobCompanyWebsite(objJson.getString(Constant.JOB_SITE));
+                                objBean.setJobWebsite(objJson.getString(Constant.WEBSITE_LINK));
                                 objBean.setJobDesc(objJson.getString(Constant.JOB_DESC));
                                 objBean.setJobSkill(objJson.getString(Constant.JOB_SKILL));
                                 objBean.setJobQualification(objJson.getString(Constant.JOB_QUALIFICATION));

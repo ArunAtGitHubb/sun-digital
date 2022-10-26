@@ -61,14 +61,11 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             final ItemService singleItem = dataList.get(position);
             holder.jobTitle.setText(singleItem.getServiceName());
+            holder.text_job_category.setText(singleItem.getServiceCategoryName());
             holder.jobid.setText("SDI00" + singleItem.getId());
-            holder.jobCat.setText(singleItem.getServiceCategoryName());
-            holder.company.setText(singleItem.getServiceCompanyName());
             holder.city.setText(singleItem.getCity());
-//        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
-            holder.pdate.setText(singleItem.getServiceDate());
-            holder.ldate.setText("     : " + singleItem.getPLate());
             holder.salary.setText(singleItem.getServiceCost());
+            holder.work_time.setText(singleItem.getServiceTime());
 
             Picasso.get().load(singleItem.getServiceLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
 
@@ -88,30 +85,24 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             });
 
-            holder.share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT,
-                            singleItem.getServiceName() + "\n" +
-                                    mContext.getString(R.string.job_company_lbl) + singleItem.getServiceCompanyName() + "\n" +
-                                    mContext.getString(R.string.job_designation_lbl) + singleItem.getServiceDesignation() + "\n" +
-                                    mContext.getString(R.string.job_phone_lbl) + singleItem.getServicePhoneNumber() + "\n" +
-                                    mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
-                                    "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
-                    sendIntent.setType("text/plain");
-                    mContext.startActivity(sendIntent);
-                }
+            holder.share.setOnClickListener(view -> {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        singleItem.getServiceName() + "\n" +
+                                mContext.getString(R.string.job_company_lbl) + singleItem.getServiceCompanyName() + "\n" +
+                                mContext.getString(R.string.job_designation_lbl) + singleItem.getServiceDesignation() + "\n" +
+                                mContext.getString(R.string.job_phone_lbl) + singleItem.getServicePhoneNumber() + "\n" +
+                                mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
+                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
+                sendIntent.setType("text/plain");
+                mContext.startActivity(sendIntent);
             });
-            holder.call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String phone = singleItem.getServicePhoneNumber();
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:"+phone));
-                    mContext.startActivity(intent);
-                }
+            holder.call.setOnClickListener(view -> {
+                String phone = singleItem.getServicePhoneNumber();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phone));
+                mContext.startActivity(intent);
             });
         }
     }
@@ -138,7 +129,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, pdate, vacancy, company, jobid, jobCat, city, ldate, salary, call;
+        TextView jobTitle, text_job_category, jobid, city, salary, work_time, call;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -148,18 +139,15 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ItemRowHolder(View itemView) {
             super(itemView);
             jobTitle = itemView.findViewById(R.id.text_job_title);
+            text_job_category = itemView.findViewById(R.id.text_job_category);
             city = itemView.findViewById(R.id.city);
-            jobCat = itemView.findViewById(R.id.jobCat);
-            pdate = itemView.findViewById(R.id.pdate);
+            work_time = itemView.findViewById(R.id.work_time);
             call = itemView.findViewById(R.id.call);
-            vacancy = itemView.findViewById(R.id.vacancy);
-            company =itemView.findViewById(R.id.company);
             jobid =itemView.findViewById(R.id.text_job_id);
 
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);
             jobImage = itemView.findViewById(R.id.image_job);
-            ldate = itemView.findViewById(R.id.ldate);
             salary = itemView.findViewById(R.id.salary);
             share = itemView.findViewById(R.id.share);
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);

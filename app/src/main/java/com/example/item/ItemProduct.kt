@@ -20,6 +20,7 @@ class ItemProduct : Serializable {
     var WebsiteLink: String? = null
     var productLogo: String? = null
     var productDate: String? = null
+    var productNegotiable: String? = null
     var productApplyTotal: String? = null
     var productCategoryName: String? = null
     var productAppliedDate: String? = null

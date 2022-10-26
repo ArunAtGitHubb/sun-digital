@@ -144,6 +144,26 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btn_whats"
+                    style="?android:attr/buttonBarButtonStyle"
+                    fontPath="fonts/customBold.otf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/yellow_button"
+                    android:gravity="center"
+                    android:paddingStart="15dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="15dp"
+                    android:text="Whatsapp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingPrefix" />
+
+                <Button
                     android:id="@+id/btn_call"
                     style="?android:attr/buttonBarButtonStyle"
                     fontPath="fonts/customBold.otf"
@@ -158,26 +178,6 @@
                     android:paddingTop="2dp"
                     android:paddingEnd="15dp"
                     android:text="Call"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
-
-                <Button
-                    android:id="@+id/btn_whats"
-                    style="?android:attr/buttonBarButtonStyle"
-                    fontPath="fonts/customBold.otf"
-                    android:layout_width="wrap_content"
-                    android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:background="@drawable/yellow_button"
-                    android:paddingStart="15dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="15dp"
-                    android:text="Whatsapp"
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"
                     android:textStyle="bold"

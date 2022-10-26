@@ -77,7 +77,6 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
     CoordinatorLayout lytParent;
     TabLayout tabLayout;
     ViewPager viewPager;
-    WebView videoView;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -103,12 +102,11 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             isFromNotification = true;
         }
 
-        setTitle(getString(R.string.tool_service_details));
+        setTitle(getString(R.string.tool_matrimony_details));
         databaseHelper = new DatabaseHelper(getApplicationContext());
         MyApp = MyApplication.getInstance();
         mProgressBar = findViewById(R.id.progressBar1);
         lyt_not_found = findViewById(R.id.lyt_not_found);
-        videoView = findViewById(R.id.videoView);
         mAdViewLayout = findViewById(R.id.adView);
 
         matrimonyName = findViewById(R.id.text_name);
@@ -250,15 +248,6 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
 //        mail_id.setText(content2);
 
         Picasso.get().load(objBean.getMatrimonyImage()).into(image);
-
-        if(objBean.getUrl() != ""){
-            videoView.getSettings().setJavaScriptEnabled(true);
-            videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
-            videoView.loadUrl(objBean.getUrl());
-            videoView.setWebChromeClient(new WebChromeClient());
-        }else{
-            videoView.setVisibility(View.GONE);
-        }
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);

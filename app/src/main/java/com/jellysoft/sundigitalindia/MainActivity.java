@@ -140,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Products City"));
         tabLayout.addTab(tabLayout.newTab().setText("சேவை வகைகள்"));
         tabLayout.addTab(tabLayout.newTab().setText("சேவை ஊர்"));
-        tabLayout.addTab(tabLayout.newTab().setText("சாதி"));
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"));
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"));
         tabLayout.addTab(tabLayout.newTab().setText("ஊர்"));
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

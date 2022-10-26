@@ -13,6 +13,7 @@ public class ItemJob implements Serializable {
     private String jobSalary;
     private String jobCompanyName;
     private String jobCompanyWebsite;
+    private String jobWebsite;
     private String jobImage;
     private String jobLogo;
     private String jobDate;
@@ -275,5 +276,13 @@ public class ItemJob implements Serializable {
 
     public void setJobExperience(String jobExperience) {
         this.jobExperience = jobExperience;
+    }
+
+    public String getJobWebsite() {
+        return jobWebsite;
+    }
+
+    public void setJobWebsite(String jobWebsite) {
+        this.jobWebsite = jobWebsite;
     }
 }

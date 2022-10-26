@@ -74,6 +74,7 @@ public class Constant implements Serializable {
     public static final String PRODUCT_PHONE_NO2 = "product_phone_number2";
     public static final String PRODUCT_MAIL = "product_mail";
     public static final String PRODUCT_ADDRESS = "product_address";
+    public static final String PRODUCT_NEGOTIABLE = "product_negotiable";
     public static final String PRODUCT_QUALIFICATION = "product_qualification";
     public static final String PRODUCT_SKILL = "product_skill";
     public static final String PRODUCT_IMAGE = "product_image";

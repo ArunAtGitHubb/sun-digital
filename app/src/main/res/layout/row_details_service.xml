@@ -97,7 +97,7 @@ android:gravity="center"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="சேவை பிரிவு : "
+                            android:text="வேலை பிரிவு : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
@@ -127,23 +127,22 @@ android:gravity="center"
                         android:gravity="center"
                         android:orientation="horizontal">
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
-
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="இடம் : "
+                            android:text="மாவட்டம் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
                             android:textStyle="bold"
                             tools:ignore="MissingPrefix" />
 
-                           <TextView
-                        android:fontFamily="@font/calibrib"
+                        <TextView
+                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -279,7 +278,7 @@ android:gravity="center"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="சேவை எண் : "
+                            android:text="வேலை எண் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="10sp"

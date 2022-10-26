@@ -14,9 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
 import com.example.adapter.ProductAdapter;
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -26,7 +24,6 @@ import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
 import com.example.util.RvOnClickListener;
-import com.example.util.SaveJob;
 import com.example.util.UserUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -43,39 +40,36 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class CityProduct extends AppCompatActivity {
-    ArrayList<ItemProduct> mListItem;
+public class NewProduct extends AppCompatActivity {
     public RecyclerView recyclerView;
+    ArrayList<ItemProduct> mListItem;
     ProductAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
     private int pageIndex = 1;
-    String categoryId;
-
+    boolean isLatest = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_item);
-      
-            categoryId = getIntent().getStringExtra("categoryId");
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Product City List");
+        toolbar.setTitle("புதிய பொருட்கள் பட்டியல்");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         mListItem = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        isLatest = bundle.getBoolean("isLatest");
         lyt_not_found = findViewById(R.id.lyt_not_found);
-        
         progressBar = findViewById(R.id.progressBar);
-
         recyclerView = findViewById(R.id.vertical_courses_list);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(CityProduct.this, 1);
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
 
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -91,13 +85,12 @@ public class CityProduct extends AppCompatActivity {
         });
 
 
-        if (NetworkUtils.isConnected(CityProduct.this)) {
-            getCategoryItem();
+        if (NetworkUtils.isConnected(NewProduct.this)) {
+            getLatestOrRecent();
         } else {
-            Toast.makeText(CityProduct.this, getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
+            Toast.makeText(NewProduct.this, getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
         }
-
-        recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+   recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 if (!isOver) {
@@ -105,7 +98,7 @@ public class CityProduct extends AppCompatActivity {
                         @Override
                         public void run() {
                             pageIndex++;
-                            getCategoryItem();
+                            getLatestOrRecent();
                         }
                     }, 1000);
                 } else {
@@ -114,14 +107,11 @@ public class CityProduct extends AppCompatActivity {
             }
         });
     }
-
-    private void getCategoryItem() {
-
+    private void getLatestOrRecent() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
-        jsObj.addProperty("method_name", "get_product_by_city_id");
-        jsObj.addProperty("cat_id", categoryId);
+        jsObj.addProperty("method_name", "get_all_new_product");
         jsObj.addProperty("user_id", UserUtils.getUserId());
         jsObj.addProperty("page", pageIndex);
         params.put("data", API.toBase64(jsObj.toString()));
@@ -139,6 +129,7 @@ public class CityProduct extends AppCompatActivity {
                     showProgress(false);
 
                 String result = new String(responseBody);
+                Log.d("result", result + statusCode);
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
@@ -154,17 +145,20 @@ public class CityProduct extends AppCompatActivity {
                                 objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
                                 objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                                 objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                                objItem.setWebsiteLink(jsonObject.getString(Constant.WEBSITE_LINK));
+                                objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO));
+                                objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
                                 objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
-                                objItem.setViews(jsonObject.getString("views"));
                                 objItem.setPLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
-                                objItem.setProductFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
+                                objItem.setViews(jsonObject.getString("views"));
                                 mListItem.add(objItem);
                             }
                         }
+                        Log.d("mList", mListItem.toString());
                     } else {
                         isOver = true;
                         if (adapter != null) { // when there is no data in first time
@@ -180,42 +174,36 @@ public class CityProduct extends AppCompatActivity {
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 showProgress(false);
+                Log.d("result", "onFailure");
                 lyt_not_found.setVisibility(View.VISIBLE);
             }
-
         });
     }
 
     private void displayData() {
         if (mListItem.size() == 0) {
+            Log.d("result", "size() === 0");
             lyt_not_found.setVisibility(View.VISIBLE);
         } else {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new ProductAdapter(CityProduct.this, mListItem);
+                adapter = new ProductAdapter(NewProduct.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
             }
 
-            adapter.setOnItemClickListener(new RvOnClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    String jobId = mListItem.get(position).getId();
-                    new SaveJob(CityProduct.this).userSave(jobId);
-                    Intent intent = new Intent(CityProduct.this, ProductDetailsActivity.class);
-                    intent.putExtra("Id", jobId);
-                    startActivity(intent);
-                }
+            adapter.setOnItemClickListener(position -> {
+                String jobId = mListItem.get(position).getId();
+                Intent intent = new Intent(NewProduct.this, ProductDetailsActivity.class);
+                intent.putExtra("Id", jobId);
+                startActivity(intent);
             });
+
         }
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+
     private void showProgress(boolean show) {
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
@@ -232,15 +220,17 @@ public class CityProduct extends AppCompatActivity {
         super.onDestroy();
         GlobalBus.getBus().unregister(this);
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
     @Subscribe
     public void getSaveJob(Events.SaveJob saveJob) {
         for (int i = 0; i < mListItem.size(); i++) {
             if (mListItem.get(i).getId().equals(saveJob.getJobId())) {
-                mListItem.get(i).setProductFavourite(saveJob.isSave());
                 adapter.notifyItemChanged(i);
             }
         }
     }
-
 }

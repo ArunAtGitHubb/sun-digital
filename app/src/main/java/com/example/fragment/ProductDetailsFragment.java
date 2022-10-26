@@ -3,6 +3,7 @@ package com.example.fragment;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,6 +57,22 @@ public class ProductDetailsFragment extends Fragment {
         btn_call = rootView.findViewById(R.id.btn_call);
         btn_whatsapp = rootView.findViewById(R.id.btn_whats);
         btn_back = rootView.findViewById(R.id.btn_back);
+
+        text_negotiate.setText(itemJob.getProductNegotiable());
+        text_desc.setText(itemJob.getProductDesc());
+        text_website.setText(itemJob.getWebsiteLink());
+
+        text_website.setTextColor(Color.BLUE);
+
+        text_website.setOnClickListener(view -> {
+            try {
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(text_website.getText().toString()));
+                startActivity(myIntent);
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Make sure url is correct",  Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        });
 
 
         btn_back.setOnClickListener(view -> getActivity().onBackPressed());

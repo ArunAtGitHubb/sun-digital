@@ -59,6 +59,7 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
         holder.matrimonyJob.setText(singleItem.getMatrimonyCareer());
         holder.matrimonySalary.setText(singleItem.getMatrimonySalary());
         holder.matrimonyCity.setText(singleItem.getCity());
+        holder.matrimonyGender.setText(singleItem.getMatrimonyGender());
         holder.matrimonyReligion.setText(singleItem.getMatrimonyReligion());
 
         Picasso.get().load(singleItem.getMatrimonyLogo()).placeholder(R.drawable.placeholder).into(holder.matrimonyImage);
@@ -121,7 +122,8 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView call, whatsapp;
-        TextView matrimonyJob, matrimonyName, matrimonySalary, matrimonyAge, matrimonyCity, matrimonyReligion;
+        TextView matrimonyJob, matrimonyName, matrimonySalary,
+                matrimonyAge, matrimonyCity, matrimonyGender, matrimonyReligion;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -138,7 +140,8 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
             matrimonyJob = itemView.findViewById(R.id.job);
             matrimonyCity = itemView.findViewById(R.id.city);
             matrimonySalary = itemView.findViewById(R.id.salary);
-            matrimonyReligion = itemView.findViewById(R.id.text_matrimony_religion);
+            matrimonyGender = itemView.findViewById(R.id.text_matrimony_religion);
+            matrimonyReligion = itemView.findViewById(R.id.text_religion);
 
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);

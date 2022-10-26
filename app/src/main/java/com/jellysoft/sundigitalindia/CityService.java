@@ -153,6 +153,7 @@ public class CityService extends AppCompatActivity {
                                 objItem.setId(jsonObject.getString(Constant.SERVICE_ID));
                                 objItem.setServiceName(jsonObject.getString(Constant.SERVICE_NAME));
                                 objItem.setServiceCost(jsonObject.getString(Constant.SERVICE_COST));
+                                objItem.setServiceTime(jsonObject.getString(Constant.SERVICE_TIME));
                                 objItem.setWebsiteLink(jsonObject.getString(Constant.WEBSITE_LINK));
                                 objItem.setServicePhoneNumber(jsonObject.getString(Constant.SERVICE_PHONE_NO));
                                 objItem.setServiceCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));

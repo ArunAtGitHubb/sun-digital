@@ -1,10 +1,13 @@
 package com.example.fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,18 +76,26 @@ public class JobDetailsFragment extends Fragment {
         text_desc.setText(itemJob.getJobDesc());
         textWorkDay.setText(itemJob.getAge());
         textWorkTime.setText(itemJob.getSex());
-        text_website.setText(itemJob.getJobCompanyWebsite());
         textType.setText(itemJob.getJobType());
         textJobQualification.setText(itemJob.getJobQualification());
         marital.setText(itemJob.getMarital());
         textExp.setText(itemJob.getJobExperience());
 
-        text_website.setMovementMethod(LinkMovementMethod.getInstance());
+        text_website.setText(itemJob.getJobWebsite());
+        text_website.setTextColor(Color.BLUE);
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { getActivity().onBackPressed(); }
+        text_website.setOnClickListener(view -> {
+            try {
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(text_website.getText().toString()));
+                startActivity(myIntent);
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Make sure url is correct",  Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
         });
+
+
+        btn_back.setOnClickListener(view -> getActivity().onBackPressed());
         btn_call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

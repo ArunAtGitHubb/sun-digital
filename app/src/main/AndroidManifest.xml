@@ -47,6 +47,8 @@
 
         <activity android:name=".LatestJob" android:exported="true" />
         <activity android:name=".LatestProduct" android:exported="true" />
+        <activity android:name=".UsedProduct" android:exported="true" />
+        <activity android:name=".NewProduct" android:exported="true" />
         <activity android:name=".LatestService" android:exported="true" />
         <activity android:name=".LatestMatrimony" android:exported="true" />
 
@@ -61,6 +63,8 @@
 
         <activity android:name=".CatMatrimony" android:exported="true" />
         <activity android:name=".CityMatrimony" android:exported="true" />
+        <activity android:name=".CatMatrimonyMale" android:exported="true"/>
+        <activity android:name=".CatMatrimonyFemale" android:exported="true" />
 
         <activity
             android:name=".SplashActivity"

@@ -56,16 +56,11 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         final ItemService singleItem = (ItemService) dataList.get(position);
         holder.jobTitle.setText(singleItem.getServiceName());
+        holder.text_job_category.setText(singleItem.getServiceCategoryName());
         holder.jobid.setText("SDI00" + singleItem.getId());
-//        holder.jobCat.setText(singleItem.getJobCategoryName());
-        holder.company.setText(singleItem.getServiceCompanyName());
         holder.city.setText(singleItem.getCity());
         holder.salary.setText(singleItem.getServiceCost());
         holder.workTime.setText(singleItem.getServiceTime());
-//        holder.vacancy.setText(singleItem.getServiceVacancy());
-//        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
-//        holder.pdate.setText(singleItem.getServiceDate());
-//        holder.ldate.setText(singleItem.getpLate());
 
         Picasso.get().load(singleItem.getServiceLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
@@ -116,22 +111,6 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             i.setData(Uri.parse(url));
             mContext.startActivity(i);
         });
-
-//        switch (singleItem.getServiceType()) {
-//            case Constant.JOB_TYPE_HOURLY:
-//                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.hourly_time_text));
-//                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.hourly_time_bg));
-//                break;
-//            case Constant.JOB_TYPE_HALF:
-//                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.half_time_text));
-//                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.half_time_bg));
-//                break;
-//            case Constant.JOB_TYPE_FULL:
-//                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.full_time_text));
-//                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.full_time_bg));
-//                break;
-//        }
-
     }
 
     @Override
@@ -144,7 +123,7 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, pdate, workTime, company, jobid, jobCat, city, salary, ldate, call, whatsapp;
+        TextView jobTitle, workTime, jobid, text_job_category, city, salary, call, whatsapp;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -156,14 +135,10 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ItemRowHolder(View itemView) {
             super(itemView);
             jobTitle = itemView.findViewById(R.id.text_job_title);
+            text_job_category = itemView.findViewById(R.id.text_job_category);
             city = itemView.findViewById(R.id.city);
             salary= itemView.findViewById(R.id.salary);
-//            jobCat = itemView.findViewById(R.id.jobCat);
-//            pdate = itemView.findViewById(R.id.pdate);
-//            ldate = itemView.findViewById(R.id.ldate);
-//            vacancy = itemView.findViewById(R.id.vacancy);
             workTime = itemView.findViewById(R.id.work_time);
-            company = itemView.findViewById(R.id.company);
             jobid =itemView.findViewById(R.id.text_job_id);
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);
@@ -172,18 +147,6 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
             call = itemView.findViewById(R.id.call);
             whatsapp = itemView.findViewById(R.id.whatsapp);
-//            Typeface typeface = mContext.getResources().getFont(R.font.tamil);
-//
-//            jobTitle.setTypeface(typeface);
-//            jobType.setTypeface(typeface);
-//            city.setTypeface(typeface);
-//            salary.setTypeface(typeface);
-//            jobCat.setTypeface(typeface);
-//            pdate.setTypeface(typeface);
-//            ldate.setTypeface(typeface);
-//            vacancy.setTypeface(typeface);
-//            company.setTypeface(typeface);
-//            jobid.setTypeface(typeface);
         }
     }
 }

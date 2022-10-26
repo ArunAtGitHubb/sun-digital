@@ -25,16 +25,10 @@
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="303dp"
                 android:contentDescription="@string/app_name"
-                android:scaleType="fitXY" />
+                android:scaleType="fitCenter" />
 
-            <WebView
-                android:layout_marginTop="5dp"
-                android:id="@+id/videoView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_centerInParent="true" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -53,11 +47,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:fontFamily="@font/calibrib"
                         android:id="@+id/text_name"
                         fontPath="fonts/customBold.otf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/calibrib"
                         android:gravity="center"
                         android:singleLine="true"
                         android:text="NAME"
@@ -75,12 +69,12 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
-
                             fontPath="fonts/customBold.otf"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:text="வயது : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -90,11 +84,11 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -125,11 +119,11 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_matrimony_religion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -145,12 +139,12 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
-
                             fontPath="fonts/customBold.otf"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:text="DOB : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -160,11 +154,11 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_dob"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -181,13 +175,13 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             fontPath="fonts/customBold.otf"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="இடம் : "
+                            android:text="மாவட்டம் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
@@ -195,11 +189,11 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_city"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -215,12 +209,12 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
-
                             fontPath="fonts/customBold.otf"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:text="பகுதி : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -230,11 +224,11 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_area"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -327,83 +321,86 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/divider" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="2"
-    android:orientation="horizontal">
-    <LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="5dp"
-        android:layout_weight="1"
-    android:layout_marginTop="8dp"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_date"
-        android:tint="@color/login_line"
-        tools:ignore="UseAppTint" />
-
-       <TextView
-                        android:fontFamily="@font/calibrib"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:paddingTop="5dp"
-        android:text="ஆரம்ப தேதி"
-        android:textStyle="bold"
-        fontPath="fonts/customBold.otf"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@color/white" />
-
-
-
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_date"
-            android:tint="@color/login_line"
-            tools:ignore="UseAppTint" />
-
-           <TextView
-                        android:fontFamily="@font/calibrib"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:paddingTop="5dp"
-            android:text="கடைசி தேதி"
-            android:textStyle="bold"
-            fontPath="fonts/customBold.otf"
-            android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/white" />
-
-
-
-    </LinearLayout>
-</LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_date"
+                        android:tint="@color/login_line"
+                        tools:ignore="UseAppTint" />
+
+                    <TextView
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/calibrib"
+                        android:paddingTop="5dp"
+                        android:text="ஆரம்ப தேதி"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_date"
+                        android:tint="@color/login_line"
+                        tools:ignore="UseAppTint" />
+
+                    <TextView
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/calibrib"
+                        android:paddingTop="5dp"
+                        android:text="கடைசி தேதி"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -413,20 +410,18 @@
                     android:orientation="horizontal">
 
 
-
-
-
-                       <TextView
-                        android:fontFamily="@font/calibrib"
+                    <TextView
                         android:id="@+id/text_job_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
+                        android:fontFamily="@font/calibrib"
                         android:paddingTop="5dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -436,35 +431,34 @@
                     android:orientation="horizontal">
 
 
-
-
-
-                       <TextView
-                        android:fontFamily="@font/calibrib"
+                    <TextView
                         android:id="@+id/last_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
+                        android:fontFamily="@font/calibrib"
                         android:paddingTop="5dp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@color/divider" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:visibility="gone"
                 android:layout_marginTop="8dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -473,27 +467,28 @@
                     android:src="@drawable/ic_small_designation"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="பதவி :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/text_job_designation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -509,30 +504,31 @@
                     android:src="@drawable/mail"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="மின் அஞ்சல் :"
-                    android:textStyle="bold"
-                       android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/mail_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                       android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -548,29 +544,29 @@
                     android:src="@drawable/ic_call"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                    android:textStyle="bold"
-                       android:textSize="16sp"
                     android:text="தொலைபேசி எண் :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/text_phone"
-                       android:textSize="13sp"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -589,30 +585,31 @@
                     android:src="@drawable/whatsapp"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="வாட்ஸாப்ப் எண் :"
-                    android:textStyle="bold"
-                       android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/whatsapp_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                       android:textSize="13sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -628,30 +625,31 @@
                     android:src="@drawable/location"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="முகவரி :"
-                       android:textSize="16sp"
-                    android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/text_job_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                       android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -662,13 +660,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="3dp"
                 android:layout_marginBottom="8dp"
-                android:layout_gravity="center"
                 android:gravity="center"
-                android:weightSum="2"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <Button
                     android:id="@+id/btn_apply_job"
@@ -676,11 +674,11 @@
                     fontPath="fonts/customBold.otf"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:layout_margin="5dp"
                     android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/white_button"
+                    android:gravity="center"
                     android:paddingStart="15dp"
                     android:paddingTop="2dp"
                     android:paddingEnd="15dp"
@@ -696,11 +694,11 @@
                     fontPath="fonts/customBold.otf"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
-                    android:layout_weight="1"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
                     android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/white_button"
+                    android:gravity="center"
                     android:paddingStart="15dp"
                     android:paddingTop="2dp"
                     android:paddingEnd="15dp"

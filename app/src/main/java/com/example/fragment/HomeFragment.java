@@ -46,6 +46,7 @@ import com.jellysoft.sundigitalindia.LatestMatrimony;
 import com.jellysoft.sundigitalindia.LatestProduct;
 import com.jellysoft.sundigitalindia.LatestService;
 import com.jellysoft.sundigitalindia.MatrimonyDetailsActivity;
+import com.jellysoft.sundigitalindia.NewProduct;
 import com.jellysoft.sundigitalindia.ProductDetailsActivity;
 import com.jellysoft.sundigitalindia.R;
 import com.example.adapter.HomeJobAdapter;
@@ -60,6 +61,7 @@ import com.example.util.UserUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jellysoft.sundigitalindia.ServiceDetailsActivity;
+import com.jellysoft.sundigitalindia.UsedProduct;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -81,10 +83,11 @@ public class HomeFragment extends Fragment {
     NestedScrollView nestedScrollView;
     Button textCategoryViewAll,
             textCategoryViewAll1,
-            latestViewAll, viewAllProducts, viewAllServices, viewAllMatrimony,
+            latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
             textServiceCategories, textServiceCities,
-            textMatrimonyCategories, textMatrimonyCities;
+            textMatrimonyCities, textGrooms, textBrides,
+            viewAllUsedProduct, viewAllNewProduct;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities;
 //    GridView rvCategory;
@@ -134,7 +137,8 @@ public class HomeFragment extends Fragment {
         textCategoryViewAll = rootView.findViewById(R.id.textCategoryViewAll);
         textCategoryViewAll1 = rootView.findViewById(R.id.textCategoryViewAll1);
 
-        viewAllProducts = rootView.findViewById(R.id.viewAllProducts);
+        viewAllUsedProduct = rootView.findViewById(R.id.viewAllUsedProducts);
+        viewAllNewProduct = rootView.findViewById(R.id.viewAllNewProducts);
         textProductCategories = rootView.findViewById(R.id.textProductCategories);
         textProductCities = rootView.findViewById(R.id.textProductAllCities);
 
@@ -143,7 +147,8 @@ public class HomeFragment extends Fragment {
         textServiceCities = rootView.findViewById(R.id.textServiceAllCities);
 
         viewAllMatrimony = rootView.findViewById(R.id.viewAllMatrimony);
-        textMatrimonyCategories = rootView.findViewById(R.id.textMatrimonyCategories);
+        textGrooms = rootView.findViewById(R.id.textGroomCategories);
+        textBrides = rootView.findViewById(R.id.textBrideCategories);
         textMatrimonyCities = rootView.findViewById(R.id.textMatrimonyAllCities);
 
         vertical_courses_list = rootView.findViewById(R.id.vertical_courses_list);
@@ -255,8 +260,9 @@ public class HomeFragment extends Fragment {
         textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(5));
         textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(6));
 
-        textMatrimonyCategories.setOnClickListener(view -> mviewPager.setCurrentItem(7));
-        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(8));
+        textGrooms.setOnClickListener(view -> mviewPager.setCurrentItem(7));
+        textBrides.setOnClickListener(view -> mviewPager.setCurrentItem(8));
+        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
 
         latestViewAll.setOnClickListener(view -> {
             Intent intent = new Intent(requireActivity(), LatestJob.class);
@@ -264,8 +270,14 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        viewAllProducts.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), LatestProduct.class);
+        viewAllNewProduct.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), NewProduct.class);
+            intent.putExtra("isLatest", true);
+            startActivity(intent);
+        });
+
+        viewAllUsedProduct.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), UsedProduct.class);
             intent.putExtra("isLatest", true);
             startActivity(intent);
         });
@@ -359,7 +371,7 @@ public class HomeFragment extends Fragment {
                         objItem.setJobArea(jsonObject.getString(Constant.JOB_AREA));
                         objItem.setJobDesc(jsonObject.getString(Constant.JOB_DESC));
                         objItem.setJobName(jsonObject.getString(Constant.JOB_NAME));
-                        objItem.setJobCompanyWebsite(jsonObject.getString(Constant.WEBSITE_LINK));
+                        objItem.setJobWebsite(jsonObject.getString(Constant.WEBSITE_LINK));
                         objItem.setJobPhoneNumber(jsonObject.getString(Constant.JOB_PHONE_NO));
                         objItem.setJobPhoneNumber2(jsonObject.getString(Constant.JOB_PHONE_NO2));
                         objItem.setJobCompanyName(jsonObject.getString(Constant.JOB_COMPANY_NAME));
@@ -382,10 +394,13 @@ public class HomeFragment extends Fragment {
                         objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
                         objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                         objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
-                        objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO));
+                        objItem.setProductDesc(jsonObject.getString(Constant.PRODUCT_DESC));
+                        objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO)) ;
                         objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                         objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                         objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
+                        objItem.setProductNegotiable(jsonObject.getString(Constant.PRODUCT_NEGOTIABLE));
+                        objItem.setWebsiteLink(jsonObject.getString(Constant.WEBSITE_LINK));
                         objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
                         objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                         objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));

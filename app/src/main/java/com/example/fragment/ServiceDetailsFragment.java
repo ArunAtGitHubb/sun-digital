@@ -1,8 +1,10 @@
 package com.example.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 public class ServiceDetailsFragment extends Fragment {
 
     WebView webView;
-    TextView textDesc, textSkills;
+    TextView textDesc, textSkills, textWebsite;
     ItemService itemJob;
 
     Button btn_call, btn_whatsapp,btn_back;
@@ -40,6 +42,7 @@ public class ServiceDetailsFragment extends Fragment {
         return f;
     }
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class ServiceDetailsFragment extends Fragment {
 
         textDesc = rootView.findViewById(R.id.text_desc);
         textSkills = rootView.findViewById(R.id.textSkills);
+        textWebsite = rootView.findViewById(R.id.text_website);
 
         btn_call = rootView.findViewById(R.id.btn_call);
         btn_whatsapp = rootView.findViewById(R.id.btn_whats);
@@ -58,6 +62,18 @@ public class ServiceDetailsFragment extends Fragment {
 
         textDesc.setText(itemJob.getServiceDesc());
         textSkills.setText(itemJob.getServiceSkill());
+        textWebsite.setText(itemJob.getWebsiteLink());
+        textWebsite.setTextColor(Color.BLUE);
+
+        textWebsite.setOnClickListener(view -> {
+            try {
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(textWebsite.getText().toString()));
+                startActivity(myIntent);
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Make sure url is correct",  Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        });
 
         btn_back.setOnClickListener(view -> getActivity().onBackPressed());
         btn_call.setOnClickListener(view -> {

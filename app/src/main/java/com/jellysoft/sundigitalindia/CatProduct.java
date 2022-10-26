@@ -147,6 +147,8 @@ public class CatProduct extends AppCompatActivity {
                                 objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
                                 objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                                 objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                                objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
+                                objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));

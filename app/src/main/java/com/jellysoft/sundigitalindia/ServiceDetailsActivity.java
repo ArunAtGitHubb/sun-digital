@@ -104,7 +104,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             isFromNotification = true;
         }
 
-        setTitle(getString(R.string.tool_matrimony_details));
+        setTitle(getString(R.string.tool_service_details));
         databaseHelper = new DatabaseHelper(getApplicationContext());
         MyApp = MyApplication.getInstance();
         mProgressBar = findViewById(R.id.progressBar1);

@@ -3,7 +3,6 @@ package com.jellysoft.sundigitalindia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -14,14 +13,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
-import com.example.adapter.ProductAdapter;
-import com.example.item.ItemJob;
-import com.example.item.ItemProduct;
+import com.example.adapter.MatrimonyAdapter;
+import com.example.item.ItemMatrimony;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
-import com.example.util.Events;
 import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
@@ -34,7 +30,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
-import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,26 +38,24 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class CityProduct extends AppCompatActivity {
-    ArrayList<ItemProduct> mListItem;
+public class CatMatrimonyMale extends AppCompatActivity {
+    ArrayList<ItemMatrimony> mListItem;
     public RecyclerView recyclerView;
-    ProductAdapter adapter;
+    MatrimonyAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
     private int pageIndex = 1;
     String categoryId;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_item);
-      
-            categoryId = getIntent().getStringExtra("categoryId");
+        categoryId = getIntent().getStringExtra("categoryId");
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Product City List");
+        toolbar.setTitle("Matrimony Category List");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,12 +63,10 @@ public class CityProduct extends AppCompatActivity {
         }
         mListItem = new ArrayList<>();
         lyt_not_found = findViewById(R.id.lyt_not_found);
-        
         progressBar = findViewById(R.id.progressBar);
-
         recyclerView = findViewById(R.id.vertical_courses_list);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(CityProduct.this, 1);
+        GridLayoutManager layoutManager = new GridLayoutManager(CatMatrimonyMale.this, 1);
         recyclerView.setLayoutManager(layoutManager);
 
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -91,10 +82,10 @@ public class CityProduct extends AppCompatActivity {
         });
 
 
-        if (NetworkUtils.isConnected(CityProduct.this)) {
+        if (NetworkUtils.isConnected(CatMatrimonyMale.this)) {
             getCategoryItem();
         } else {
-            Toast.makeText(CityProduct.this, getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CatMatrimonyMale.this, getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
         }
 
         recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
@@ -114,16 +105,15 @@ public class CityProduct extends AppCompatActivity {
             }
         });
     }
-
     private void getCategoryItem() {
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
-        jsObj.addProperty("method_name", "get_product_by_city_id");
+        jsObj.addProperty("method_name", "get_matrimony_male_by_cat_id");
         jsObj.addProperty("cat_id", categoryId);
         jsObj.addProperty("user_id", UserUtils.getUserId());
         jsObj.addProperty("page", pageIndex);
+
         params.put("data", API.toBase64(jsObj.toString()));
         client.post(Constant.API_URL, params, new AsyncHttpResponseHandler() {
             @Override
@@ -142,26 +132,35 @@ public class CityProduct extends AppCompatActivity {
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
-                    JSONObject jsonObject;
+
+                    JSONObject objJson;
                     if (jsonArray.length() > 0) {
                         for (int i = 0; i < jsonArray.length(); i++) {
-                            jsonObject = jsonArray.getJSONObject(i);
-                            if (jsonObject.has(Constant.STATUS)) {
+                            objJson = jsonArray.getJSONObject(i);
+                            if (objJson.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
-                                ItemProduct objItem = new ItemProduct();
-                                objItem.setProductLogo(jsonObject.getString(Constant.PRODUCT_LOGO));
-                                objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
-                                objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
-                                objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
-                                objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
-                                objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
-                                objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
-                                objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
-                                objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
-                                objItem.setViews(jsonObject.getString("views"));
-                                objItem.setPLate(jsonObject.getString(Constant.PRODUCT_END_DATE));
-                                objItem.setProductFavourite(jsonObject.getBoolean(Constant.PRODUCT_FAVOURITE));
+                                ItemMatrimony objItem = new ItemMatrimony();
+                                objItem.setId(objJson.getString(Constant.id));
+                                objItem.setCity(objJson.getString(Constant.CITY_NAME));
+                                objItem.setMatrimonyName(objJson.getString(Constant.MATRIMONY_NAME));
+                                objItem.setMatrimonyGender(objJson.getString(Constant.MATRIMONY_GENDER));
+                                objItem.setMatrimonyReligion(objJson.getString(Constant.MATRIMONY_RELIGION));
+                                objItem.setMatrimonyArea(objJson.getString(Constant.MATRIMONY_AREA));
+                                objItem.setMatrimonyMaritalStatus(objJson.getString(Constant.MATRIMONY_MARITAL_STATUS));
+                                objItem.setMatrimonyDob(objJson.getString(Constant.MATRIMONY_DOB));
+                                objItem.setMatrimonyAge(objJson.getString(Constant.MATRIMONY_AGE));
+                                objItem.setMatrimonyEducation(objJson.getString(Constant.MATRIMONY_EDUCATION));
+                                objItem.setMatrimonyCareer(objJson.getString(Constant.MATRIMONY_CAREER));
+                                objItem.setMatrimonySalary(objJson.getString(Constant.MATRIMONY_SALARY));
+                                objItem.setMatrimonyDesc(objJson.getString(Constant.MATRIMONY_DESC));
+                                objItem.setMatrimonyPartnerExpect(objJson.getString(Constant.MATRIMONY_PARTNER_EXPECT));
+                                objItem.setMatrimonyPersonName(objJson.getString(Constant.MATRIMONY_PERSON_NAME));
+                                objItem.setMatrimonyPhoneNumber(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER));
+                                objItem.setMatrimonyPhoneNumber2(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER2));
+                                objItem.setMatrimonyImage(objJson.getString(Constant.MATRIMONY_IMAGE));
+                                objItem.setMatrimonySDate(objJson.getString(Constant.MATRIMONY_START_DATE));
+                                objItem.setMatrimonyEDate(objJson.getString(Constant.MATRIMONY_END_DATE));
                                 mListItem.add(objItem);
                             }
                         }
@@ -182,7 +181,6 @@ public class CityProduct extends AppCompatActivity {
                 showProgress(false);
                 lyt_not_found.setVisibility(View.VISIBLE);
             }
-
         });
     }
 
@@ -193,7 +191,7 @@ public class CityProduct extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new ProductAdapter(CityProduct.this, mListItem);
+                adapter = new MatrimonyAdapter(CatMatrimonyMale.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
@@ -203,19 +201,16 @@ public class CityProduct extends AppCompatActivity {
                 @Override
                 public void onItemClick(int position) {
                     String jobId = mListItem.get(position).getId();
-                    new SaveJob(CityProduct.this).userSave(jobId);
-                    Intent intent = new Intent(CityProduct.this, ProductDetailsActivity.class);
+                    new SaveJob(CatMatrimonyMale.this).userSave(jobId);
+                    Intent intent = new Intent(CatMatrimonyMale.this, MatrimonyDetailsActivity.class);
                     intent.putExtra("Id", jobId);
                     startActivity(intent);
                 }
             });
+
         }
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+
     private void showProgress(boolean show) {
         if (show) {
             progressBar.setVisibility(View.VISIBLE);
@@ -226,21 +221,15 @@ public class CityProduct extends AppCompatActivity {
             recyclerView.setVisibility(View.VISIBLE);
         }
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
         GlobalBus.getBus().unregister(this);
-    }
-
-    @Subscribe
-    public void getSaveJob(Events.SaveJob saveJob) {
-        for (int i = 0; i < mListItem.size(); i++) {
-            if (mListItem.get(i).getId().equals(saveJob.getJobId())) {
-                mListItem.get(i).setProductFavourite(saveJob.isSave());
-                adapter.notifyItemChanged(i);
-            }
-        }
     }
 
 }

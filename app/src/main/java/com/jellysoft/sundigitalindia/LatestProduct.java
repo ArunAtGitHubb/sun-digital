@@ -146,6 +146,7 @@ public class LatestProduct extends AppCompatActivity {
                                 objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
                                 objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                                 objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                                objItem.setWebsiteLink(jsonObject.getString(Constant.WEBSITE_LINK));
                                 objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO));
                                 objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
