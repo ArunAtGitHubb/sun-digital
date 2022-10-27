@@ -16,7 +16,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,6 +30,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.db.DatabaseHelper;
 import com.example.fragment.ProductDetailsFragment;
 import com.example.item.ItemProduct;
@@ -45,7 +47,6 @@ import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +67,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             text_product_address, productAddress, productPhone, productPhone2,
             productMail, productWebsite, text_product_id, text_product_category,
             text_city, last_date, whatsapp_num, mail_id, text_area, text_price, text_selling_price;
-    ImageView image;
+    ImageSlider image;
     String Id;
     DatabaseHelper databaseHelper;
     Button btnSave;
@@ -113,7 +114,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         mAdViewLayout = findViewById(R.id.adView);
 
         btn_whats = findViewById(R.id.btn_whats);
-        image = findViewById(R.id.image);
+        image = findViewById(R.id.image_slider);
         productTitle = findViewById(R.id.text_job_title);
         companyTitle = findViewById(R.id.text_job_company);
         productDate = findViewById(R.id.text_job_date);
@@ -181,6 +182,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             if (objJson.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
+                                ArrayList<SlideModel> images = new ArrayList<>();
                                 objBean.setId(objJson.getString(Constant.PRODUCT_ID));
                                 objBean.setProductName(objJson.getString(Constant.PRODUCT_NAME));
                                 objBean.setProductDate(objJson.getString(Constant.PRODUCT_START_DATE));
@@ -202,6 +204,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 objBean.setProductMail(objJson.getString(Constant.PRODUCT_MAIL));
                                 objBean.setProductCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objBean.setProductType(objJson.getString(Constant.PRODUCT_TYPE));
+
+                                images.add(new SlideModel(objJson.getString(Constant.PRODUCT_IMAGE), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.PRODUCT_IMAGE2), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.PRODUCT_IMAGE3), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.PRODUCT_IMAGE4), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.PRODUCT_IMAGE5), ScaleTypes.FIT));
+                                objBean.setProductBanner(images);
                             }
                         }
                         setResult();
@@ -253,7 +262,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         content3.setSpan(new UnderlineSpan(), 0, content3.length(), 0);
         mail_id.setText(content3);
 
-        Picasso.get().load(objBean.getProductImage()).into(image);
+        image.setImageList(objBean.getProductBanner(), ScaleTypes.FIT);
 
         if(objBean.getUrl() != ""){
             videoView.getSettings().setJavaScriptEnabled(true);

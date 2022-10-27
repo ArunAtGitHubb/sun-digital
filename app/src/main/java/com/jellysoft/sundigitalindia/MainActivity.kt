@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tabLayout: TabLayout
     lateinit var viewPager: ViewPager
     lateinit var adapter: MyAdapter
-    lateinit var vi: String
+    var vi: String? = null
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
@@ -212,7 +212,7 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
                 viewer = drawerView.findViewById(R.id.views)
-                viewer.setText(vi)
+                viewer.text = vi
             }
         }
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
