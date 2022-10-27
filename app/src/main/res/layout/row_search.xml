@@ -8,9 +8,9 @@
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/image_slider"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="230dp"
         app:iss_auto_cycle="true"
-        app:iss_period="1000"
-        app:iss_delay="1000"/>
+        app:iss_delay="1000"
+        app:iss_period="1000" />
 
 </androidx.cardview.widget.CardView>
