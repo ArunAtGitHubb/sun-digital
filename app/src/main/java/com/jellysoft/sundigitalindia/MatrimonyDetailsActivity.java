@@ -12,11 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,6 +27,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.db.DatabaseHelper;
 import com.example.fragment.MatrimonyDetailsFragment;
 import com.example.item.ItemMatrimony;
@@ -45,7 +44,6 @@ import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +64,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             matrimonyPhone, matrimonyReligion,
             serviceMail, matrimonyJob, matrimonyAge,
             text_city, last_date, whatsapp_num, mail_id, text_area, matrimonyDob;
-    ImageView image;
+    ImageSlider image;
     String Id;
     DatabaseHelper databaseHelper;
     Button btnSave;
@@ -121,7 +119,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
         last_date  = findViewById(R.id.last_date);
 
         btn_whats = findViewById(R.id.btn_whats);
-        image = findViewById(R.id.image);
+        image = findViewById(R.id.image_slider);
         matrimonyPhone = findViewById(R.id.text_phone);
         serviceMail = findViewById(R.id.text_email);
         lytParent = findViewById(R.id.lytParent);
@@ -175,6 +173,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
                             if (objJson.has(Constant.STATUS)) {
                                 lyt_not_found.setVisibility(View.VISIBLE);
                             } else {
+                                ArrayList<SlideModel> images = new ArrayList<>();
                                 objBean.setId(objJson.getString(Constant.SERVICE_ID));
                                 objBean.setMatrimonyName(objJson.getString(Constant.MATRIMONY_NAME));
                                 objBean.setMatrimonyGender(objJson.getString(Constant.MATRIMONY_GENDER));
@@ -201,6 +200,12 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
                                 objBean.setUrl(objJson.getString("url"));
                                 objBean.setCity(objJson.getString(Constant.CITY_NAME));
                                 objBean.setCid(objJson.getString(Constant.CATEGORY_CID));
+
+                                images.add(new SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE2), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE3), ScaleTypes.FIT));
+                                images.add(new SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE4), ScaleTypes.FIT));
+                                objBean.setMatrimonyBanner(images);
                                 setResult();
                             }
                         }
@@ -247,7 +252,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
 //        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
 //        mail_id.setText(content2);
 
-        Picasso.get().load(objBean.getMatrimonyImage()).into(image);
+        image.setImageList(objBean.getMatrimonyBanner(), ScaleTypes.FIT);
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
