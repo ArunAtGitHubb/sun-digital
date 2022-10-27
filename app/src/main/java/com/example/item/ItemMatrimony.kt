@@ -1,13 +1,10 @@
 package com.example.item
 
-import com.denzcoskun.imageslider.models.SlideModel
 import java.io.Serializable
 
 class ItemMatrimony : Serializable {
     var id: String? = null
     var matrimonyName: String? = null
-    var matrimonyBanner: ArrayList<SlideModel>? = null
-
     var catId: String? = null
     var cityId: String? = null
     var city: String? = null

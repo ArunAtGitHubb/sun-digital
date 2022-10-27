@@ -80,10 +80,6 @@ public class Constant implements Serializable {
     public static final String PRODUCT_QUALIFICATION = "product_qualification";
     public static final String PRODUCT_SKILL = "product_skill";
     public static final String PRODUCT_IMAGE = "product_image";
-    public static final String PRODUCT_IMAGE2 = "product_image2";
-    public static final String PRODUCT_IMAGE3 = "product_image3";
-    public static final String PRODUCT_IMAGE4 = "product_image4";
-    public static final String PRODUCT_IMAGE5 = "product_image5";
     public static final String PRODUCT_START_DATE = "product_sdate";
     public static final String PRODUCT_END_DATE = "product_edate";
     public static final String PRODUCT_APPLY = "product_apply_total";
