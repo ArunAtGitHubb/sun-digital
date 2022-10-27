@@ -133,7 +133,7 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="166dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.9"
                     android:orientation="vertical">
 
@@ -225,6 +225,31 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:text="காலி இடம் : "
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/text_vacancy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:textColor="@color/black"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -248,6 +273,7 @@
                             android:textColor="@color/black"
                             android:textSize="13sp" />
                     </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 

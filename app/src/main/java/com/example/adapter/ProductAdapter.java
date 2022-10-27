@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.Constant;
 import com.example.util.PopUpAds;
@@ -26,6 +25,7 @@ import com.jellysoft.sundigitalindia.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -64,7 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder.text_job_title.setText(singleItem.getProductName());
             holder.product_price.setText(singleItem.getProductPrice());
             holder.product_selling_price.setText(singleItem.getProductSellingPrice());
-//            holder.product_document.setText(singleItem.g);
+            holder.product_document.setText(Objects.equals(singleItem.getProductDoc(), "YES") ? "YES" : "NO");
 
             holder.jobid.setText("SDI00" + singleItem.getId());
             holder.company.setText(singleItem.getProductCompanyName());
@@ -168,6 +168,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             product_price = itemView.findViewById(R.id.product_price);
             product_selling_price = itemView.findViewById(R.id.product_selling_price);
             product_document = itemView.findViewById(R.id.product_document);
+
             jobType = itemView.findViewById(R.id.text_job_type);
             city = itemView.findViewById(R.id.city);
             call = itemView.findViewById(R.id.call);

@@ -1,18 +1,17 @@
 package com.jellysoft.sundigitalindia;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.JobAdapter;
 import com.example.item.ItemJob;
@@ -151,6 +150,7 @@ public class LatestJob extends AppCompatActivity {
                                 objItem.setJobVacancy(objJson.getString(Constant.JOB_VACANCY));
                                 objItem.setJobDate(objJson.getString(Constant.JOB_DATE));
                                 objItem.setJobSalary(objJson.getString(Constant.JOB_SALARY));
+                                objItem.setJobTime(objJson.getString(Constant.JOB_TIME));
                                 objItem.setpLate(objJson.getString("job_date1"));
                                 objItem.setViews(objJson.getString("views"));
                                 objItem.setJobFavourite(objJson.getBoolean(Constant.JOB_FAVOURITE));

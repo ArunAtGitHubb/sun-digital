@@ -3,7 +3,6 @@ package com.example.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
@@ -14,24 +13,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jellysoft.sundigitalindia.MyApplication;
-import com.jellysoft.sundigitalindia.R;
-import com.jellysoft.sundigitalindia.SignInActivity;
 import com.example.item.ItemJob;
-import com.example.util.ApplyJob;
 import com.example.util.Constant;
-import com.example.util.NetworkUtils;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
-import com.example.util.SaveClickListener;
-import com.example.util.SaveJob;
+import com.jellysoft.sundigitalindia.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -64,13 +56,10 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final ItemJob singleItem = (ItemJob) dataList.get(position);
         holder.jobTitle.setText(singleItem.getJobName());
         holder.jobid.setText("SDI00" + singleItem.getId());
-//        holder.jobCat.setText(singleItem.getJobCategoryName());
+        holder.text_job_time.setText(singleItem.getJobTime());
         holder.company.setText(singleItem.getJobCompanyName());
+        holder.vacancy.setText(singleItem.getJobVacancy());
         holder.city.setText(singleItem.getCity());
-//        holder.vacancy.setText(singleItem.getJobVacancy());
-//        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
-//        holder.pdate.setText(singleItem.getJobDate());
-//        holder.ldate.setText(singleItem.getpLate());
         holder.salary.setText(singleItem.getJobSalary());
         holder.jobType.setText(singleItem.getJobType());
 
@@ -140,7 +129,6 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.full_time_bg));
                 break;
         }
-
     }
 
     @Override
@@ -153,7 +141,8 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, jobType,pdate,vacancy,company,jobid,jobCat,city,salary,ldate,call, whatsapp;
+        TextView jobTitle, jobType, company, vacancy,
+                jobid, city, salary, call, whatsapp, text_job_time;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -169,10 +158,8 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             jobType = itemView.findViewById(R.id.text_job_type);
             city = itemView.findViewById(R.id.city);
             salary= itemView.findViewById(R.id.salary);
-//            jobCat = itemView.findViewById(R.id.jobCat);
-//            pdate = itemView.findViewById(R.id.pdate);
-//            ldate = itemView.findViewById(R.id.ldate);
-//            vacancy = itemView.findViewById(R.id.vacancy);
+            text_job_time = itemView.findViewById(R.id.text_time);
+            vacancy = itemView.findViewById(R.id.text_vacancy);
             company = itemView.findViewById(R.id.company);
             jobid = itemView.findViewById(R.id.text_job_id);
             lyt_parent = itemView.findViewById(R.id.rootLayout);
@@ -182,18 +169,6 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
             call = itemView.findViewById(R.id.call);
             whatsapp = itemView.findViewById(R.id.whatsapp);
-//            Typeface typeface = mContext.getResources().getFont(R.font.tamil);
-//
-//            jobTitle.setTypeface(typeface);
-//            jobType.setTypeface(typeface);
-//            city.setTypeface(typeface);
-//            salary.setTypeface(typeface);
-//            jobCat.setTypeface(typeface);
-//            pdate.setTypeface(typeface);
-//            ldate.setTypeface(typeface);
-//            vacancy.setTypeface(typeface);
-//            company.setTypeface(typeface);
-//            jobid.setTypeface(typeface);
         }
     }
 }

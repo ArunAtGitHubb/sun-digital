@@ -23,7 +23,6 @@ import com.example.util.Events;
 import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
 import com.example.util.UserUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -150,6 +149,7 @@ public class NewProduct extends AppCompatActivity {
                                 objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
+                                objItem.setProductDoc(jsonObject.getString(Constant.PRODUCT_DOC));
                                 objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));

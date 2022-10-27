@@ -11,6 +11,7 @@ public class ItemJob implements Serializable {
     private String jobDesignation;
     private String jobDesc;
     private String jobSalary;
+    private String jobTime;
     private String jobCompanyName;
     private String jobCompanyWebsite;
     private String jobWebsite;
@@ -47,16 +48,13 @@ public class ItemJob implements Serializable {
     public String getViews() {
         return views;
     }
-
     public void setViews(String views) {
         this.views = views;
     }
 
-
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
@@ -64,12 +62,9 @@ public class ItemJob implements Serializable {
     public String getJobLogo() {
         return jobLogo;
     }
-
     public void setJobLogo(String jobLogo) {
         this.jobLogo = jobLogo;
     }
-
-
 
     public String getId() {
         return id;
@@ -284,5 +279,13 @@ public class ItemJob implements Serializable {
 
     public void setJobWebsite(String jobWebsite) {
         this.jobWebsite = jobWebsite;
+    }
+
+    public String getJobTime() {
+        return jobTime;
+    }
+
+    public void setJobTime(String jobTime) {
+        this.jobTime = jobTime;
     }
 }

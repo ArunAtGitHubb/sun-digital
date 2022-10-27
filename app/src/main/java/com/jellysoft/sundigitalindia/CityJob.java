@@ -1,12 +1,5 @@
 package com.jellysoft.sundigitalindia;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +8,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.JobAdapter;
 import com.example.item.ItemJob;
@@ -28,7 +26,6 @@ import com.example.util.NetworkUtils;
 import com.example.util.RvOnClickListener;
 import com.example.util.SaveJob;
 import com.example.util.UserUtils;
-import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
@@ -162,6 +159,7 @@ public class CityJob extends AppCompatActivity {
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setJobVacancy(jsonObject.getString(Constant.JOB_VACANCY));
                                 objItem.setJobDate(jsonObject.getString(Constant.JOB_DATE));
+                                objItem.setJobTime(jsonObject.getString(Constant.JOB_TIME));
                                 objItem.setViews(jsonObject.getString("views"));
                                 objItem.setJobSalary(jsonObject.getString(Constant.JOB_SALARY));
                                 objItem.setpLate(jsonObject.getString("job_date1"));

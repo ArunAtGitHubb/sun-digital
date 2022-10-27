@@ -3,7 +3,6 @@ package com.jellysoft.sundigitalindia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -14,9 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
 import com.example.adapter.ProductAdapter;
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -157,6 +154,7 @@ public class CityProduct extends AppCompatActivity {
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
                                 objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
+                                objItem.setProductDoc(jsonObject.getString(Constant.PRODUCT_DOC));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
                                 objItem.setViews(jsonObject.getString("views"));

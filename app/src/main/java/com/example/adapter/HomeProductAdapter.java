@@ -19,7 +19,6 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.Constant;
 import com.example.util.PopUpAds;
@@ -28,6 +27,7 @@ import com.jellysoft.sundigitalindia.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,15 +57,11 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         final ItemProduct singleItem = (ItemProduct) dataList.get(position);
         holder.jobTitle.setText(singleItem.getProductName());
         holder.jobid.setText("SDI00"+singleItem.getId());
-//        holder.jobCat.setText(singleItem.getJobCategoryName());
         holder.company.setText(singleItem.getProductCompanyName());
         holder.city.setText(singleItem.getCity());
         holder.productPrice.setText(singleItem.getProductPrice());
         holder.productSellingPrice.setText(singleItem.getProductSellingPrice());
-//        holder.vacancy.setText(singleItem.getProductVacancy());
-//        holder.ldate.setText("கடைசி தேதி: "+singleItem.getpLate());
-//        holder.pdate.setText(singleItem.getProductDate());
-//        holder.ldate.setText(singleItem.getpLate());
+        holder.productDoc.setText(Objects.equals(singleItem.getProductDoc(), "YES") ? "YES" : "NO");
 
         holder.jobType.setText(singleItem.getProductType());
         Picasso.get().load(singleItem.getProductLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
@@ -155,7 +151,8 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, jobAddress, productPrice, productSellingPrice, jobType, pdate, company, jobid, jobCat, city, salary, ldate, call, whatsapp;
+        TextView jobTitle, productPrice, productSellingPrice, productDoc,
+                jobType, company, jobid, city, call, whatsapp;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -172,10 +169,8 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             city = itemView.findViewById(R.id.city);
             productPrice = itemView.findViewById(R.id.product_price);
             productSellingPrice = itemView.findViewById(R.id.product_selling_price);
-//            jobCat = itemView.findViewById(R.id.jobCat);
-//            pdate = itemView.findViewById(R.id.pdate);
-//            ldate = itemView.findViewById(R.id.ldate);
-//            vacancy = itemView.findViewById(R.id.vacancy);
+            productDoc = itemView.findViewById(R.id.product_document);
+
             company =itemView.findViewById(R.id.company);
             jobid =itemView.findViewById(R.id.text_job_id);
             lyt_parent = itemView.findViewById(R.id.rootLayout);
@@ -185,18 +180,6 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
             call = itemView.findViewById(R.id.call);
             whatsapp = itemView.findViewById(R.id.whatsapp);
-//            Typeface typeface = mContext.getResources().getFont(R.font.tamil);
-//
-//            jobTitle.setTypeface(typeface);
-//            jobType.setTypeface(typeface);
-//            city.setTypeface(typeface);
-//            salary.setTypeface(typeface);
-//            jobCat.setTypeface(typeface);
-//            pdate.setTypeface(typeface);
-//            ldate.setTypeface(typeface);
-//            vacancy.setTypeface(typeface);
-//            company.setTypeface(typeface);
-//            jobid.setTypeface(typeface);
         }
     }
 }

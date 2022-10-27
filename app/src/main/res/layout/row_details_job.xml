@@ -669,17 +669,17 @@ android:gravity="center"
                     android:src="@drawable/whatsapp"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                    android:text="வாட்ஸாப்ப் எண் :"
-                    android:textStyle="bold"
-                       android:textSize="16sp"
+                    android:text="வாட்ஸாப் எண் :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                    <TextView
                         android:fontFamily="@font/calibrib"

@@ -1,10 +1,5 @@
 package com.jellysoft.sundigitalindia;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +7,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.adapter.JobAdapter;
 import com.example.item.ItemJob;
@@ -154,6 +154,7 @@ public class CatJob extends AppCompatActivity {
                                 objItem.setJobCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setJobVacancy(jsonObject.getString(Constant.JOB_VACANCY));
+                                objItem.setJobTime(jsonObject.getString(Constant.JOB_TIME));
                                 objItem.setJobDate(jsonObject.getString(Constant.JOB_DATE));
                                 objItem.setJobSalary(jsonObject.getString(Constant.JOB_SALARY));
                                 objItem.setpLate(jsonObject.getString("job_date1"));

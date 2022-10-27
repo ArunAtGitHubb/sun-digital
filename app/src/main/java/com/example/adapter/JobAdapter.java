@@ -3,10 +3,6 @@ package com.example.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.jellysoft.sundigitalindia.MyApplication;
-import com.jellysoft.sundigitalindia.R;
-import com.jellysoft.sundigitalindia.SignInActivity;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.item.ItemJob;
-import com.example.util.ApplyJob;
 import com.example.util.Constant;
-import com.example.util.NetworkUtils;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
-import com.example.util.SaveClickListener;
-import com.example.util.SaveJob;
+import com.jellysoft.sundigitalindia.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -69,11 +62,11 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.text_job_title.setText(singleItem.getJobName());
             holder.city.setText(singleItem.getCity());
             holder.salary.setText(singleItem.getJobSalary());
+            holder.vacancy.setText(singleItem.getJobVacancy());
             holder.company.setText(singleItem.getJobCompanyName());
-//            holder.text_time.setText(singleItem.getJob);
-
+            holder.text_time.setText(singleItem.getJobTime());
             holder.jobid.setText("SDI00" + singleItem.getId());
-
+            holder.jobType.setText(singleItem.getJobType());
 
             Picasso.get().load(singleItem.getJobLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
 
@@ -93,31 +86,40 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             });
 
-            holder.share.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT,
-                            singleItem.getJobName() + "\n" +
-                                    mContext.getString(R.string.job_company_lbl) + singleItem.getJobCompanyName() + "\n" +
-                                    mContext.getString(R.string.job_designation_lbl) + singleItem.getJobDesignation() + "\n" +
-                                    mContext.getString(R.string.job_phone_lbl) + singleItem.getJobPhoneNumber() + "\n" +
-                                    mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
-                                    "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
-                    sendIntent.setType("text/plain");
-                    mContext.startActivity(sendIntent);
-                }
+            holder.share.setOnClickListener(view -> {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        singleItem.getJobName() + "\n" +
+                                mContext.getString(R.string.job_company_lbl) + singleItem.getJobCompanyName() + "\n" +
+                                mContext.getString(R.string.job_designation_lbl) + singleItem.getJobDesignation() + "\n" +
+                                mContext.getString(R.string.job_phone_lbl) + singleItem.getJobPhoneNumber() + "\n" +
+                                mContext.getString(R.string.job_address_lbl) + singleItem.getCity() + "\n\n" +
+                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia");
+                sendIntent.setType("text/plain");
+                mContext.startActivity(sendIntent);
             });
-            holder.call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String phone = singleItem.getJobPhoneNumber();
-                    Intent intent = new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:"+phone));
-                    mContext.startActivity(intent);
-                }
+            holder.call.setOnClickListener(view -> {
+                String phone = singleItem.getJobPhoneNumber();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+phone));
+                mContext.startActivity(intent);
             });
+
+            switch (singleItem.getJobType()) {
+                case Constant.JOB_TYPE_HOURLY:
+                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.hourly_time_text));
+                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.hourly_time_bg));
+                    break;
+                case Constant.JOB_TYPE_HALF:
+                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.half_time_text));
+                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.half_time_bg));
+                    break;
+                case Constant.JOB_TYPE_FULL:
+                    holder.jobType.setTextColor(mContext.getResources().getColor(R.color.full_time_text));
+                    holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.full_time_bg));
+                    break;
+            }
         }
     }
     @Override
@@ -143,8 +145,8 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobid, call;
-        TextView text_job_title, salary, text_time, city, company;
+        TextView jobid, call, vacancy;
+        TextView text_job_title, jobType, salary, text_time, city, company;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -155,6 +157,8 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             super(itemView);
             text_job_title = itemView.findViewById(R.id.text_job_title);
             text_time = itemView.findViewById(R.id.text_time);
+            vacancy = itemView.findViewById(R.id.text_vacancy);
+            jobType = itemView.findViewById(R.id.text_job_type);
             city = itemView.findViewById(R.id.city);
             salary = itemView.findViewById(R.id.salary);
             company = itemView.findViewById(R.id.company);

@@ -21,6 +21,7 @@ class ItemProduct : Serializable {
     var productLogo: String? = null
     var productDate: String? = null
     var productNegotiable: String? = null
+    var productDoc: String? = null
     var productApplyTotal: String? = null
     var productCategoryName: String? = null
     var productAppliedDate: String? = null

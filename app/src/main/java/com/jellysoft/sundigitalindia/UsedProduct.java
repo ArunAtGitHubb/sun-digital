@@ -150,6 +150,7 @@ public class UsedProduct extends AppCompatActivity {
                                 objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                                 objItem.setProductPrice(jsonObject.getString(Constant.PRODUCT_PRICE));
+                                objItem.setProductDoc(jsonObject.getString(Constant.PRODUCT_DOC));
                                 objItem.setProductSellingPrice(jsonObject.getString(Constant.PRODUCT_SELLING_PRICE));
                                 objItem.setCity(jsonObject.getString(Constant.CITY_NAME));
                                 objItem.setProductDate(jsonObject.getString(Constant.PRODUCT_START_DATE));
