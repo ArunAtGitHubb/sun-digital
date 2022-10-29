@@ -1,7 +1,6 @@
 package com.example.fragment;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,13 +24,12 @@ import java.util.ArrayList;
 public class MatrimonyDetailsFragment extends Fragment {
 
     WebView webView;
-    TextView text_matrimony_gender, text_matrimony_job,
-            text_salary, text_matrimony_qualification,
-            text_matrimony_caste, text_matrimony_age,
-            marital, text_expectation;
+    TextView text_matrimony_gender, text_matrimony_qualification,
+            text_matrimony_dob, marital, text_expectation,
+            matrimonyContact, matrimonyDesc;
     ItemMatrimony itemMatrimony;
 
-    Button btn_call, btn_whatsapp,btn_back;
+    Button btn_call, btn_whatsapp, btn_back, btn_download;
     ArrayList<String> mSkills;
 
     public static MatrimonyDetailsFragment newInstance(ItemMatrimony itemProduct) {
@@ -52,28 +50,30 @@ public class MatrimonyDetailsFragment extends Fragment {
         mSkills = new ArrayList<>();
 
         text_matrimony_gender = rootView.findViewById(R.id.text_matrimony_gender);
-        text_matrimony_job = rootView.findViewById(R.id.text_matrimony_job);
-        text_salary = rootView.findViewById(R.id.text_salary);
         text_matrimony_qualification = rootView.findViewById(R.id.text_matrimony_qualification);
-        text_matrimony_caste = rootView.findViewById(R.id.text_matrimony_caste);
-        text_matrimony_age = rootView.findViewById(R.id.text_matrimony_age);
+        text_matrimony_dob = rootView.findViewById(R.id.text_dob);
         marital = rootView.findViewById(R.id.marital);
         text_expectation = rootView.findViewById(R.id.text_expectation);
+        matrimonyContact = rootView.findViewById(R.id.text_contact_person);
+        matrimonyDesc = rootView.findViewById(R.id.text_desc);
 
         btn_call = rootView.findViewById(R.id.btn_call);
         btn_whatsapp = rootView.findViewById(R.id.btn_whats);
         btn_back = rootView.findViewById(R.id.btn_back);
+        btn_download = rootView.findViewById(R.id.btn_download);
 
 
         text_matrimony_gender.setText(itemMatrimony.getMatrimonyGender());
-        text_matrimony_job.setText(itemMatrimony.getMatrimonyCareer());
-        text_salary.setText(itemMatrimony.getMatrimonySalary());
         text_matrimony_qualification.setText(itemMatrimony.getMatrimonyEducation());
-        text_matrimony_caste.setText(itemMatrimony.getCategoryName());
-        text_matrimony_age.setText(itemMatrimony.getMatrimonyAge());
+        text_matrimony_dob.setText(itemMatrimony.getMatrimonyDob());
         marital.setText(itemMatrimony.getMatrimonyMaritalStatus());
+        matrimonyContact.setText(itemMatrimony.getMatrimonyPersonName());
+        matrimonyDesc.setText(itemMatrimony.getMatrimonyDesc());
         text_expectation.setText(itemMatrimony.getMatrimonyPartnerExpect());
 
+        btn_download.setOnClickListener(view -> {
+            Toast.makeText(getContext(), "Download started...", Toast.LENGTH_LONG).show();
+        });
 
         btn_back.setOnClickListener(view -> getActivity().onBackPressed());
         btn_call.setOnClickListener(view -> {
@@ -81,27 +81,17 @@ public class MatrimonyDetailsFragment extends Fragment {
             startActivity(intent);
         });
         btn_whatsapp.setOnClickListener(view -> {
-            PackageManager pm= getActivity().getPackageManager();
+            String phone = "91" + itemMatrimony.getMatrimonyPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
+            PackageManager pm = requireContext().getPackageManager();
             try {
-                Intent waIntent = new Intent(Intent.ACTION_SEND);
-                waIntent.setType("text/plain");
-                String text =
-                        itemMatrimony.getMatrimonyName() + "\n" +
-                                getString(R.string.job_phone_lbl) + itemMatrimony.getMatrimonyPhoneNumber() + "\n" +
-                                getString(R.string.job_address_lbl) + itemMatrimony.getCity() + "\n\n" +
-                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia";
-                PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                //Check if package exists or not. If not then code
-                //in catch block will be called
-                waIntent.setPackage("com.whatsapp");
-
-                waIntent.putExtra(Intent.EXTRA_TEXT, text);
-                startActivity(Intent.createChooser(waIntent, "Share with"));
-
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
             } catch (PackageManager.NameNotFoundException e) {
-                Toast.makeText(getActivity(), "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                        .show();
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
         return rootView;
     }

@@ -1,7 +1,6 @@
 package com.example.fragment;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.jellysoft.sundigitalindia.R;
 
@@ -27,7 +25,7 @@ import java.util.ArrayList;
 public class ProductDetailsFragment extends Fragment {
 
     WebView webView;
-    TextView text_negotiate, text_desc, text_website;
+    TextView text_negotiate, text_desc, text_website, text_doc;
     ItemProduct itemJob;
 
     Button btn_call, btn_whatsapp,btn_back;
@@ -53,6 +51,7 @@ public class ProductDetailsFragment extends Fragment {
         text_negotiate = rootView.findViewById(R.id.text_negotiate);
         text_desc = rootView.findViewById(R.id.text_desc);
         text_website = rootView.findViewById(R.id.text_website);
+        text_doc = rootView.findViewById(R.id.text_doc);
 
         btn_call = rootView.findViewById(R.id.btn_call);
         btn_whatsapp = rootView.findViewById(R.id.btn_whats);
@@ -60,6 +59,7 @@ public class ProductDetailsFragment extends Fragment {
 
         text_negotiate.setText(itemJob.getProductNegotiable());
         text_desc.setText(itemJob.getProductDesc());
+        text_doc.setText(itemJob.getProductDoc());
         text_website.setText(itemJob.getWebsiteLink());
 
         text_website.setTextColor(Color.BLUE);
@@ -81,29 +81,17 @@ public class ProductDetailsFragment extends Fragment {
             startActivity(intent);
         });
         btn_whatsapp.setOnClickListener(view -> {
-            PackageManager pm= getActivity().getPackageManager();
+            String phone = "91" + itemJob.getProductPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
+            PackageManager pm = requireActivity().getPackageManager();
             try {
-                Intent waIntent = new Intent(Intent.ACTION_SEND);
-                waIntent.setType("text/plain");
-                String text =
-                        itemJob.getProductName() + "\n" +
-                                getString(R.string.job_company_lbl) + itemJob.getProductCompanyName() + "\n" +
-                                getString(R.string.job_designation_lbl) + itemJob.getProductDesignation() + "\n" +
-                                getString(R.string.job_phone_lbl) + itemJob.getProductPhoneNumber() + "\n" +
-                                getString(R.string.job_address_lbl) + itemJob.getCity() + "\n\n" +
-                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia";
-                PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                //Check if package exists or not. If not then code
-                //in catch block will be called
-                waIntent.setPackage("com.whatsapp");
-
-                waIntent.putExtra(Intent.EXTRA_TEXT, text);
-                startActivity(Intent.createChooser(waIntent, "Share with"));
-
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
             } catch (PackageManager.NameNotFoundException e) {
-                Toast.makeText(getActivity(), "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                        .show();
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
 
         return rootView;

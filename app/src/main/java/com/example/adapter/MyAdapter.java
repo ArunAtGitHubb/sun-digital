@@ -5,20 +5,22 @@ import android.content.Context;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.fragment.CategoryFragment;
 import com.example.fragment.CityFragment;
 import com.example.fragment.FemaleMatrimonyCategoryFragment;
 import com.example.fragment.HomeFragment;
+import com.example.fragment.JobOpportunitiesFragment;
 import com.example.fragment.MaleMatrimonyCategoryFragment;
-import com.example.fragment.MatrimonyCategoryFragment;
 import com.example.fragment.MatrimonyCityFragment;
+import com.example.fragment.MatrimonyFragment;
 import com.example.fragment.ProductCategoryFragment;
 import com.example.fragment.ProductCityFragment;
+import com.example.fragment.ProductFragment;
 import com.example.fragment.ServiceCategoryFragment;
 import com.example.fragment.ServiceCityFragment;
+import com.example.fragment.ServiceFragment;
 
 public class MyAdapter extends FragmentStatePagerAdapter {
 
@@ -37,23 +39,30 @@ public class MyAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new HomeFragment();
             case 1:
-                return new CategoryFragment();
+                return new JobOpportunitiesFragment();
             case 2:
-                return new CityFragment();
+                return new ProductFragment();
             case 3:
-                return new ProductCategoryFragment();
+                return new ServiceFragment();
             case 4:
-                ProductCityFragment productCityFragment = new ProductCityFragment();
-                return productCityFragment;
+                return new MatrimonyFragment();
             case 5:
-                return new ServiceCategoryFragment();
+                return new CategoryFragment();
             case 6:
-                return new ServiceCityFragment();
+                return new CityFragment();
             case 7:
-                return new MaleMatrimonyCategoryFragment();
+                return new ProductCategoryFragment();
             case 8:
-                return new FemaleMatrimonyCategoryFragment();
+                return new ProductCityFragment();
             case 9:
+                return new ServiceCategoryFragment();
+            case 10:
+                return new ServiceCityFragment();
+            case 11:
+                return new FemaleMatrimonyCategoryFragment();
+            case 12:
+                return new MaleMatrimonyCategoryFragment();
+            case 13:
                 return new MatrimonyCityFragment();
             default:
                 return null;
@@ -62,7 +71,7 @@ public class MyAdapter extends FragmentStatePagerAdapter {
     // this counts total number of tabs
     @Override
     public int getCount() {
-        return 10;
+        return 14;
     }
 
 }

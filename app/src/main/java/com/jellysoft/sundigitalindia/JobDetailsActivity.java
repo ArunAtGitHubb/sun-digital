@@ -3,13 +3,13 @@ package com.jellysoft.sundigitalindia;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +19,9 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,16 +34,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.db.DatabaseHelper;
 import com.example.fragment.JobDetailsFragment;
-import com.example.fragment.SimilarJobFragment;
 import com.example.item.ItemJob;
 import com.example.util.API;
-import com.example.util.ApplyJob;
-import com.example.util.BannerAds;
 import com.example.util.Constant;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.SaveClickListener;
-import com.example.util.SaveJob;
 import com.example.util.UserUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
@@ -71,7 +64,7 @@ public class JobDetailsActivity extends AppCompatActivity {
     LinearLayout lyt_not_found;
     ItemJob objBean;
     TextView jobTitle, companyTitle, jobDate, jobDesignation,
-            salary, text_job_address, jobAddress, jobVacancy,
+            salary, work_time, jobAddress, jobVacancy,
             jobPhone, jobMail, jobWebsite, text_job_id, text_job_category,
             text_city, last_date, whatsapp_num, mail_id, text_area, jobPhone2;
     ImageView image;
@@ -91,6 +84,14 @@ public class JobDetailsActivity extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.KEYCODE_BACK) {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @SuppressLint("MissingPermission")
@@ -128,6 +129,7 @@ public class JobDetailsActivity extends AppCompatActivity {
         companyTitle = findViewById(R.id.text_job_company);
         jobDate = findViewById(R.id.text_job_date);
         jobDesignation = findViewById(R.id.text_job_designation);
+        work_time = findViewById(R.id.work_time);
         jobAddress = findViewById(R.id.text_job_address);
         jobPhone = findViewById(R.id.text_phone);
         jobPhone2 = findViewById(R.id.text_phone2);
@@ -151,21 +153,10 @@ public class JobDetailsActivity extends AppCompatActivity {
             showToast(getString(R.string.conne_msg1));
         }
 
+        jobPhone.setOnClickListener(v -> dialNumber(objBean.getJobPhoneNumber()));
+        jobPhone2.setOnClickListener(v -> dialNumber(objBean.getJobPhoneNumber2()));
 
-        jobPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialNumber();
-            }
-        });
-
-
-        btnApplyJob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialNumber();
-            }
-        });
+        btnApplyJob.setOnClickListener(v -> dialNumber(objBean.getJobPhoneNumber()));
     }
 
     private void getDetails() {
@@ -206,7 +197,6 @@ public class JobDetailsActivity extends AppCompatActivity {
                                 objBean.setId(objJson.getString(Constant.JOB_ID));
                                 objBean.setJobName(objJson.getString(Constant.JOB_NAME));
                                 objBean.setJobCompanyName(objJson.getString(Constant.JOB_COMPANY_NAME));
-                                objBean.setJobDate(objJson.getString(Constant.JOB_DATE));
                                 objBean.setJobDesignation(objJson.getString(Constant.JOB_DESIGNATION));
                                 objBean.setJobAddress(objJson.getString(Constant.JOB_ADDRESS));
                                 objBean.setJobImage(objJson.getString(Constant.JOB_IMAGE));
@@ -221,8 +211,11 @@ public class JobDetailsActivity extends AppCompatActivity {
                                 objBean.setJobSkill(objJson.getString(Constant.JOB_SKILL));
                                 objBean.setJobQualification(objJson.getString(Constant.JOB_QUALIFICATION));
                                 objBean.setJobSalary(objJson.getString(Constant.JOB_SALARY));
+                                objBean.setJobTime(objJson.getString(Constant.JOB_TIME));
                                 objBean.setAge(objJson.getString("job_age"));
                                 objBean.setSex(objJson.getString("job_sex"));
+                                objBean.setJobPdf(objJson.getString(Constant.JOB_PDF));
+                                objBean.setJobDate(objJson.getString(Constant.JOB_DATE));
                                 objBean.setpLate(objJson.getString("job_date1"));
                                 objBean.setMarital(objJson.getString("job_marital"));
                                 objBean.setCity(objJson.getString(Constant.CITY_NAME));
@@ -231,7 +224,6 @@ public class JobDetailsActivity extends AppCompatActivity {
                                 objBean.setJobCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objBean.setJobExperience(objJson.getString(Constant.JOB_EXP));
                                 objBean.setJobType(objJson.getString(Constant.JOB_TYPE));
-
                             }
                         }
                         setResult();
@@ -262,7 +254,8 @@ public class JobDetailsActivity extends AppCompatActivity {
         jobAddress.setText(objBean.getJobAddress());
         salary.setText(objBean.getJobSalary());
         jobTitle.setText(objBean.getJobName());
-        text_job_id.setText("SDI00"+objBean.getId());
+        text_job_id.setText("JD" + objBean.getId());
+        work_time.setText(objBean.getJobTime());
         text_job_category.setText(objBean.getJobCategoryName());
         text_city.setText(objBean.getCity());
         text_area.setText(objBean.getJobArea());
@@ -289,8 +282,7 @@ public class JobDetailsActivity extends AppCompatActivity {
 
         Picasso.get().load(objBean.getJobImage()).into(image);
 
-
-        if(objBean.getUrl() !=""){
+        if(objBean.getUrl() != null && !objBean.getUrl().isEmpty()){
             videoView.getSettings().setJavaScriptEnabled(true);
             videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
             videoView.loadUrl(objBean.getUrl());
@@ -301,44 +293,33 @@ public class JobDetailsActivity extends AppCompatActivity {
 
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-        btn_whats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = objBean.getJobPhoneNumber();
-                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
-                PackageManager pm = getPackageManager();
-                try {
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+        btn_whats.setOnClickListener(view -> {
+            String phone = "91" + objBean.getJobPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
+            PackageManager pm = getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
-        whatsapp_num.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = objBean.getJobPhoneNumber();
-                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
-                PackageManager pm = getPackageManager();
-                try {
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
-                } catch (PackageManager.NameNotFoundException e) {
-                    e.printStackTrace();
-                }
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+        whatsapp_num.setOnClickListener(view -> {
+            String phone = "91" + objBean.getJobPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
+            PackageManager pm = getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
-        mail_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEmail();
-            }
-        });
+        mail_id.setOnClickListener(view -> openEmail());
     }
 
     private void setupViewPager(final ViewPager viewPager) {
@@ -440,8 +421,8 @@ public class JobDetailsActivity extends AppCompatActivity {
             return "http://" + String.valueOf(string1);
     }
 
-    private void dialNumber() {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", objBean.getJobPhoneNumber(), null));
+    private void dialNumber(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
     }
 
@@ -451,13 +432,6 @@ public class JobDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (isFromNotification) {
-            Intent intent = new Intent(JobDetailsActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-        } else {
-            super.onBackPressed();
-        }
+        finish();
     }
 }

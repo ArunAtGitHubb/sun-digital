@@ -20,24 +20,13 @@
         tools:replace="android:allowBackup"
         tools:ignore="DataExtractionRules,UnusedAttribute"
         android:dataExtractionRules="@xml/data_extraction_rules">
-        <activity
-            android:name=".finish"
-            android:exported="true" />
-        <activity
-            android:name=".provider"
-            android:exported="true" />
-        <activity
-            android:name=".about"
-            android:exported="true" />
-        <activity
-            android:name=".devcontact"
-            android:exported="true"
-            />
 
-        <activity
-            android:name=".contact"
-            android:exported="true"
-           />
+        <activity android:name=".finish" android:exported="true" />
+        <activity android:name=".provider" android:exported="true" />
+        <activity android:name=".about" android:exported="true" />
+        <activity android:name=".devcontact" android:exported="true" />
+        <activity android:name=".contact" android:exported="true" />
+
         <activity
             android:name=".privacy"
             android:screenOrientation="portrait"

@@ -127,7 +127,7 @@ public class CityItemFragment extends Fragment {
                 startActivity(intent);
             }
         };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         return rootView;
     }
 

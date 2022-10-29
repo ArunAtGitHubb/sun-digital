@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="10dp"
@@ -25,6 +26,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/homeLinear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -38,156 +40,324 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/lytHomeTVCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            fontPath="fonts/customBold.otf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="வேலை பிரிவு"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <View
-                            android:id="@+id/viewCategory"
-                            android:layout_width="40dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/login_bottom" />
-
-                    </LinearLayout>
-
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/vertical_courses_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/item_space"
-                    android:layout_marginTop="@dimen/item_space"
-                    android:clipToPadding="false" />
-                <!--                <include-->
-                <!--                    android:id="@+id/cat"-->
-                <!--                    layout="@layout/home_category"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="210dp"-->
-                <!--                    android:layout_alignParentTop="true" />-->
-                <Button
-                    android:id="@+id/textCategoryViewAll"
-                    style="?android:attr/buttonBarButtonStyle"
-                    fontPath="fonts/customBold.otf"
-                    android:layout_width="100dp"
-                    android:layout_height="32dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/yellow_button"
-                    android:gravity="center"
-                    android:paddingStart="15dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="15dp"
-                    android:text="View All"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lytHomeTVCategory1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-
-                        android:gravity="start"
-                        android:orientation="vertical">
-
-                        <TextView
-                            fontPath="fonts/customBold.otf"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="நகரம் வாரியாக வேலை"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <View
-                            android:id="@+id/viewCategory1"
-                            android:layout_width="100dp"
-                            android:layout_height="2dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/login_bottom" />
-
-                    </LinearLayout>
-
-
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/vertical_courses_list1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/item_space"
-                    android:layout_marginTop="@dimen/item_space"
-                    android:clipToPadding="false" />
-
-                <Button
-                    android:id="@+id/textCategoryViewAll1"
-                    style="?android:attr/buttonBarButtonStyle"
-                    fontPath="fonts/customBold.otf"
-                    android:layout_width="99dp"
-                    android:layout_height="33dp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/yellow_button"
-                    android:gravity="center"
-                    android:paddingStart="15dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="15dp"
-                    android:text="View All"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    tools:ignore="MissingPrefix" />
-            </LinearLayout>
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:id="@+id/homeNavigator"
+                    android:layout_width="match_parent"
+                    android:layout_height="318dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                fontPath="fonts/customBold.otf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="சேவைகள்"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewNavigator"
+                                android:layout_width="62dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="395px"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@color/login_bottom"
+                                android:textAlignment="textEnd" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/jobSection"
+                            android:layout_width="150dp"
+                            android:layout_height="130dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintDimensionRatio="H,1:1"
+                                card_view:layout_constraintLeft_toLeftOf="parent"
+                                card_view:layout_constraintRight_toRightOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/rootLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="1dp"
+                                    card_view:cardBackgroundColor="@color/white"
+                                    card_view:cardCornerRadius="5dp"
+                                    card_view:cardElevation="1dp"
+                                    card_view:cardUseCompatPadding="false">
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="6dp">
+
+                                        <ImageView
+                                            android:id="@+id/image"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_above="@+id/text"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:contentDescription="@string/app_name"
+                                            android:src="@drawable/placeholder"
+                                            app:srcCompat="@drawable/applied_job_btn" />
+
+                                        <TextView
+                                            android:id="@+id/text"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:text="வேலை வாய்ப்பு"
+                                            android:textColor="@color/black"
+                                            android:textSize="13sp" />
+
+                                    </RelativeLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/productSection"
+                            android:layout_width="150dp"
+                            android:layout_height="130dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintDimensionRatio="H,1:1"
+                                card_view:layout_constraintLeft_toLeftOf="parent"
+                                card_view:layout_constraintRight_toRightOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/rootLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="1dp"
+                                    card_view:cardBackgroundColor="@color/white"
+                                    card_view:cardCornerRadius="5dp"
+                                    card_view:cardElevation="1dp"
+                                    card_view:cardUseCompatPadding="false">
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="6dp">
+
+                                        <ImageView
+                                            android:id="@+id/image"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_above="@+id/text"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:contentDescription="@string/app_name"
+                                            android:src="@drawable/placeholder" />
+
+                                        <TextView
+                                            android:id="@+id/text"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:text="பொருள்கள்"
+                                            android:textColor="@color/black"
+                                            android:textSize="13sp" />
+
+                                    </RelativeLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:id="@+id/serviceSection"
+                            android:layout_width="150dp"
+                            android:layout_height="130dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintDimensionRatio="H,1:1"
+                                card_view:layout_constraintLeft_toLeftOf="parent"
+                                card_view:layout_constraintRight_toRightOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/rootLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="1dp"
+                                    card_view:cardBackgroundColor="@color/white"
+                                    card_view:cardCornerRadius="5dp"
+                                    card_view:cardElevation="1dp"
+                                    card_view:cardUseCompatPadding="false">
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="6dp">
+
+                                        <ImageView
+                                            android:id="@+id/image"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_above="@+id/text"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:contentDescription="@string/app_name"
+                                            android:src="@drawable/placeholder" />
+
+                                        <TextView
+                                            android:id="@+id/text"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:text="வேலை ஆட்கள்"
+                                            android:textColor="@color/black"
+                                            android:textSize="13sp" />
+
+                                    </RelativeLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/matrimonySection"
+                            android:layout_width="150dp"
+                            android:layout_height="130dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                card_view:layout_constraintBottom_toBottomOf="parent"
+                                card_view:layout_constraintDimensionRatio="H,1:1"
+                                card_view:layout_constraintLeft_toLeftOf="parent"
+                                card_view:layout_constraintRight_toRightOf="parent"
+                                card_view:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/rootLayout"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="1dp"
+                                    card_view:cardBackgroundColor="@color/white"
+                                    card_view:cardCornerRadius="5dp"
+                                    card_view:cardElevation="1dp"
+                                    card_view:cardUseCompatPadding="false">
+
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:padding="6dp">
+
+                                        <ImageView
+                                            android:id="@+id/image"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_above="@+id/text"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:contentDescription="@string/app_name"
+                                            android:src="@drawable/placeholder" />
+
+                                        <TextView
+                                            android:id="@+id/text"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentBottom="true"
+                                            android:layout_centerHorizontal="true"
+                                            android:layout_marginBottom="5dp"
+                                            android:ellipsize="end"
+                                            android:maxLines="1"
+                                            android:text="திருமண வரன்"
+                                            android:textColor="@color/black"
+                                            android:textSize="13sp" />
+
+                                    </RelativeLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/jobCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 app:cardCornerRadius="5dp">
@@ -204,13 +374,13 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="10dp"
-                        android:gravity="start"
-                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:gravity="start"
+                            android:orientation="vertical">
 
                             <TextView
                                 fontPath="fonts/customBold.otf"
@@ -311,8 +481,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/productCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 app:cardCornerRadius="5dp">
@@ -454,8 +626,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/serviceCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 app:cardCornerRadius="5dp">
@@ -531,7 +705,7 @@
                         android:paddingStart="15dp"
                         android:paddingTop="2dp"
                         android:paddingEnd="15dp"
-                        android:text="View All Services"
+                        android:text="View All Labours"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -578,8 +752,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/matrimonyCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 app:cardCornerRadius="5dp">
@@ -643,6 +819,25 @@
                     </RelativeLayout>
 
                     <Button
+                        android:id="@+id/textBrideCategories"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="மணமகள் சாதி வாரியாக"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
                         android:id="@+id/textGroomCategories"
                         style="?android:attr/buttonBarButtonStyle"
                         fontPath="fonts/customBold.otf"
@@ -655,7 +850,7 @@
                         android:paddingStart="15dp"
                         android:paddingTop="2dp"
                         android:paddingEnd="15dp"
-                        android:text=" View Grooms"
+                        android:text="மணமகன் சாதி வாரியாக"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
@@ -674,13 +869,32 @@
                         android:paddingStart="15dp"
                         android:paddingTop="2dp"
                         android:paddingEnd="15dp"
-                        android:text=" View Brides"
+                        android:text="மணமகள் மதம் வாரியாக"
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         tools:ignore="MissingPrefix" />
 
                     <Button
+                        android:id="@+id/textGroomCategories"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/yellow_button"
+                        android:gravity="center"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="மணமகன் மதம் வாரியாக"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <!--<Button
                         android:id="@+id/viewAllMatrimony"
                         style="?android:attr/buttonBarButtonStyle"
                         fontPath="fonts/customBold.otf"
@@ -716,7 +930,8 @@
                         android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
+                        tools:ignore="MissingPrefix" /> -->
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

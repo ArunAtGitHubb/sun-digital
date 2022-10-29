@@ -35,6 +35,7 @@ public class ItemJob implements Serializable {
     private String jobPhoneNumber;
     private String jobPhoneNumber2;
     private String jobMail;
+    private String jobPdf;
 
     private String jobVacancy;
     private String jobAddress;
@@ -287,5 +288,13 @@ public class ItemJob implements Serializable {
 
     public void setJobTime(String jobTime) {
         this.jobTime = jobTime;
+    }
+
+    public String getJobPdf() {
+        return jobPdf;
+    }
+
+    public void setJobPdf(String jobPdf) {
+        this.jobPdf = jobPdf;
     }
 }

@@ -148,7 +148,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="DOB : "
+                            android:text="சாதி : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
@@ -156,7 +156,7 @@
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:id="@+id/text_dob"
+                            android:id="@+id/text_caste"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
@@ -312,6 +312,40 @@
                             tools:ignore="MissingPrefix" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            fontPath="fonts/customBold.otf"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:gravity="center"
+                            android:text="வரன் எண் : "
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            tools:ignore="MissingPrefix" />
+
+                        <TextView
+                            android:id="@+id/text_matrimony_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
+                            android:gravity="center"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textColor="@color/white"
+                            android:textSize="9sp"
+                            tools:ignore="MissingPrefix" />
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -358,8 +392,6 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -392,9 +424,8 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
-
-
                 </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
@@ -444,6 +475,7 @@
                         android:textColor="@color/white" />
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -560,6 +592,47 @@
 
                 <TextView
                     android:id="@+id/text_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
+                    android:paddingTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_call"
+                    android:tint="@color/login_line" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
+                    android:paddingTop="5dp"
+                    android:text="தொலைபேசி எண் 2 :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_phone2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 

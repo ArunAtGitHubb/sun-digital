@@ -4,15 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,20 +11,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
-import com.jellysoft.sundigitalindia.CatJob;
-import com.jellysoft.sundigitalindia.CityJob;
-import com.jellysoft.sundigitalindia.MainActivity;
-import com.jellysoft.sundigitalindia.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.adapter.CategoryAdapter;
 import com.example.item.ItemCategory;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.jellysoft.sundigitalindia.CatJob;
+import com.jellysoft.sundigitalindia.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -59,6 +53,7 @@ public class CategoryFragment extends Fragment {
     boolean isFirst = true, isOver = false;
     private int pageIndex = 1;
     TabLayout tabLayout;
+
     @SuppressLint("MissingPermission")
     @Nullable
     @Override
@@ -113,7 +108,6 @@ public class CategoryFragment extends Fragment {
     }
 
     private void getCategory() {
-        Log.d("ttt","hicat");
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
@@ -187,29 +181,13 @@ public class CategoryFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
 
-            adapter.setOnItemClickListener(new RvOnClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    String categoryName = mListItem.get(position).getCategoryName();
-                    String categoryId = String.valueOf(mListItem.get(position).getCategoryId());
-                    Intent intent = new Intent(requireActivity(), CatJob.class);
-                    intent.putExtra("categoryName",  categoryName);
-                    intent.putExtra("categoryId",categoryId);
-                    startActivity(intent);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("categoryId", categoryId);
-//
-//                    FragmentManager fm = getFragmentManager();
-//                    CategoryItemFragment channelFragment = new CategoryItemFragment();
-//                    channelFragment.setArguments(bundle);
-//                    assert fm != null;
-//                    FragmentTransaction ft = fm.beginTransaction();
-//                    ft.hide(CategoryFragment.this);
-//                    ft.add(R.id.Container, channelFragment, categoryName);
-//                    ft.addToBackStack(categoryName);
-//                    ft.commit();
-//                    ((MainActivity) requireActivity()).setToolbarTitle(categoryName);
-                }
+            adapter.setOnItemClickListener(position -> {
+                String categoryName = mListItem.get(position).getCategoryName();
+                String categoryId = String.valueOf(mListItem.get(position).getCategoryId());
+                Intent intent = new Intent(requireActivity(), CatJob.class);
+                intent.putExtra("categoryName",  categoryName);
+                intent.putExtra("categoryId",categoryId);
+                startActivity(intent);
             });
 
         }

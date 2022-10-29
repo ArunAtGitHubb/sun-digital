@@ -11,15 +11,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -49,11 +50,8 @@ import com.example.util.UserUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.jellysoft.sundigitalindia.CatJob;
-import com.jellysoft.sundigitalindia.CityJob;
 import com.jellysoft.sundigitalindia.JobDetailsActivity;
 import com.jellysoft.sundigitalindia.LatestJob;
-import com.jellysoft.sundigitalindia.LatestMatrimony;
 import com.jellysoft.sundigitalindia.LatestService;
 import com.jellysoft.sundigitalindia.MatrimonyDetailsActivity;
 import com.jellysoft.sundigitalindia.NewProduct;
@@ -80,9 +78,7 @@ public class HomeFragment extends Fragment {
     LinearLayout lyt_not_found;
     ImageSlider image_slider;
     NestedScrollView nestedScrollView;
-    Button textCategoryViewAll,
-            textCategoryViewAll1,
-            latestViewAll, viewAllServices, viewAllMatrimony,
+    Button latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
             textServiceCategories, textServiceCities,
             textMatrimonyCities, textGrooms, textBrides,
@@ -94,6 +90,7 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     CategoryAdapter adapter;
     CityAdapter adapter1;
+    RelativeLayout jobSection, productSection, serviceSection, matrimonySection;
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
@@ -102,13 +99,14 @@ public class HomeFragment extends Fragment {
     ArrayList<ItemService> serviceLatestList;
     ArrayList<ItemMatrimony> matrimonyLatestList;
 
-    LinearLayout lytCategory, lytLatest, lytCategory1;
+    LinearLayout lytLatest, homeLinear;
     ArrayList<SlideModel> img;
     HomeJobAdapter latestAdapter;
     HomeProductAdapter latestProductAdapter;
     HomeServiceAdapter latestServiceAdapter;
     HomeMatrimonyAdapter latestMatrimonyAdapter;
-    RecyclerView vertical_courses_list, vertical_courses_list1;
+    RecyclerView vertical_courses_list;
+    CardView jobCard, productCard, serviceCard, matrimonyCard;
 
     ViewPager mviewPager;
     private int pageIndex = 1;
@@ -133,8 +131,13 @@ public class HomeFragment extends Fragment {
         tabLayout = getActivity().findViewById(R.id.tabLayout);
         mviewPager = getActivity().findViewById(R.id.viewPager);
         img = new ArrayList<>();
-        textCategoryViewAll = rootView.findViewById(R.id.textCategoryViewAll);
-        textCategoryViewAll1 = rootView.findViewById(R.id.textCategoryViewAll1);
+
+        homeLinear = rootView.findViewById(R.id.homeLinear);
+
+        jobSection = rootView.findViewById(R.id.jobSection);
+        productSection = rootView.findViewById(R.id.productSection);
+        serviceSection = rootView.findViewById(R.id.serviceSection);
+        matrimonySection = rootView.findViewById(R.id.matrimonySection);
 
         viewAllUsedProduct = rootView.findViewById(R.id.viewAllUsedProducts);
         viewAllNewProduct = rootView.findViewById(R.id.viewAllNewProducts);
@@ -145,13 +148,12 @@ public class HomeFragment extends Fragment {
         textServiceCategories = rootView.findViewById(R.id.textServiceCategories);
         textServiceCities = rootView.findViewById(R.id.textServiceAllCities);
 
-        viewAllMatrimony = rootView.findViewById(R.id.viewAllMatrimony);
+//        viewAllMatrimony = rootView.findViewById(R.id.viewAllMatrimony);
         textGrooms = rootView.findViewById(R.id.textGroomCategories);
         textBrides = rootView.findViewById(R.id.textBrideCategories);
-        textMatrimonyCities = rootView.findViewById(R.id.textMatrimonyAllCities);
+//        textMatrimonyCities = rootView.findViewById(R.id.textMatrimonyAllCities);
 
         vertical_courses_list = rootView.findViewById(R.id.vertical_courses_list);
-        vertical_courses_list1 = rootView.findViewById(R.id.vertical_courses_list1);
 
         image_slider = rootView.findViewById(R.id.image_slider);
         mProgressBar = rootView.findViewById(R.id.progressBar1);
@@ -161,10 +163,6 @@ public class HomeFragment extends Fragment {
         textJobAllCities = rootView.findViewById(R.id.textJobAllCities);
         latestViewAll = rootView.findViewById(R.id.textLatestViewAll);
 
-        lytCategory = rootView.findViewById(R.id.lytHomeTVCategory);
-        lytCategory1 = rootView.findViewById(R.id.lytHomeTVCategory1);
-        lytCategory.setVisibility(View.GONE);
-        lytCategory1.setVisibility(View.GONE);
         lytLatest = rootView.findViewById(R.id.lytHomeLatest);
 
         rvLatestJob = rootView.findViewById(R.id.rv_latest);
@@ -172,14 +170,25 @@ public class HomeFragment extends Fragment {
         rvServices = rootView.findViewById(R.id.rv_service);
         rvMatrimony = rootView.findViewById(R.id.rv_matrimony);
 
+        jobCard = rootView.findViewById(R.id.jobCard);
+        productCard = rootView.findViewById(R.id.productCard);
+        serviceCard = rootView.findViewById(R.id.serviceCard);
+        matrimonyCard = rootView.findViewById(R.id.matrimonyCard);
 
-        vertical_courses_list.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
-        vertical_courses_list.setLayoutManager(layoutManager);
 
-        vertical_courses_list1.setHasFixedSize(true);
-        GridLayoutManager layoutManager1 = new GridLayoutManager(getContext(), 3);
-        vertical_courses_list1.setLayoutManager(layoutManager1);
+        jobSection.setOnClickListener(view -> {
+            nestedScrollView.smoothScrollTo(0, jobCard.getTop());
+        });
+        productSection.setOnClickListener(view -> {
+            nestedScrollView.smoothScrollTo(0, productCard.getTop());
+        });
+        serviceSection.setOnClickListener(view -> {
+            nestedScrollView.smoothScrollTo(0, serviceCard.getTop());
+        });
+        matrimonySection.setOnClickListener(view -> {
+            nestedScrollView.smoothScrollTo(0, matrimonyCard.getTop());
+        });
+
 
         rvLatestJob.setHasFixedSize(true);
         rvLatestJob.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -250,18 +259,18 @@ public class HomeFragment extends Fragment {
         });
 
 
-        textJobCategories.setOnClickListener(view -> mviewPager.setCurrentItem(1));
-        textJobAllCities.setOnClickListener(view -> mviewPager.setCurrentItem(2));
+        textJobCategories.setOnClickListener(view -> mviewPager.setCurrentItem(5));
+        textJobAllCities.setOnClickListener(view -> mviewPager.setCurrentItem(6));
 
-        textProductCategories.setOnClickListener(view -> mviewPager.setCurrentItem(3));
-        textProductCities.setOnClickListener(view -> mviewPager.setCurrentItem(4));
+        textProductCategories.setOnClickListener(view -> mviewPager.setCurrentItem(7));
+        textProductCities.setOnClickListener(view -> mviewPager.setCurrentItem(8));
 
-        textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(5));
-        textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(6));
+        textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(9));
+        textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(10));
 
-        textGrooms.setOnClickListener(view -> mviewPager.setCurrentItem(7));
-        textBrides.setOnClickListener(view -> mviewPager.setCurrentItem(8));
-        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
+        textGrooms.setOnClickListener(view -> mviewPager.setCurrentItem(11));
+        textBrides.setOnClickListener(view -> mviewPager.setCurrentItem(12));
+//        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
 
         latestViewAll.setOnClickListener(view -> {
             Intent intent = new Intent(requireActivity(), LatestJob.class);
@@ -287,11 +296,11 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        viewAllMatrimony.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), LatestMatrimony.class);
-            intent.putExtra("isLatest", true);
-            startActivity(intent);
-        });
+//        viewAllMatrimony.setOnClickListener(view -> {
+//            Intent intent = new Intent(requireActivity(), LatestMatrimony.class);
+//            intent.putExtra("isLatest", true);
+//            startActivity(intent);
+//        });
 
 
         if (NetworkUtils.isConnected(getActivity())) {
@@ -394,6 +403,7 @@ public class HomeFragment extends Fragment {
                         objItem.setId(jsonObject.getString(Constant.PRODUCT_ID));
                         objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                         objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
+                        objItem.setProductArea(jsonObject.getString(Constant.PRODUCT_AREA));
                         objItem.setProductDesc(jsonObject.getString(Constant.PRODUCT_DESC));
                         objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO)) ;
                         objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
@@ -463,6 +473,7 @@ public class HomeFragment extends Fragment {
                         objItem.setMatrimonyImage4(jsonObject.getString(Constant.MATRIMONY_IMAGE4));
                         objItem.setMatrimonySDate(jsonObject.getString(Constant.MATRIMONY_START_DATE));
                         objItem.setMatrimonyEDate(jsonObject.getString(Constant.MATRIMONY_END_DATE));
+                        objItem.setCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                         matrimonyLatestList.add(objItem);
                     }
 
@@ -486,40 +497,6 @@ public class HomeFragment extends Fragment {
  @RequiresApi(api = Build.VERSION_CODES.M)
     private void displayData() {
         image_slider.setImageList(img, ScaleTypes.FIT);
-
-        textCategoryViewAll.setOnClickListener(view -> mviewPager.setCurrentItem(1));
-        textCategoryViewAll1.setOnClickListener(view -> mviewPager.setCurrentItem(2));
-
-        if (!categoryList.isEmpty()) {
-            adapter = new CategoryAdapter(getActivity(), categoryList);
-            vertical_courses_list.setAdapter(adapter);
-            adapter.setOnItemClickListener(position -> {
-                String categoryName = categoryList.get(position).getCategoryName();
-                String categoryId = String.valueOf(categoryList.get(position).getCategoryId());
-                Intent intent = new Intent(requireActivity(), CatJob.class);
-                intent.putExtra("categoryName",  categoryName);
-                intent.putExtra("categoryId",categoryId);
-                startActivity(intent);
-            });
-        } else {
-            lytCategory.setVisibility(View.GONE);
-        }
-
-        if (!cityList.isEmpty()) {
-            adapter1 = new CityAdapter(getActivity(), cityList);
-            vertical_courses_list1.setAdapter(adapter1);
-            adapter1.setOnItemClickListener(position -> {
-                String categoryName = cityList.get(position).getCityName();
-                String categoryId = String.valueOf(cityList.get(position).getCityId());
-                Intent intent = new Intent(requireActivity(), CityJob.class);
-                intent.putExtra("categoryName",  categoryName);
-                intent.putExtra("categoryId",categoryId);
-                startActivity(intent);
-
-            });
-        } else {
-            lytCategory.setVisibility(View.GONE);
-        }
 
         if (!jobLatestList.isEmpty()) {
             latestAdapter = new HomeJobAdapter(getActivity(), jobLatestList);
@@ -575,10 +552,10 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
     } else {
-        lytLatest.setVisibility(View.GONE);
-    }
+            lytLatest.setVisibility(View.GONE);
+        }
 
-    if (!serviceLatestList.isEmpty()) {
+        if (!serviceLatestList.isEmpty()) {
         latestServiceAdapter = new HomeServiceAdapter(getActivity(), serviceLatestList);
         rvServices.setAdapter(latestServiceAdapter);
         rvServices.getLayoutManager().scrollToPosition(0);
@@ -604,38 +581,37 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
     } else {
-        lytLatest.setVisibility(View.GONE);
-    }
+            lytLatest.setVisibility(View.GONE);
+        }
 
-    if (!matrimonyLatestList.isEmpty()) {
-        latestMatrimonyAdapter = new HomeMatrimonyAdapter(getActivity(), matrimonyLatestList);
-        rvMatrimony.setAdapter(latestMatrimonyAdapter);
-        rvMatrimony.getLayoutManager().scrollToPosition(0);
+        if (!matrimonyLatestList.isEmpty()) {
+            latestMatrimonyAdapter = new HomeMatrimonyAdapter(getActivity(), matrimonyLatestList);
+            rvMatrimony.setAdapter(latestMatrimonyAdapter);
+            rvMatrimony.getLayoutManager().scrollToPosition(0);
 
-        new CountDownTimer(Long.MAX_VALUE, 2000) {
+            new CountDownTimer(Long.MAX_VALUE, 2000) {
 
-            public void onTick(long millisUntilFinished) {
-                rvMatrimony.smoothScrollToPosition(matrimonyPosition[0]);
-                matrimonyPosition[0]++;
-            }
+                public void onTick(long millisUntilFinished) {
+                    rvMatrimony.smoothScrollToPosition(matrimonyPosition[0]);
+                    matrimonyPosition[0]++;
+                }
 
-            public void onFinish() {
-                Toast.makeText(getContext(), "All services are loaded", Toast.LENGTH_LONG).show();
-            }
-        }.start();
+                public void onFinish() {
+                    Toast.makeText(getContext(), "All services are loaded", Toast.LENGTH_LONG).show();
+                }
+            }.start();
 
-        latestMatrimonyAdapter.setOnItemClickListener(position -> {
-            String jobId = matrimonyLatestList.get(position).getId();
+            latestMatrimonyAdapter.setOnItemClickListener(position -> {
+                String jobId = matrimonyLatestList.get(position).getId();
 
-            new SaveJob(getContext()).userSave(jobId);
-            Intent intent = new Intent(getActivity(), MatrimonyDetailsActivity.class);
-            intent.putExtra("Id", jobId);
-            startActivity(intent);
-        });
-    } else {
-        lytLatest.setVisibility(View.GONE);
-    }
-
+                new SaveJob(getContext()).userSave(jobId);
+                Intent intent = new Intent(getActivity(), MatrimonyDetailsActivity.class);
+                intent.putExtra("Id", jobId);
+                startActivity(intent);
+            });
+        } else {
+            lytLatest.setVisibility(View.GONE);
+        }
     }
 
     @Override

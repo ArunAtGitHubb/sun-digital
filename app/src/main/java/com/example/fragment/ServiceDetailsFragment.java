@@ -2,7 +2,6 @@ package com.example.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
@@ -19,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.item.ItemProduct;
 import com.example.item.ItemService;
 import com.jellysoft.sundigitalindia.R;
 
@@ -81,29 +79,17 @@ public class ServiceDetailsFragment extends Fragment {
             startActivity(intent);
         });
         btn_whatsapp.setOnClickListener(view -> {
-            PackageManager pm= getActivity().getPackageManager();
+            String phone = "91" + itemJob.getServicePhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
+            PackageManager pm = requireContext().getPackageManager();
             try {
-                Intent waIntent = new Intent(Intent.ACTION_SEND);
-                waIntent.setType("text/plain");
-                String text =
-                        itemJob.getServiceName() + "\n" +
-                                getString(R.string.job_company_lbl) + itemJob.getServiceCompanyName() + "\n" +
-                                getString(R.string.job_designation_lbl) + itemJob.getServiceDesignation() + "\n" +
-                                getString(R.string.job_phone_lbl) + itemJob.getServicePhoneNumber() + "\n" +
-                                getString(R.string.job_address_lbl) + itemJob.getCity() + "\n\n" +
-                                "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia";
-                PackageInfo info=pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                //Check if package exists or not. If not then code
-                //in catch block will be called
-                waIntent.setPackage("com.whatsapp");
-
-                waIntent.putExtra(Intent.EXTRA_TEXT, text);
-                startActivity(Intent.createChooser(waIntent, "Share with"));
-
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
             } catch (PackageManager.NameNotFoundException e) {
-                Toast.makeText(getActivity(), "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                        .show();
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
 
         return rootView;

@@ -63,7 +63,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ItemProduct objBean;
-    TextView productTitle, companyTitle, productDate,
+    TextView productTitle, companyTitle, productDate, text_product_type,
             text_product_address, productAddress, productPhone, productPhone2,
             productMail, productWebsite, text_product_id, text_product_category,
             text_city, last_date, whatsapp_num, mail_id, text_area, text_price, text_selling_price;
@@ -118,6 +118,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productTitle = findViewById(R.id.text_job_title);
         companyTitle = findViewById(R.id.text_job_company);
         productDate = findViewById(R.id.text_job_date);
+        text_product_type = findViewById(R.id.text_product_type);
         productAddress = findViewById(R.id.text_job_address);
         productPhone = findViewById(R.id.text_phone);
         productPhone2 = findViewById(R.id.text_phone2);
@@ -144,8 +145,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         }
 
 
-        productPhone.setOnClickListener(v -> dialNumber());
-        btnApplyJob.setOnClickListener(v -> dialNumber());
+        productPhone.setOnClickListener(v -> dialNumber(objBean.getProductPhoneNumber()));
+        productPhone2.setOnClickListener(v -> dialNumber(objBean.getProductPhoneNumber2()));
+        btnApplyJob.setOnClickListener(v -> dialNumber(objBean.getProductPhoneNumber()));
     }
 
     private void getDetails() {
@@ -186,7 +188,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
                                 objBean.setId(objJson.getString(Constant.PRODUCT_ID));
                                 objBean.setProductName(objJson.getString(Constant.PRODUCT_NAME));
-                                objBean.setProductDate(objJson.getString(Constant.PRODUCT_START_DATE));
                                 objBean.setProductAddress(objJson.getString(Constant.PRODUCT_ADDRESS));
                                 objBean.setProductImage(objJson.getString(Constant.PRODUCT_IMAGE));
                                 objBean.setProductArea(objJson.getString(Constant.PRODUCT_AREA));
@@ -199,6 +200,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                 objBean.setProductCompanyWebsite(objJson.getString(Constant.PRODUCT_SITE));
                                 objBean.setWebsiteLink(objJson.getString(Constant.WEBSITE_LINK));
                                 objBean.setProductDesc(objJson.getString(Constant.PRODUCT_DESC));
+                                objBean.setProductDoc(objJson.getString(Constant.PRODUCT_DOC));
+                                objBean.setProductDate(objJson.getString(Constant.PRODUCT_START_DATE));
                                 objBean.setPLate(objJson.getString(Constant.PRODUCT_END_DATE));
                                 objBean.setCity(objJson.getString(Constant.CITY_NAME));
                                 objBean.setUrl(objJson.getString("url"));
@@ -240,12 +243,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         productAddress.setText(objBean.getProductAddress());
         productTitle.setText(objBean.getProductName());
-        text_product_id.setText("SDI00" + objBean.getId());
+        text_product_id.setText("PD" + objBean.getId());
         text_product_category.setText(objBean.getProductCategoryName());
         text_city.setText(objBean.getCity());
+        text_product_type.setText(objBean.getProductType());
         text_area.setText(objBean.getProductArea());
-        text_price.setText(objBean.getProductPrice());
-        text_selling_price.setText(objBean.getProductSellingPrice());
+        text_price.setText("Rs. " + objBean.getProductPrice().replace(".00", ""));
+        text_selling_price.setText("Rs. " + objBean.getProductSellingPrice().replace(".00", ""));
         companyTitle.setText(objBean.getProductCompanyName());
         productDate.setText(objBean.getProductDate());
         last_date.setText(objBean.getPLate());
@@ -265,7 +269,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         image.setImageList(objBean.getProductBanner(), ScaleTypes.FIT);
 
-        if(objBean.getUrl() != ""){
+        if(objBean.getUrl() != null && !objBean.getUrl().isEmpty()){
             videoView.getSettings().setJavaScriptEnabled(true);
             videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
             videoView.loadUrl(objBean.getUrl());
@@ -277,8 +281,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         btn_whats.setOnClickListener(view -> {
-            String phone = objBean.getProductPhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getProductPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -290,8 +294,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             startActivity(i);
         });
         whatsapp_num.setOnClickListener(view -> {
-            String phone = objBean.getProductPhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getProductPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -302,17 +306,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
             i.setData(Uri.parse(url));
             startActivity(i);
         });
-        mail_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openEmail();
-            }
-        });
+        mail_id.setOnClickListener(view -> openEmail());
     }
 
     private void setupViewPager(final ViewPager viewPager) {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(ProductDetailsFragment.newInstance(objBean), getString(R.string.tab_job_details));
+        adapter.addFragment(ProductDetailsFragment.newInstance(objBean), getString(R.string.tab_product_details));
 //        adapter.addFragment(SimilarJobFragment.newInstance(Id), getString(R.string.tab_job_similar));
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(1);
@@ -409,8 +408,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             return "http://" + String.valueOf(string1);
     }
 
-    private void dialNumber() {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", objBean.getProductPhoneNumber(), null));
+    private void dialNumber(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
     }
 
@@ -420,13 +419,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (isFromNotification) {
-            Intent intent = new Intent(ProductDetailsActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
-        } else {
-            super.onBackPressed();
-        }
+        finish();
     }
 }

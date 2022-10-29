@@ -61,9 +61,10 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
     LinearLayout lyt_not_found;
     ItemMatrimony objBean;
     TextView matrimonyName, matrimonyDate, matrimonySalary,
-            matrimonyPhone, matrimonyReligion,
+            matrimonyPhone, matrimonyReligion, matrimonyPhone2,
             serviceMail, matrimonyJob, matrimonyAge,
-            text_city, last_date, whatsapp_num, mail_id, text_area, matrimonyDob;
+            text_city, last_date, whatsapp_num, mail_id, text_area,
+            matrimonyCaste, text_matrimony_id;
     ImageSlider image;
     String Id;
     DatabaseHelper databaseHelper;
@@ -113,14 +114,16 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
         text_area = findViewById(R.id.text_area);
         matrimonySalary = findViewById(R.id.text_salary);
         matrimonyJob = findViewById(R.id.text_job);
-        matrimonyDob = findViewById(R.id.text_dob);
+        matrimonyCaste = findViewById(R.id.text_caste);
         matrimonyAge = findViewById(R.id.text_age);
         matrimonyDate = findViewById(R.id.text_job_date);
+        text_matrimony_id = findViewById(R.id.text_matrimony_id);
         last_date  = findViewById(R.id.last_date);
 
         btn_whats = findViewById(R.id.btn_whats);
         image = findViewById(R.id.image_slider);
         matrimonyPhone = findViewById(R.id.text_phone);
+        matrimonyPhone2 = findViewById(R.id.text_phone2);
         serviceMail = findViewById(R.id.text_email);
         lytParent = findViewById(R.id.lytParent);
         btnApplyJob = findViewById(R.id.btn_apply_job);
@@ -135,12 +138,12 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             showToast(getString(R.string.conne_msg1));
         }
 
-        matrimonyPhone.setOnClickListener(v -> dialNumber());
-        btnApplyJob.setOnClickListener(v -> dialNumber());
+        matrimonyPhone.setOnClickListener(v -> dialNumber(objBean.getMatrimonyPhoneNumber()));
+        matrimonyPhone2.setOnClickListener(v -> dialNumber(objBean.getMatrimonyPhoneNumber2()));
+        btnApplyJob.setOnClickListener(v -> dialNumber(objBean.getMatrimonyPhoneNumber()));
     }
 
     private void getDetails() {
-
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
@@ -198,6 +201,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
                                 objBean.setMatrimonySDate(objJson.getString(Constant.MATRIMONY_START_DATE));
                                 objBean.setMatrimonyEDate(objJson.getString(Constant.MATRIMONY_END_DATE));
                                 objBean.setUrl(objJson.getString("url"));
+                                objBean.setCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objBean.setCity(objJson.getString(Constant.CITY_NAME));
                                 objBean.setCid(objJson.getString(Constant.CATEGORY_CID));
 
@@ -233,7 +237,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
         firstFavourite();
 
         matrimonyName.setText(objBean.getMatrimonyName());
-        matrimonyDob.setText(objBean.getMatrimonyDob());
+        matrimonyCaste.setText(objBean.getCategoryName());
         matrimonyAge.setText(objBean.getMatrimonyAge());
         matrimonyReligion.setText(objBean.getMatrimonyReligion());
         text_city.setText(objBean.getCity());
@@ -242,11 +246,17 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
         matrimonyJob.setText(objBean.getMatrimonyCareer());
         matrimonyDate.setText(objBean.getMatrimonySDate());
         last_date.setText(objBean.getMatrimonyEDate());
+        text_matrimony_id.setText("MM" + objBean.getId());
 
         SpannableString content = new SpannableString(objBean.getMatrimonyPhoneNumber());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         matrimonyPhone.setText(content);
+
         whatsapp_num.setText(content);
+
+        SpannableString content2 = new SpannableString(objBean.getMatrimonyPhoneNumber2());
+        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
+        matrimonyPhone2.setText(content2);
 
 //        SpannableString content2 = new SpannableString(objBean.getMatrimonyMail());
 //        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
@@ -257,8 +267,8 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         btn_whats.setOnClickListener(view -> {
-            String phone = objBean.getMatrimonyPhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getMatrimonyPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -270,8 +280,8 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             startActivity(i);
         });
         whatsapp_num.setOnClickListener(view -> {
-            String phone = objBean.getMatrimonyPhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getMatrimonyPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -382,8 +392,8 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             return "http://" + String.valueOf(string1);
     }
 
-    private void dialNumber() {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", objBean.getMatrimonyPhoneNumber(), null));
+    private void dialNumber(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
     }
 

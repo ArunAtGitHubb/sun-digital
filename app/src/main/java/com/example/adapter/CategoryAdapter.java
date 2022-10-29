@@ -1,9 +1,6 @@
 package com.example.adapter;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +8,14 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jellysoft.sundigitalindia.R;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.item.ItemCategory;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
+import com.jellysoft.sundigitalindia.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,13 +36,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        if (viewType == VIEW_TYPE_ITEM) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_category, parent, false);
-            return new ItemRowHolder(v);
-//        } else {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_loading_item, parent, false);
-//            return new ProgressViewHolder(v);
-//        }
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_category, parent, false);
+        return new ItemRowHolder(v);
     }
 
     @Override

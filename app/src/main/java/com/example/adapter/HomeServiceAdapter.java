@@ -1,5 +1,6 @@
 package com.example.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,9 +20,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.item.ItemProduct;
 import com.example.item.ItemService;
-import com.example.util.Constant;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
 import com.jellysoft.sundigitalindia.R;
@@ -50,6 +49,7 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return new ItemRowHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder, final int position) {
         final ItemRowHolder holder = (ItemRowHolder) viewHolder;
@@ -57,9 +57,10 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         final ItemService singleItem = (ItemService) dataList.get(position);
         holder.jobTitle.setText(singleItem.getServiceName());
         holder.text_job_category.setText(singleItem.getServiceCategoryName());
-        holder.jobid.setText("SDI00" + singleItem.getId());
+        holder.jobid.setText("AZ" + singleItem.getId());
         holder.city.setText(singleItem.getCity());
-        holder.salary.setText(singleItem.getServiceCost());
+        holder.area.setText(singleItem.getServiceArea());
+        holder.salary.setText("Rs. " + singleItem.getServiceCost());
         holder.workTime.setText(singleItem.getServiceTime());
 
         Picasso.get().load(singleItem.getServiceLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
@@ -123,7 +124,9 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView jobTitle, workTime, jobid, text_job_category, city, salary, call, whatsapp;
+        TextView jobTitle, workTime, jobid,
+                text_job_category, city, salary,
+                call, whatsapp, area;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -137,6 +140,7 @@ public class HomeServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             jobTitle = itemView.findViewById(R.id.text_job_title);
             text_job_category = itemView.findViewById(R.id.text_job_category);
             city = itemView.findViewById(R.id.city);
+            area = itemView.findViewById(R.id.area);
             salary= itemView.findViewById(R.id.salary);
             workTime = itemView.findViewById(R.id.work_time);
             jobid =itemView.findViewById(R.id.text_job_id);

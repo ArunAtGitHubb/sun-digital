@@ -65,7 +65,7 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.vacancy.setText(singleItem.getJobVacancy());
             holder.company.setText(singleItem.getJobCompanyName());
             holder.text_time.setText(singleItem.getJobTime());
-            holder.jobid.setText("SDI00" + singleItem.getId());
+            holder.jobid.setText("JD" + singleItem.getId());
             holder.jobType.setText(singleItem.getJobType());
 
             Picasso.get().load(singleItem.getJobLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);

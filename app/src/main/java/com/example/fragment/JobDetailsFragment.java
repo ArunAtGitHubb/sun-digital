@@ -1,34 +1,30 @@
 package com.example.fragment;
 
-import android.content.ActivityNotFoundException;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.jellysoft.sundigitalindia.R;
-import com.example.adapter.SkillsAdapter;
 import com.example.item.ItemJob;
+import com.jellysoft.sundigitalindia.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class JobDetailsFragment extends Fragment {
 
@@ -47,6 +43,7 @@ public class JobDetailsFragment extends Fragment {
         return f;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,44 +93,35 @@ public class JobDetailsFragment extends Fragment {
 
 
         btn_back.setOnClickListener(view -> getActivity().onBackPressed());
-        btn_call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", itemJob.getJobPhoneNumber(), null));
-                startActivity(intent);
-            }
+        btn_call.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL,
+                    Uri.fromParts("tel", itemJob.getJobPhoneNumber(), null));
+            startActivity(intent);
         });
 
         btn_download.setOnClickListener(view -> {
             Toast.makeText(getContext(), "Download started...", Toast.LENGTH_LONG).show();
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(itemJob.getJobPdf()));
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setAllowedOverMetered(true)
+                    .setAllowedOverRoaming(false)
+                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, itemJob.getJobName() + ".pdf");
+            DownloadManager downloadManager = (DownloadManager) requireActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            long downloadID = downloadManager.enqueue(request);
         });
 
-        btn_whatsapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PackageManager pm= getActivity().getPackageManager();
-                try {
-                    Intent waIntent = new Intent(Intent.ACTION_SEND);
-                    waIntent.setType("text/plain");
-                    String text =
-                            itemJob.getJobName() + "\n" +
-                                    getString(R.string.job_company_lbl) + itemJob.getJobCompanyName() + "\n" +
-                                    getString(R.string.job_designation_lbl) + itemJob.getJobDesignation() + "\n" +
-                                    getString(R.string.job_phone_lbl) + itemJob.getJobPhoneNumber() + "\n" +
-                                    getString(R.string.job_address_lbl) + itemJob.getCity() + "\n\n" +
-                                    "Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia";
-                    PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
-                    //Check if package exists or not. If not then code
-                    //in catch block will be called
-                    waIntent.setPackage("com.whatsapp");
-
-                    waIntent.putExtra(Intent.EXTRA_TEXT, text);
-                    startActivity(Intent.createChooser(waIntent, "Share with"));
-                } catch (PackageManager.NameNotFoundException e) {
-                    Toast.makeText(getActivity(), "WhatsApp not Installed", Toast.LENGTH_SHORT)
-                            .show();
-                }
+        btn_whatsapp.setOnClickListener(view -> {
+            String phone = itemJob.getJobPhoneNumber();
+            String url = "https://api.whatsapp.com/send?phone=" + phone.replace("+91", "");
+            PackageManager pm = requireActivity().getPackageManager();
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
             }
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
         return rootView;
     }

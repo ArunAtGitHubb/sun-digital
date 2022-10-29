@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         fragmentManager = supportFragmentManager
         navigationView = findViewById(R.id.navigation_view)
         drawerLayout = findViewById(R.id.drawer_layout)
+        admin
         phone = findViewById(R.id.phone)
         phone1 = findViewById(R.id.phone1)
         phone.setOnClickListener {
@@ -87,25 +88,26 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         try {
-            versionName = packageManager
-                .getPackageInfo(packageName, 0).versionName
+            versionName = packageManager.getPackageInfo(packageName, 0).versionName
         } catch (e: PackageManager.NameNotFoundException) {
-            // TODO Auto-generated catch block
             e.printStackTrace()
         }
         val mAdViewLayout = findViewById<LinearLayout>(R.id.adView)
-        //        BannerAds.ShowBannerAds(this, mAdViewLayout);
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_home)))
+        tabLayout.addTab(tabLayout.newTab().setText("வேலை வாய்ப்பு"))
+        tabLayout.addTab(tabLayout.newTab().setText("பொருட்கள்"))
+        tabLayout.addTab(tabLayout.newTab().setText("வேலை ஆட்கள்"))
+        tabLayout.addTab(tabLayout.newTab().setText("திருமண வரன்கள்"))
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_two)))
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one)))
         tabLayout.addTab(tabLayout.newTab().setText("Products Categories"))
         tabLayout.addTab(tabLayout.newTab().setText("Products City"))
         tabLayout.addTab(tabLayout.newTab().setText("சேவை வகைகள்"))
         tabLayout.addTab(tabLayout.newTab().setText("சேவை ஊர்"))
-        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
         tabLayout.addTab(tabLayout.newTab().setText("ஊர்"))
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
@@ -114,8 +116,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                Log.d("ttt", tab.position.toString())
-                viewPager.setCurrentItem(tab.position)
+                viewPager.currentItem = tab.position
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
@@ -281,7 +282,6 @@ class MainActivity : AppCompatActivity() {
         if (MyApp.isLogin) {
             val header = navigationView.getHeaderView(0)
             val imageUser = header.findViewById<CircleImageView>(R.id.header_image)
-            Log.e("image", MyApp.userImage)
             if (MyApp.userImage.isNotEmpty()) {
                 Picasso.get().load(MyApp.userImage).into(imageUser)
             }
@@ -290,6 +290,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        val home = Intent(this@MainActivity, MainActivity::class.java)
+        startActivity(home)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else if (fragmentManager.backStackEntryCount != 0) {
@@ -325,6 +327,7 @@ class MainActivity : AppCompatActivity() {
                     responseBody: ByteArray
                 ) {
                     val result = String(responseBody)
+                    Log.d("result", result)
                     try {
                         val mainJson = JSONObject(result)
                         val jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME)
@@ -340,7 +343,6 @@ class MainActivity : AppCompatActivity() {
                             vi = objJson.getString("views")
                         }
                     } catch (e: JSONException) {
-                        Log.d("raky", "catch")
                         e.printStackTrace()
                     }
                 }

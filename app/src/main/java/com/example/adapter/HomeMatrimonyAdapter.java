@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,10 +56,12 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
         holder.matrimonyName.setText(singleItem.getMatrimonyName());
         holder.matrimonyAge.setText(singleItem.getMatrimonyAge());
         holder.matrimonyJob.setText(singleItem.getMatrimonyCareer());
-        holder.matrimonySalary.setText(singleItem.getMatrimonySalary());
         holder.matrimonyCity.setText(singleItem.getCity());
         holder.matrimonyGender.setText(singleItem.getMatrimonyGender());
         holder.matrimonyReligion.setText(singleItem.getMatrimonyReligion());
+        holder.text_caste.setText(singleItem.getCategoryName());
+        holder.text_area.setText(singleItem.getMatrimonyArea());
+        holder.text_matrimony_id.setText("MM" + singleItem.getId());
 
         Picasso.get().load(singleItem.getMatrimonyLogo()).placeholder(R.drawable.placeholder).into(holder.matrimonyImage);
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +90,6 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
             mContext.startActivity(sendIntent);
         });
         holder.call.setOnClickListener(view -> {
-            Log.d("bvm",String.valueOf(singleItem.getMatrimonyPhoneNumber()));
             String phone = singleItem.getMatrimonyPhoneNumber();
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:"+phone));
@@ -97,8 +97,8 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
         });
 
         holder.whatsapp.setOnClickListener(view -> {
-            String phone = singleItem.getMatrimonyPhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + singleItem.getMatrimonyPhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = mContext.getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -122,7 +122,7 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView call, whatsapp;
-        TextView matrimonyJob, matrimonyName, matrimonySalary,
+        TextView matrimonyJob, matrimonyName, text_area, text_caste, text_matrimony_id,
                 matrimonyAge, matrimonyCity, matrimonyGender, matrimonyReligion;
         LinearLayout lyt_parent;
         Button btnApplyJob;
@@ -139,9 +139,11 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
             matrimonyAge = itemView.findViewById(R.id.text_age);
             matrimonyJob = itemView.findViewById(R.id.job);
             matrimonyCity = itemView.findViewById(R.id.city);
-            matrimonySalary = itemView.findViewById(R.id.salary);
+            text_area = itemView.findViewById(R.id.area);
+            text_caste = itemView.findViewById(R.id.text_caste);
             matrimonyGender = itemView.findViewById(R.id.text_matrimony_religion);
             matrimonyReligion = itemView.findViewById(R.id.text_religion);
+            text_matrimony_id = itemView.findViewById(R.id.text_matrimony_id);
 
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             cardViewType = itemView.findViewById(R.id.cardJobType);

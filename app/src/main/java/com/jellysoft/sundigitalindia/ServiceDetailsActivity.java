@@ -63,7 +63,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
     LinearLayout lyt_not_found;
     ItemService objBean;
     TextView serviceTitle, companyTitle, serviceDate,
-            text_product_address, serviceAddress, servicePhone,
+            text_product_address, serviceAddress, servicePhone, servicePhone2,
             serviceMail, serviceWebsite, text_service_id, text_service_category,
             text_city, last_date, whatsapp_num, mail_id, serviceCost, text_area, serviceTime;
     ImageView image;
@@ -120,6 +120,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         serviceDate = findViewById(R.id.text_job_date);
         serviceAddress = findViewById(R.id.text_job_address);
         servicePhone = findViewById(R.id.text_phone);
+        servicePhone2 = findViewById(R.id.text_phone2);
         serviceTime = findViewById(R.id.text_job_work_time);
         serviceWebsite = findViewById(R.id.text_website);
         serviceMail = findViewById(R.id.text_email);
@@ -142,8 +143,9 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         }
 
 
-        servicePhone.setOnClickListener(v -> dialNumber());
-        btnApplyJob.setOnClickListener(v -> dialNumber());
+        servicePhone.setOnClickListener(v -> dialNumber(objBean.getServicePhoneNumber()));
+        servicePhone2.setOnClickListener(v -> dialNumber(objBean.getServicePhoneNumber2()));
+        btnApplyJob.setOnClickListener(v -> dialNumber(objBean.getServicePhoneNumber()));
     }
 
     private void getDetails() {
@@ -188,6 +190,7 @@ public class ServiceDetailsActivity extends AppCompatActivity {
                                 objBean.setServiceTime(objJson.getString(Constant.SERVICE_TIME));
                                 objBean.setServiceCost(objJson.getString(Constant.SERVICE_COST));
                                 objBean.setServicePhoneNumber(objJson.getString(Constant.SERVICE_PHONE_NO));
+                                objBean.setServicePhoneNumber2(objJson.getString(Constant.SERVICE_PHONE_NO2));
                                 objBean.setServiceMail(objJson.getString(Constant.SERVICE_MAIL));
                                 objBean.setServiceAddress(objJson.getString(Constant.SERVICE_ADDRESS));
                                 objBean.setServiceDate(objJson.getString(Constant.SERVICE_START_DATE));
@@ -230,25 +233,30 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         text_service_category.setText(objBean.getServiceCategoryName());
         text_city.setText(objBean.getCity());
         text_area.setText(objBean.getServiceArea());
-        serviceCost.setText(objBean.getServiceCost());
+        serviceCost.setText("Rs. " + objBean.getServiceCost());
         serviceAddress.setText(objBean.getServiceAddress());
         serviceTime.setText(objBean.getServiceTime());
-        text_service_id.setText("SDI00" + objBean.getId());
+        text_service_id.setText("AZ" + objBean.getId());
         serviceDate.setText(objBean.getServiceDate());
         last_date.setText(objBean.getPLate());
 
         SpannableString content = new SpannableString(objBean.getServicePhoneNumber());
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         servicePhone.setText(content);
+
         whatsapp_num.setText(content);
 
-        SpannableString content2 = new SpannableString(objBean.getServiceMail());
+        SpannableString content2 = new SpannableString(objBean.getServicePhoneNumber2());
         content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
-        mail_id.setText(content2);
+        servicePhone2.setText(content2);
+
+        SpannableString content3 = new SpannableString(objBean.getServiceMail());
+        content3.setSpan(new UnderlineSpan(), 0, content3.length(), 0);
+        mail_id.setText(content3);
 
         Picasso.get().load(objBean.getServiceImage()).into(image);
 
-        if(objBean.getUrl() != ""){
+        if(objBean.getUrl() != null && !objBean.getUrl().isEmpty()){
             videoView.getSettings().setJavaScriptEnabled(true);
             videoView.getSettings().setPluginState(WebSettings.PluginState.ON);
             videoView.loadUrl(objBean.getUrl());
@@ -260,8 +268,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
         btn_whats.setOnClickListener(view -> {
-            String phone = objBean.getServicePhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getServicePhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -273,8 +281,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             startActivity(i);
         });
         whatsapp_num.setOnClickListener(view -> {
-            String phone = objBean.getServicePhoneNumber();
-            String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+            String phone = "91" + objBean.getServicePhoneNumber().replace("+91", "");
+            String url = "https://api.whatsapp.com/send?phone=" + phone;
             PackageManager pm = getPackageManager();
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
@@ -387,8 +395,8 @@ public class ServiceDetailsActivity extends AppCompatActivity {
             return "http://" + String.valueOf(string1);
     }
 
-    private void dialNumber() {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", objBean.getServicePhoneNumber(), null));
+    private void dialNumber(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
     }
 

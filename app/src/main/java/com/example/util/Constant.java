@@ -42,6 +42,7 @@ public class Constant implements Serializable {
     public static final String JOB_DESC = "job_desc";
     public static final String JOB_SALARY = "job_salary";
     public static final String JOB_TIME = "job_timings";
+    public static final String JOB_PDF = "job_pdf";
     public static final String JOB_COMPANY_NAME = "job_company_name";
     public static final String JOB_SITE = "job_company_website";
     public static final String JOB_PHONE_NO = "job_phone_number";

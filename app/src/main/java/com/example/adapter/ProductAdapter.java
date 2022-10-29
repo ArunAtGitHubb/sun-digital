@@ -66,7 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder.product_selling_price.setText(singleItem.getProductSellingPrice());
             holder.product_document.setText(Objects.equals(singleItem.getProductDoc(), "YES") ? "YES" : "NO");
 
-            holder.jobid.setText("SDI00" + singleItem.getId());
+            holder.jobid.setText("PD" + singleItem.getId());
             holder.company.setText(singleItem.getProductCompanyName());
             holder.city.setText(singleItem.getCity());
             holder.jobType.setText(singleItem.getProductType());

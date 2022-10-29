@@ -162,14 +162,14 @@ android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
-
                             fontPath="fonts/customBold.otf"
+
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="பகுதி : "
+                            android:text="இடம் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
@@ -556,23 +556,62 @@ android:gravity="center"
                     android:src="@drawable/ic_call"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
+                    android:fontFamily="@font/calibrib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:paddingTop="5dp"
                     android:textStyle="bold"
-                       android:textSize="16sp"
+                    android:textSize="16sp"
                     android:text="தொலைபேசி எண் :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
+                    android:fontFamily="@font/calibrib"
                     android:id="@+id/text_phone"
-                       android:textSize="13sp"
+                    android:textSize="13sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_call"
+                    android:tint="@color/login_line" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:paddingTop="5dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="தொலைபேசி எண் 2 :"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:fontFamily="@font/calibrib"
+                    android:id="@+id/text_phone2"
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"

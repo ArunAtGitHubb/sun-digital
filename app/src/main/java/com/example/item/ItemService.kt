@@ -26,6 +26,7 @@ class ItemService : Serializable {
     var Age: String? = null
     var City: String? = null
     var servicePhoneNumber: String? = null
+    var servicePhoneNumber2: String? = null
     var serviceMail: String? = null
     var serviceAddress: String? = null
     var serviceSkill: String? = null
