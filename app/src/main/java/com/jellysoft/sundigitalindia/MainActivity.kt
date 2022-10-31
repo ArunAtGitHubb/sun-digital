@@ -297,8 +297,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val home = Intent(this@MainActivity, MainActivity::class.java)
-        startActivity(home)
+        if(viewPager.currentItem == 0) {
+            finish()
+        }else {
+            viewPager.currentItem = 0
+        }
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else if (fragmentManager.backStackEntryCount != 0) {
@@ -308,7 +311,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed()
-                return
+                finish()
             }
             doubleBackToExitPressedOnce = true
             Toast.makeText(this, getString(R.string.back_key), Toast.LENGTH_SHORT).show()

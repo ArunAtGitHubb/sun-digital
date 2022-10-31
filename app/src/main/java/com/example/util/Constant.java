@@ -152,6 +152,7 @@ public class Constant implements Serializable {
     public static final String MATRIMONY_LOGO = "matrimony_logo";
     public static final String MATRIMONY_START_DATE = "matrimony_sdate";
     public static final String MATRIMONY_END_DATE = "matrimony_edate";
+    public static final String MATRIMONY_HOROSCOPE =  "matrimony_horoscope";
     public static final String cid = "cid";
     public static final String category_name = "category_name";
     public static final String category_image = "category_image";

@@ -51,7 +51,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.jellysoft.sundigitalindia.JobDetailsActivity;
+import com.jellysoft.sundigitalindia.LatestFemaleMatrimony;
 import com.jellysoft.sundigitalindia.LatestJob;
+import com.jellysoft.sundigitalindia.LatestMaleMatrimony;
 import com.jellysoft.sundigitalindia.LatestService;
 import com.jellysoft.sundigitalindia.MatrimonyDetailsActivity;
 import com.jellysoft.sundigitalindia.NewProduct;
@@ -82,7 +84,7 @@ public class HomeFragment extends Fragment {
             textProductCategories, textProductCities,
             textServiceCategories, textServiceCities,
             textMatrimonyCities, textGroomsCategory, textBridesCategory,
-            textBrideReligion, textGroomReligion,
+            textBrideReligion, textGroomReligion, viewAllBrides, viewAllGrooms,
             viewAllUsedProduct, viewAllNewProduct;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities;
@@ -149,7 +151,8 @@ public class HomeFragment extends Fragment {
         textServiceCategories = rootView.findViewById(R.id.textServiceCategories);
         textServiceCities = rootView.findViewById(R.id.textServiceAllCities);
 
-//        viewAllMatrimony = rootView.findViewById(R.id.viewAllMatrimony);
+        viewAllBrides = rootView.findViewById(R.id.viewAllBrides);
+        viewAllGrooms = rootView.findViewById(R.id.viewAllGrooms);
         textGroomsCategory = rootView.findViewById(R.id.textGroomCategories);
         textBridesCategory = rootView.findViewById(R.id.textBrideCategories);
         textGroomReligion = rootView.findViewById(R.id.textGroomReligion);
@@ -301,11 +304,17 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-//        viewAllMatrimony.setOnClickListener(view -> {
-//            Intent intent = new Intent(requireActivity(), LatestMatrimony.class);
-//            intent.putExtra("isLatest", true);
-//            startActivity(intent);
-//        });
+        viewAllBrides.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), LatestFemaleMatrimony.class);
+            intent.putExtra("isLatest", true);
+            startActivity(intent);
+        });
+
+        viewAllGrooms.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), LatestMaleMatrimony.class);
+            intent.putExtra("isLatest", true);
+            startActivity(intent);
+        });
 
 
         if (NetworkUtils.isConnected(getActivity())) {

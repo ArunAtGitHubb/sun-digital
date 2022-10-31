@@ -24,6 +24,7 @@ class ItemMatrimony : Serializable {
     var matrimonyPersonName: String? = null
     var matrimonyPhoneNumber: String? = null
     var matrimonyPhoneNumber2: String? = null
+    var matrimonyHoroscope: String? = null
     var views: String? = null
     var url: String? = null
     var matrimonyImage: String? = null

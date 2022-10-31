@@ -190,6 +190,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
                                 objBean.setMatrimonyCareer(objJson.getString(Constant.MATRIMONY_CAREER));
                                 objBean.setMatrimonySalary(objJson.getString(Constant.MATRIMONY_SALARY));
                                 objBean.setMatrimonyDesc(objJson.getString(Constant.MATRIMONY_DESC));
+                                objBean.setMatrimonyHoroscope(objJson.getString(Constant.MATRIMONY_HOROSCOPE));
                                 objBean.setMatrimonyPartnerExpect(objJson.getString(Constant.MATRIMONY_PARTNER_EXPECT));
                                 objBean.setMatrimonyPersonName(objJson.getString(Constant.MATRIMONY_PERSON_NAME));
                                 objBean.setMatrimonyPhoneNumber(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER));

@@ -40,6 +40,8 @@
         <activity android:name=".NewProduct" android:exported="true" />
         <activity android:name=".LatestService" android:exported="true" />
         <activity android:name=".LatestMatrimony" android:exported="true" />
+        <activity android:name=".LatestMaleMatrimony" android:exported="true" />
+        <activity android:name=".LatestFemaleMatrimony" android:exported="true" />
 
         <activity android:name=".CatJob" android:exported="true" />
         <activity android:name=".CityJob" android:exported="true" />

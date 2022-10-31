@@ -1,9 +1,12 @@
 package com.example.fragment;
 
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import com.example.item.ItemMatrimony;
 import com.jellysoft.sundigitalindia.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MatrimonyDetailsFragment extends Fragment {
 
@@ -70,6 +74,15 @@ public class MatrimonyDetailsFragment extends Fragment {
 
         btn_download.setOnClickListener(view -> {
             Toast.makeText(getContext(), "Download started...", Toast.LENGTH_LONG).show();
+            Uri url = Uri.parse(itemMatrimony.getMatrimonyHoroscope());
+            List<String> paths = url.getPathSegments();
+            DownloadManager.Request request = new DownloadManager.Request(url);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                    .setAllowedOverMetered(true)
+                    .setAllowedOverRoaming(false)
+                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, itemMatrimony.getMatrimonyName() + "_horoscope_" + paths.get(paths.size() - 1));
+            DownloadManager downloadManager = (DownloadManager) requireActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+            long downloadID = downloadManager.enqueue(request);
         });
 
         btn_back.setOnClickListener(view -> getActivity().onBackPressed());

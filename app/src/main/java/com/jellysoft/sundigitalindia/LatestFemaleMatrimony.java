@@ -1,40 +1,36 @@
-package com.example.fragment;
+package com.jellysoft.sundigitalindia;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.adapter.HomeMatrimonyAdapter;
+import com.example.adapter.MatrimonyAdapter;
 import com.example.item.ItemMatrimony;
 import com.example.util.API;
 import com.example.util.Constant;
+import com.example.util.EndlessRecyclerViewScrollListener;
+import com.example.util.Events;
+import com.example.util.GlobalBus;
+import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
 import com.example.util.UserUtils;
-import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.jellysoft.sundigitalindia.LatestFemaleMatrimony;
-import com.jellysoft.sundigitalindia.LatestMaleMatrimony;
-import com.jellysoft.sundigitalindia.MatrimonyDetailsActivity;
-import com.jellysoft.sundigitalindia.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,86 +39,78 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-/**
- * Created by Arun.
- */
-public class MatrimonyFragment extends Fragment {
-
+public class LatestFemaleMatrimony extends AppCompatActivity {
+    public RecyclerView recyclerView;
     ArrayList<ItemMatrimony> mListItem;
-    RecyclerView rvLatestMatrimony;
-    HomeMatrimonyAdapter adapter;
-    ViewPager mviewPager;
-    Button textBrideCategories, textGroomCategories, textBrideReligion, textGroomReligion, viewAllBrides, viewAllGrooms;
+    MatrimonyAdapter adapter;
+    private ProgressBar progressBar;
+    private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
     private int pageIndex = 1;
-    final int[] position = {0};
-    TabLayout tabLayout;
-    @SuppressLint("MissingPermission")
-    @Nullable
+    boolean isLatest = false;
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_matrimony, container, false);
-        Log.d("events", "onCreate");
-        mListItem = new ArrayList<>();
-        tabLayout = getActivity().findViewById(R.id.tabLayout);
-        tabLayout.setVisibility(View.VISIBLE);
-        mviewPager = getActivity().findViewById(R.id.viewPager);
-        rvLatestMatrimony = rootView.findViewById(R.id.rv_matrimony);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_category_item);
 
-        textBrideCategories = rootView.findViewById(R.id.textBrideCategories);
-        textGroomCategories = rootView.findViewById(R.id.textGroomCategories);
-        textBrideReligion = rootView.findViewById(R.id.textBrideReligion);
-        textGroomReligion = rootView.findViewById(R.id.textGroomReligion);
-        viewAllBrides = rootView.findViewById(R.id.viewAllBrides);
-        viewAllGrooms = rootView.findViewById(R.id.viewAllGrooms);
-
-        rvLatestMatrimony.setHasFixedSize(true);
-        rvLatestMatrimony.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        rvLatestMatrimony.setFocusable(false);
-        rvLatestMatrimony.setNestedScrollingEnabled(true);
-        rvLatestMatrimony.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                position[0] = rvLatestMatrimony.computeHorizontalScrollOffset() / 1000;
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
-
-        textBrideCategories.setOnClickListener(view -> mviewPager.setCurrentItem(11));
-        textGroomCategories.setOnClickListener(view -> mviewPager.setCurrentItem(12));
-        textBrideReligion.setOnClickListener(view -> mviewPager.setCurrentItem(14));
-        textGroomReligion.setOnClickListener(view -> mviewPager.setCurrentItem(15));
-
-        viewAllBrides.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), LatestFemaleMatrimony.class);
-            intent.putExtra("isLatest", true);
-            startActivity(intent);
-        });
-
-        viewAllGrooms.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), LatestMaleMatrimony.class);
-            intent.putExtra("isLatest", true);
-            startActivity(intent);
-        });
-
-        if (NetworkUtils.isConnected(getActivity())) {
-            getLatestProducts();
-        } else {
-            Toast.makeText(getActivity(), getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
+        IsRTL.ifSupported(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("புதிய திருமண பட்டியல்");
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        return rootView;
-    }
+        mListItem = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        isLatest = bundle.getBoolean("isLatest");
+        lyt_not_found = findViewById(R.id.lyt_not_found);
+        progressBar = findViewById(R.id.progressBar);
+        recyclerView = findViewById(R.id.vertical_courses_list);
+        recyclerView.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 1);
+        recyclerView.setLayoutManager(layoutManager);
 
-    private void getLatestProducts() {
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (adapter.getItemViewType(position)) {
+                    case 0:
+                        return 1;
+                    default:
+                        return 1;
+                }
+            }
+        });
+
+
+        if (NetworkUtils.isConnected(LatestFemaleMatrimony.this)) {
+            getLatestOrRecent();
+        } else {
+            Toast.makeText(LatestFemaleMatrimony.this, getString(R.string.conne_msg1), Toast.LENGTH_SHORT).show();
+        }
+    recyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                if (!isOver) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            pageIndex++;
+                            getLatestOrRecent();
+                        }
+                    }, 1000);
+                } else {
+                    adapter.hideHeader();
+                }
+            }
+        });
+    }
+    private void getLatestOrRecent() {
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
-        jsObj.addProperty("method_name", "get_latest_matrimony");
+        jsObj.addProperty("method_name", "get_latest_matrimony_female");
         jsObj.addProperty("user_id", UserUtils.getUserId());
         jsObj.addProperty("page", pageIndex);
         params.put("data", API.toBase64(jsObj.toString()));
@@ -130,10 +118,14 @@ public class MatrimonyFragment extends Fragment {
             @Override
             public void onStart() {
                 super.onStart();
+                if (isFirst)
+                    showProgress(true);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (isFirst)
+                    showProgress(false);
 
                 String result = new String(responseBody);
                 Log.d("result", result);
@@ -144,6 +136,9 @@ public class MatrimonyFragment extends Fragment {
                     if (jsonArray.length() > 0) {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             objJson = jsonArray.getJSONObject(i);
+                            if (objJson.has(Constant.STATUS)) {
+                                lyt_not_found.setVisibility(View.VISIBLE);
+                            } else {
                                 ItemMatrimony objItem = new ItemMatrimony();
                                 objItem.setId(objJson.getString(Constant.id));
                                 objItem.setCity(objJson.getString(Constant.CITY_NAME));
@@ -172,6 +167,12 @@ public class MatrimonyFragment extends Fragment {
                                 mListItem.add(objItem);
                             }
                         }
+                    } else {
+                        isOver = true;
+                        if (adapter != null) { // when there is no data in first time
+                            adapter.hideHeader();
+                        }
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -180,40 +181,61 @@ public class MatrimonyFragment extends Fragment {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                showProgress(false);
+                lyt_not_found.setVisibility(View.VISIBLE);
             }
-
         });
     }
 
     private void displayData() {
         if (mListItem.size() == 0) {
+            lyt_not_found.setVisibility(View.VISIBLE);
         } else {
+            lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new HomeMatrimonyAdapter(getContext(), mListItem);
-                rvLatestMatrimony.setAdapter(adapter);
+                adapter = new MatrimonyAdapter(LatestFemaleMatrimony.this, mListItem);
+                recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();
             }
 
-            new CountDownTimer(Long.MAX_VALUE, 2000) {
-                public void onTick(long millisUntilFinished) {
-                    rvLatestMatrimony.smoothScrollToPosition(position[0]);
-                    position[0]++;
-                }
-
-                public void onFinish() {
-                    Toast.makeText(getContext(), "All jobs are loaded", Toast.LENGTH_LONG).show();
-                }
-            }.start();
-
             adapter.setOnItemClickListener(position -> {
                 String jobId = mListItem.get(position).getId();
-                Intent intent = new Intent(getContext(), MatrimonyDetailsActivity.class);
+                Intent intent = new Intent(LatestFemaleMatrimony.this, MatrimonyDetailsActivity.class);
                 intent.putExtra("Id", jobId);
                 startActivity(intent);
             });
+        }
+    }
 
+    private void showProgress(boolean show) {
+        if (show) {
+            progressBar.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+            lyt_not_found.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        GlobalBus.getBus().unregister(this);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+    @Subscribe
+    public void getSaveJob(Events.SaveJob saveJob) {
+        for (int i = 0; i < mListItem.size(); i++) {
+            if (mListItem.get(i).getId().equals(saveJob.getJobId())) {
+                adapter.notifyItemChanged(i);
+            }
         }
     }
 }
