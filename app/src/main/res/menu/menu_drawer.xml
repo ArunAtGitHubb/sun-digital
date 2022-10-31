@@ -12,33 +12,33 @@
             android:title="@string/menu_home"
             tools:ignore="MissingPrefix" />
         <item
-            android:id="@+id/menu_go_search"
-            android:checked="false"
+            android:id="@+id/menu_go_job_opp"
             fontPath="fonts/customBold.otf"
-            tools:ignore="MissingPrefix"
+            android:checked="false"
             android:icon="@drawable/ic_categories"
-            android:title="வேலை தேடல்" />
+            android:title="வேலை வாய்ப்பு"
+            tools:ignore="MissingPrefix" />
         <item
-            android:id="@+id/menu_go_city"
-            android:checked="false"
+            android:id="@+id/menu_go_product"
             fontPath="fonts/customBold.otf"
-            tools:ignore="MissingPrefix"
+            android:checked="false"
             android:icon="@drawable/ic_categories"
-            android:title="நகரம் வாரியாக வேலை" />
+            android:title="பொருட்கள்"
+            tools:ignore="MissingPrefix" />
         <item
-            android:id="@+id/menu_go_category"
-            android:checked="false"
+            android:id="@+id/menu_go_service"
             fontPath="fonts/customBold.otf"
-            tools:ignore="MissingPrefix"
+            android:checked="false"
             android:icon="@drawable/ic_categories"
-            android:title="வேலை பிரிவு" />
+            android:title="வேலை ஆட்கள்"
+            tools:ignore="MissingPrefix" />
         <item
-            android:id="@+id/menu_go_latest"
-            android:checked="false"
+            android:id="@+id/menu_go_matrimony"
             fontPath="fonts/customBold.otf"
-            tools:ignore="MissingPrefix"
+            android:checked="false"
             android:icon="@drawable/ic_categories"
-            android:title="புதிய வேலை வாய்ப்புகள்" />
+            android:title="திருமண வரன்கள்"
+            tools:ignore="MissingPrefix" />
 
         <item
             android:id="@+id/menu_go_about"

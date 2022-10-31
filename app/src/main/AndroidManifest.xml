@@ -54,6 +54,8 @@
         <activity android:name=".CityMatrimony" android:exported="true" />
         <activity android:name=".CatMatrimonyMale" android:exported="true"/>
         <activity android:name=".CatMatrimonyFemale" android:exported="true" />
+        <activity android:name=".ReligionMatrimonyMale" android:exported="true" />
+        <activity android:name=".ReligionMatrimonyFemale" android:exported="true" />
 
         <activity
             android:name=".SplashActivity"
@@ -66,10 +68,19 @@
             </intent-filter>
             <meta-data android:name=".SplashActivity" android:value="true" />
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
+
+        <activity android:name=".MainActivity" android:exported="true" android:windowSoftInputMode="adjustPan" >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="www.sundigitalindiajobs.com"
+                    android:pathPrefix="/profile"  />
+            </intent-filter>
+        </activity>
 
         <activity android:name=".JobDetailsActivity" android:exported="true"/>
         <activity android:name=".ProductDetailsActivity" android:exported="true" />

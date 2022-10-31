@@ -67,6 +67,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val data: Uri? = intent.data
+
+        if(data != null ) {
+            Log.d("data2", data.getQueryParameter("id").toString())
+        } else {
+            Log.d("data2", "null")
+        }
+
         IsRTL.ifSupported(this)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -109,6 +118,8 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
         tabLayout.addTab(tabLayout.newTab().setText("ஊர்"))
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         adapter = MyAdapter(supportFragmentManager)
@@ -130,20 +141,20 @@ class MainActivity : AppCompatActivity() {
                     viewPager.currentItem = 0
                     return@OnNavigationItemSelectedListener false
                 }
-                R.id.menu_go_latest -> {
-                    val intent1 = Intent(this@MainActivity, LatestJob::class.java)
-                    //                intent.putExtra("categoryId", spCategory.getSelectedItemPosition() == 0 ? "" : String.valueOf(mListCategory.get(spCategory.getSelectedItemPosition() - 1).getCategoryId()));
-//                intent.putExtra("cityId", spCity.getSelectedItemPosition() == 0 ? "" : mListCity.get(spCity.getSelectedItemPosition() - 1).getCityId());
-                    intent1.putExtra("isLatest", true)
-                    startActivity(intent1)
-                    return@OnNavigationItemSelectedListener true
-                }
-                R.id.menu_go_category -> {
+                R.id.menu_go_job_opp -> {
                     viewPager.currentItem = 1
                     return@OnNavigationItemSelectedListener false
                 }
-                R.id.menu_go_city -> {
+                R.id.menu_go_product -> {
                     viewPager.currentItem = 2
+                    return@OnNavigationItemSelectedListener false
+                }
+                R.id.menu_go_service -> {
+                    viewPager.currentItem = 3
+                    return@OnNavigationItemSelectedListener false
+                }
+                R.id.menu_go_matrimony -> {
+                    viewPager.currentItem = 4
                     return@OnNavigationItemSelectedListener false
                 }
                 R.id.menu_go_contact -> {
@@ -192,10 +203,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(sendIntent)
                     return@OnNavigationItemSelectedListener true
                 }
-                R.id.menu_go_search -> {
-                    val filterSearchFragment = FilterSearchFragment()
-                    filterSearchFragment.show(fragmentManager!!, "Square")
-                }
             }
             false
         })
@@ -213,7 +220,7 @@ class MainActivity : AppCompatActivity() {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
                 viewer = drawerView.findViewById(R.id.views)
-                viewer.setText(vi)
+                viewer.text = vi
             }
         }
         drawerLayout.addDrawerListener(actionBarDrawerToggle)

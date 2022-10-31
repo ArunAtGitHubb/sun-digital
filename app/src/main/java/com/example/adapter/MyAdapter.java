@@ -10,9 +10,11 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.example.fragment.CategoryFragment;
 import com.example.fragment.CityFragment;
 import com.example.fragment.FemaleMatrimonyCategoryFragment;
+import com.example.fragment.FemaleMatrimonyReligionFragment;
 import com.example.fragment.HomeFragment;
 import com.example.fragment.JobOpportunitiesFragment;
 import com.example.fragment.MaleMatrimonyCategoryFragment;
+import com.example.fragment.MaleMatrimonyReligionFragment;
 import com.example.fragment.MatrimonyCityFragment;
 import com.example.fragment.MatrimonyFragment;
 import com.example.fragment.ProductCategoryFragment;
@@ -64,6 +66,10 @@ public class MyAdapter extends FragmentStatePagerAdapter {
                 return new MaleMatrimonyCategoryFragment();
             case 13:
                 return new MatrimonyCityFragment();
+            case 14:
+                return new FemaleMatrimonyReligionFragment();
+            case 15:
+                return new MaleMatrimonyReligionFragment();
             default:
                 return null;
         }
@@ -71,7 +77,7 @@ public class MyAdapter extends FragmentStatePagerAdapter {
     // this counts total number of tabs
     @Override
     public int getCount() {
-        return 14;
+        return 16;
     }
 
 }

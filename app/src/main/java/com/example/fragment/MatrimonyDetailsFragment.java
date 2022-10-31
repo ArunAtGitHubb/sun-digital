@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class MatrimonyDetailsFragment extends Fragment {
 
     WebView webView;
-    TextView text_matrimony_gender, text_matrimony_qualification,
+    TextView text_matrimony_qualification,
             text_matrimony_dob, marital, text_expectation,
             matrimonyContact, matrimonyDesc;
     ItemMatrimony itemMatrimony;
@@ -49,7 +49,6 @@ public class MatrimonyDetailsFragment extends Fragment {
         }
         mSkills = new ArrayList<>();
 
-        text_matrimony_gender = rootView.findViewById(R.id.text_matrimony_gender);
         text_matrimony_qualification = rootView.findViewById(R.id.text_matrimony_qualification);
         text_matrimony_dob = rootView.findViewById(R.id.text_dob);
         marital = rootView.findViewById(R.id.marital);
@@ -62,8 +61,6 @@ public class MatrimonyDetailsFragment extends Fragment {
         btn_back = rootView.findViewById(R.id.btn_back);
         btn_download = rootView.findViewById(R.id.btn_download);
 
-
-        text_matrimony_gender.setText(itemMatrimony.getMatrimonyGender());
         text_matrimony_qualification.setText(itemMatrimony.getMatrimonyEducation());
         text_matrimony_dob.setText(itemMatrimony.getMatrimonyDob());
         marital.setText(itemMatrimony.getMatrimonyMaritalStatus());

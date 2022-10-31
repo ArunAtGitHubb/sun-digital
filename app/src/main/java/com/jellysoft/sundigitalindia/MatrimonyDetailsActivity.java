@@ -64,7 +64,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
             matrimonyPhone, matrimonyReligion, matrimonyPhone2,
             serviceMail, matrimonyJob, matrimonyAge,
             text_city, last_date, whatsapp_num, mail_id, text_area,
-            matrimonyCaste, text_matrimony_id;
+            matrimonyCaste, text_matrimony_id, text_gender;
     ImageSlider image;
     String Id;
     DatabaseHelper databaseHelper;
@@ -110,6 +110,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
 
         matrimonyName = findViewById(R.id.text_name);
         matrimonyReligion = findViewById(R.id.text_matrimony_religion);
+        text_gender = findViewById(R.id.text_gender);
         text_city  = findViewById(R.id.text_city);
         text_area = findViewById(R.id.text_area);
         matrimonySalary = findViewById(R.id.text_salary);
@@ -238,6 +239,7 @@ public class MatrimonyDetailsActivity extends AppCompatActivity {
 
         matrimonyName.setText(objBean.getMatrimonyName());
         matrimonyCaste.setText(objBean.getCategoryName());
+        text_gender.setText(objBean.getMatrimonyGender());
         matrimonyAge.setText(objBean.getMatrimonyAge());
         matrimonyReligion.setText(objBean.getMatrimonyReligion());
         text_city.setText(objBean.getCity());

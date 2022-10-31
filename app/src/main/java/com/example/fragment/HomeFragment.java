@@ -81,7 +81,8 @@ public class HomeFragment extends Fragment {
     Button latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
             textServiceCategories, textServiceCities,
-            textMatrimonyCities, textGrooms, textBrides,
+            textMatrimonyCities, textGroomsCategory, textBridesCategory,
+            textBrideReligion, textGroomReligion,
             viewAllUsedProduct, viewAllNewProduct;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities;
@@ -149,8 +150,10 @@ public class HomeFragment extends Fragment {
         textServiceCities = rootView.findViewById(R.id.textServiceAllCities);
 
 //        viewAllMatrimony = rootView.findViewById(R.id.viewAllMatrimony);
-        textGrooms = rootView.findViewById(R.id.textGroomCategories);
-        textBrides = rootView.findViewById(R.id.textBrideCategories);
+        textGroomsCategory = rootView.findViewById(R.id.textGroomCategories);
+        textBridesCategory = rootView.findViewById(R.id.textBrideCategories);
+        textGroomReligion = rootView.findViewById(R.id.textGroomReligion);
+        textBrideReligion = rootView.findViewById(R.id.textBrideReligion);
 //        textMatrimonyCities = rootView.findViewById(R.id.textMatrimonyAllCities);
 
         vertical_courses_list = rootView.findViewById(R.id.vertical_courses_list);
@@ -268,8 +271,10 @@ public class HomeFragment extends Fragment {
         textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(9));
         textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(10));
 
-        textGrooms.setOnClickListener(view -> mviewPager.setCurrentItem(11));
-        textBrides.setOnClickListener(view -> mviewPager.setCurrentItem(12));
+        textBridesCategory.setOnClickListener(view -> mviewPager.setCurrentItem(11));
+        textGroomsCategory.setOnClickListener(view -> mviewPager.setCurrentItem(12));
+        textBrideReligion.setOnClickListener(view -> mviewPager.setCurrentItem(14));
+        textGroomReligion.setOnClickListener(view -> mviewPager.setCurrentItem(15));
 //        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
 
         latestViewAll.setOnClickListener(view -> {
