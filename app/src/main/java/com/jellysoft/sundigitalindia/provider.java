@@ -2,19 +2,15 @@ package com.jellysoft.sundigitalindia;
 
 import static javax.mail.Message.RecipientType.TO;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.util.IsRTL;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.example.util.IsRTL;
 
 import java.util.Properties;
 
@@ -25,7 +21,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
-
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
@@ -51,20 +46,17 @@ EditText name,place, title,vacancy,num;
         num = findViewById(R.id.num);
         submit = findViewById(R.id.submit);
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String reciever_email ="sundigitalindiatuty@gmail.com";
-                String subject="JOB VACANCY";
-                String body = "name : "+name.getText().toString()+ " \n"+  "Job Title : "+title.getText().toString()+ " \n"
-                +"Phone Number : "+num.getText().toString()+ " \n"+                "Place : "+place.getText().toString()+ " \n"
-                +"Vacancy : "+vacancy.getText().toString()+ " \n";
+        submit.setOnClickListener(view -> {
+            String reciever_email ="sundigitalindiatuty@gmail.com";
+            String subject="JOB VACANCY";
+            String body = "name : "+name.getText().toString()+ " \n"+  "Job Title : "+title.getText().toString()+ " \n"
+            +"Phone Number : "+num.getText().toString()+ " \n"+                "Place : "+place.getText().toString()+ " \n"
+            +"Vacancy : "+vacancy.getText().toString()+ " \n";
 
-             int myval =   sendMail(reciever_email,subject,body);
-             if(myval == 1){
-                 Intent intent8 = new Intent(provider.this,finish.class);
-                 startActivity(intent8);
-             }
+            int myval = sendMail(reciever_email, subject, body);
+            if(myval == 1){
+                Intent intent8 = new Intent(provider.this,finish.class);
+                startActivity(intent8);
             }
         });
     }
@@ -111,7 +103,6 @@ EditText name,place, title,vacancy,num;
             return 1;
         } catch (Exception e) {
             return 0;
-
         }
     }
 }

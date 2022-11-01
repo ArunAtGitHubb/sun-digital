@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -378,6 +379,7 @@ public class HomeFragment extends Fragment {
                         }
                     }
                     JSONArray jobArray1 = jobAppJson.getJSONArray("banner");
+                    Log.d("result", jobArray1.toString());
                     for (int i = 0; i < jobArray1.length(); i++) {
                         JSONObject jsonObject = jobArray1.getJSONObject(i);
                         img.add(new SlideModel(jsonObject.getString("banner"),ScaleTypes.FIT));

@@ -301,21 +301,21 @@ class MainActivity : AppCompatActivity() {
             finish()
         }else {
             viewPager.currentItem = 0
-        }
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else if (fragmentManager.backStackEntryCount != 0) {
-            val tag = fragmentManager.fragments[fragmentManager.backStackEntryCount - 1].tag
-            setToolbarTitle(tag)
-            super.onBackPressed()
-        } else {
-            if (doubleBackToExitPressedOnce) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else if (fragmentManager.backStackEntryCount != 0) {
+                val tag = fragmentManager.fragments[fragmentManager.backStackEntryCount - 1].tag
+                setToolbarTitle(tag)
                 super.onBackPressed()
-                finish()
+            } else {
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed()
+                    finish()
+                }
+                doubleBackToExitPressedOnce = true
+                Toast.makeText(this, getString(R.string.back_key), Toast.LENGTH_SHORT).show()
+                Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
             }
-            doubleBackToExitPressedOnce = true
-            Toast.makeText(this, getString(R.string.back_key), Toast.LENGTH_SHORT).show()
-            Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
         }
     }
 
