@@ -14,9 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
 import com.example.adapter.ServiceAdapter;
-import com.example.item.ItemJob;
 import com.example.item.ItemService;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -25,7 +23,6 @@ import com.example.util.Events;
 import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
 import com.example.util.UserUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -58,7 +55,7 @@ public class LatestService extends AppCompatActivity {
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("புதிய சேவை பட்டியல்");
+        toolbar.setTitle("சேவை பட்டியல்");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -14,9 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
 import com.example.adapter.ProductAdapter;
-import com.example.item.ItemJob;
 import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -58,7 +56,7 @@ public class LatestProduct extends AppCompatActivity {
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("புதிய தயாரிப்பு பட்டியல்");
+        toolbar.setTitle("பொருட்கள் பட்டியல்");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

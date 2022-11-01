@@ -55,7 +55,7 @@ public class LatestMaleMatrimony extends AppCompatActivity {
 
         IsRTL.ifSupported(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("புதிய திருமண பட்டியல்");
+        toolbar.setTitle("வரன் பட்டியல்");
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
