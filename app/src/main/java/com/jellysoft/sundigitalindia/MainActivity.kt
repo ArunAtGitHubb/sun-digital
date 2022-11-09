@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("ஊர்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
+        tabLayout.addTab(tabLayout.newTab().setText("Restaurants"))
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         adapter = MyAdapter(supportFragmentManager)
@@ -320,7 +321,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val admin: Unit
-        private get() {
+        get() {
             val client = AsyncHttpClient()
             val params = RequestParams()
             val jsObj = Gson().toJsonTree(API()) as JsonObject

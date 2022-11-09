@@ -63,7 +63,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ItemProduct objBean;
-    TextView productTitle, companyTitle, productDate, text_product_type,
+    TextView productTitle, companyTitle, productDate,
             text_product_address, productAddress, productPhone, productPhone2,
             productMail, productWebsite, text_product_id, text_product_category,
             text_city, last_date, whatsapp_num, mail_id, text_area, text_price, text_selling_price;
@@ -118,7 +118,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productTitle = findViewById(R.id.text_job_title);
         companyTitle = findViewById(R.id.text_job_company);
         productDate = findViewById(R.id.text_job_date);
-        text_product_type = findViewById(R.id.text_product_type);
         productAddress = findViewById(R.id.text_job_address);
         productPhone = findViewById(R.id.text_phone);
         productPhone2 = findViewById(R.id.text_phone2);
@@ -246,7 +245,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
         text_product_id.setText("PD" + objBean.getId());
         text_product_category.setText(objBean.getProductCategoryName());
         text_city.setText(objBean.getCity());
-        text_product_type.setText(objBean.getProductType());
         text_area.setText(objBean.getProductArea());
         text_price.setText("Rs. " + objBean.getProductPrice().replace(".00", ""));
         text_selling_price.setText("Rs. " + objBean.getProductSellingPrice().replace(".00", ""));

@@ -4,15 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,22 +11,23 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.adapter.CityAdapter;
 import com.example.item.ItemCity;
-import com.google.android.material.tabs.TabLayout;
-import com.jellysoft.sundigitalindia.CityJob;
-import com.jellysoft.sundigitalindia.LatestJob;
-import com.jellysoft.sundigitalindia.MainActivity;
-import com.jellysoft.sundigitalindia.R;
-import com.example.adapter.CategoryAdapter;
-import com.example.item.ItemCategory;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
+import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.jellysoft.sundigitalindia.CityJob;
+import com.jellysoft.sundigitalindia.R;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -49,7 +41,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * Created by laxmi.
+ * Created by Arun.
  */
 public class CityFragment extends Fragment {
 
@@ -115,7 +107,6 @@ public class CityFragment extends Fragment {
     }
 
     private void getCity() {
- Log.d("ttt","hi");
         AsyncHttpClient client = new AsyncHttpClient();
         RequestParams params = new RequestParams();
         JsonObject jsObj = (JsonObject) new Gson().toJsonTree(new API());
@@ -191,30 +182,15 @@ public class CityFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
 
-            adapter.setOnItemClickListener(new RvOnClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    String categoryName = mListItem.get(position).getCityName();
-                    String categoryId = mListItem.get(position).getCityId();
+            adapter.setOnItemClickListener(position -> {
+                String categoryName = mListItem.get(position).getCityName();
+                String categoryId = mListItem.get(position).getCityId();
 
-                    Intent intent = new Intent(requireActivity(), CityJob.class);
+                Intent intent = new Intent(requireActivity(), CityJob.class);
                 intent.putExtra("categoryName",  categoryName);
                 intent.putExtra("categoryId",categoryId);
-
-                    startActivity(intent);
-//                    FragmentManager fm = getFragmentManager();
-//                    CityItemFragment channelFragment = new CityItemFragment();
-//                    channelFragment.setArguments(bundle);
-//                    assert fm != null;
-//                    FragmentTransaction ft = fm.beginTransaction();
-//                    ft.hide(CityFragment.this);
-//                    ft.add(R.id.Container, channelFragment, categoryName);
-//                    ft.addToBackStack(categoryName);
-//                    ft.commit();
-//                    ((MainActivity) requireActivity()).setToolbarTitle(categoryName);
-                }
+                startActivity(intent);
             });
-
         }
     }
 

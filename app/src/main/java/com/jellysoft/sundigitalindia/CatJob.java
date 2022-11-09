@@ -21,7 +21,6 @@ import com.example.util.EndlessRecyclerViewScrollListener;
 import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
 import com.example.util.SaveJob;
 import com.example.util.UserUtils;
 import com.google.gson.Gson;
@@ -198,15 +197,12 @@ public class CatJob extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
 
-            adapter.setOnItemClickListener(new RvOnClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    String jobId = mListItem.get(position).getId();
-                    new SaveJob(CatJob.this).userSave(jobId);
-                    Intent intent = new Intent(CatJob.this, JobDetailsActivity.class);
-                    intent.putExtra("Id", jobId);
-                    startActivity(intent);
-                }
+            adapter.setOnItemClickListener(position -> {
+                String jobId = mListItem.get(position).getId();
+                new SaveJob(CatJob.this).userSave(jobId);
+                Intent intent = new Intent(CatJob.this, JobDetailsActivity.class);
+                intent.putExtra("Id", jobId);
+                startActivity(intent);
             });
 
         }

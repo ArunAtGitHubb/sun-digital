@@ -93,8 +93,6 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/3e4601a59405770167ade179b2583078/transformed/jetified-android-mail-1.6.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/80117caa2aaedd87331702f1f95bd0d3/transformed/jetified-android-activation-1.6.2.jar</arg>
                 <arg>$MODULE_DIR$/../../../library/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/a97c50131a714791ad99e1148c6445f0/transformed/jetified-kotlin-stdlib-common-1.7.20.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/6b6da2a8bc63fe26c3e3a33b101da93b/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/d9c07f41cd2efae6658e6403637bed17/transformed/jetified-appcompat-resources-1.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/46e73f78835f68cd97d9c97b680b1926/transformed/media-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/5f2777473e9c7c2b2f203322d4b9ace3/transformed/drawerlayout-1.1.1-api.jar</arg>
@@ -108,6 +106,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/10db91bb3a990f55e194b0669b84a180/transformed/asynclayoutinflater-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/6c0c1262f2e3e49e2f256fb5addb3ef5/transformed/customview-1.1.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4aa6ccb1f311af690d994a28a5e4dbcf/transformed/core-1.8.0-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/a97c50131a714791ad99e1148c6445f0/transformed/jetified-kotlin-stdlib-common-1.7.20.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/6b6da2a8bc63fe26c3e3a33b101da93b/transformed/jetified-annotations-13.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/409956624524e54e425b7b5c6b60036c/transformed/cursoradapter-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/fe36e3b05748a5b74379ef89374a86be/transformed/exifinterface-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1e7dab52ab7657bad9436f1eca5f0391/transformed/jetified-transport-backend-cct-3.1.8-api.jar</arg>
@@ -117,8 +117,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9a367605e06692c8f4dcc2a50ef7c5a7/transformed/jetified-firebase-encoders-json-18.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/343567ce60da953aa76c7e99991d2f87/transformed/jetified-firebase-encoders-proto-16.0.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/a6a3708f0726eb892d500f47d83cf0cd/transformed/jetified-firebase-encoders-17.0.0.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3abb700a740e94f3f901da88a8dd93b0/transformed/lifecycle-runtime-2.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/dd92f7981c8c79f71a0b826a9172db18/transformed/versionedparcelable-1.1.1-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/3abb700a740e94f3f901da88a8dd93b0/transformed/lifecycle-runtime-2.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/3da96f5fa28bcc19b5e3f347463b2411/transformed/documentfile-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/15f0217038e7b5fd03512f747893af40/transformed/localbroadcastmanager-1.0.0-api.jar</arg>
@@ -185,7 +185,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/aidl_source_output_dir/debugAndroidTest/out" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debugAndroidTest/out" />

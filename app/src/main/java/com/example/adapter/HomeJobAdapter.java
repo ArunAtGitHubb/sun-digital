@@ -56,7 +56,6 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         final ItemJob singleItem = (ItemJob) dataList.get(position);
         holder.jobTitle.setText(singleItem.getJobName());
         holder.jobid.setText("JD" + singleItem.getId());
-        holder.text_job_time.setText(singleItem.getJobTime());
         holder.company.setText(singleItem.getJobCompanyName());
         holder.vacancy.setText(singleItem.getJobVacancy());
         holder.city.setText(singleItem.getCity());
@@ -143,7 +142,7 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView jobTitle, jobType, company, vacancy, area,
-                jobid, city, salary, call, whatsapp, text_job_time;
+                jobid, city, salary, call, whatsapp;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -160,7 +159,6 @@ public class HomeJobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             city = itemView.findViewById(R.id.city);
             area = itemView.findViewById(R.id.area);
             salary= itemView.findViewById(R.id.salary);
-            text_job_time = itemView.findViewById(R.id.text_time);
             vacancy = itemView.findViewById(R.id.text_vacancy);
             company = itemView.findViewById(R.id.company);
             jobid = itemView.findViewById(R.id.text_job_id);

@@ -20,7 +20,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.item.ItemProduct;
-import com.example.util.Constant;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
 import com.jellysoft.sundigitalindia.R;
@@ -64,7 +63,6 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         holder.productSellingPrice.setText("Rs. " + singleItem.getProductSellingPrice().replace(".00", "") + "/-");
         holder.productDoc.setText(Objects.equals(singleItem.getProductDoc(), "YES") ? "YES" : "NO");
 
-        holder.jobType.setText(singleItem.getProductType());
         Picasso.get().load(singleItem.getProductLogo()).placeholder(R.drawable.placeholder).into(holder.jobImage);
         holder.lyt_parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,23 +114,6 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 mContext.startActivity(i);
             }
         });
-
-
-        switch (singleItem.getProductType()) {
-            case Constant.JOB_TYPE_HOURLY:
-                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.hourly_time_text));
-                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.hourly_time_bg));
-                break;
-            case Constant.JOB_TYPE_HALF:
-                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.half_time_text));
-                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.half_time_bg));
-                break;
-            case Constant.JOB_TYPE_FULL:
-                holder.jobType.setTextColor(mContext.getResources().getColor(R.color.full_time_text));
-                holder.cardViewType.setCardBackgroundColor(mContext.getResources().getColor(R.color.full_time_bg));
-                break;
-        }
-
     }
 
     @Override
@@ -146,7 +127,7 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView jobTitle, productPrice, productSellingPrice, productDoc,
-                jobType, jobid, city, call, whatsapp, area;
+                jobid, city, call, whatsapp, area;
         LinearLayout lyt_parent;
         Button btnApplyJob;
         CardView cardViewType;
@@ -158,7 +139,6 @@ public class HomeProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         ItemRowHolder(View itemView) {
             super(itemView);
             jobTitle = itemView.findViewById(R.id.text_job_title);
-            jobType = itemView.findViewById(R.id.text_job_type);
             city = itemView.findViewById(R.id.city);
             area = itemView.findViewById(R.id.area);
             productPrice = itemView.findViewById(R.id.product_price);

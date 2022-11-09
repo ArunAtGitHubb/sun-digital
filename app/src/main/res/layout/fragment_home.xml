@@ -128,7 +128,7 @@
                                         android:padding="6dp">
 
                                         <ImageView
-                                            android:id="@+id/image"
+                                            android:id="@+id/jobImage"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_above="@+id/text"
@@ -190,7 +190,7 @@
                                         android:padding="6dp">
 
                                         <ImageView
-                                            android:id="@+id/image"
+                                            android:id="@+id/productImage"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_above="@+id/text"
@@ -257,7 +257,7 @@
                                         android:padding="6dp">
 
                                         <ImageView
-                                            android:id="@+id/image"
+                                            android:id="@+id/serviceImage"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_above="@+id/text"
@@ -319,7 +319,7 @@
                                         android:padding="6dp">
 
                                         <ImageView
-                                            android:id="@+id/image"
+                                            android:id="@+id/matrimonyImage"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_above="@+id/text"
@@ -545,25 +545,6 @@
 
 
                     </RelativeLayout>
-
-                    <Button
-                        android:id="@+id/viewAllUsedProducts"
-                        style="?android:attr/buttonBarButtonStyle"
-                        fontPath="fonts/customBold.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/square_button"
-                        android:gravity="center"
-                        android:paddingStart="15dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="15dp"
-                        android:text="View All Used Products"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
 
                     <Button
                         android:id="@+id/viewAllNewProducts"
@@ -971,6 +952,106 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/restaurantCard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                app:cardCornerRadius="5dp">
+                <LinearLayout
+                    android:id="@+id/lytHomeTVCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <TextView
+                                fontPath="fonts/customBold.otf"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Restaurant"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/viewCategory"
+                                android:layout_width="70dp"
+                                android:layout_height="3dp"
+                                android:layout_marginLeft="145dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/login_bottom"
+                                android:textAlignment="center" />
+
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/restaurantList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/item_space"
+                        android:layout_marginTop="@dimen/item_space"
+                        android:clipToPadding="false" />
+
+                    <Button
+                        android:id="@+id/viewTutyRestaurant"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/square_button"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View Restaurants in Tuticorin"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                    <Button
+                        android:id="@+id/viewAllCityRestaurant"
+                        style="?android:attr/buttonBarButtonStyle"
+                        fontPath="fonts/customBold.otf"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/square_button"
+                        android:gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:paddingStart="15dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="15dp"
+                        android:text="View All Cities"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        tools:ignore="MissingPrefix" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
 
         </LinearLayout>

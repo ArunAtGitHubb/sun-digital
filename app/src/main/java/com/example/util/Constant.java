@@ -12,8 +12,8 @@ public class Constant implements Serializable {
 
     public static final String IMAGE_PATH = SERVER_URL + "images/";
 
-//    public static final String API_URL = "https://jellysofthub.com/mano/sundigital/api.php";
-    public static final String API_URL = SERVER_URL + "api.php";
+    public static final String API_URL = "https://jellysofthub.com/mano/sundigital/api.php";
+//    public static final String API_URL = SERVER_URL + "api.php";
 
     public static final String INDIVIDUAL = "individual";
     public static final String COMPANY = "company";
@@ -159,6 +159,13 @@ public class Constant implements Serializable {
     public static final String category_image = "category_image";
     public static final String category_image_thumb = "category_image";
     public static final String city_name = "city_name";
+
+
+    public static final String FOOD_NAME = "food_name";
+    public static final String FOOD_PRICE = "food_price";
+    public static final String FOOD_TYPE = "food_type";
+    public static final String FOOD_IMAGE = "food_image";
+    public static final String FOOD_LOGO = "food_logo";
 
     public static final String APP_NAME = "app_name";
     public static final String APP_IMAGE = "app_logo";

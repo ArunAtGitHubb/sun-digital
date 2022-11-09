@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -22,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -37,6 +39,7 @@ import com.example.adapter.HomeProductAdapter;
 import com.example.adapter.HomeServiceAdapter;
 import com.example.item.ItemCategory;
 import com.example.item.ItemCity;
+import com.example.item.ItemIcon;
 import com.example.item.ItemJob;
 import com.example.item.ItemMatrimony;
 import com.example.item.ItemProduct;
@@ -60,11 +63,13 @@ import com.jellysoft.sundigitalindia.MatrimonyDetailsActivity;
 import com.jellysoft.sundigitalindia.NewProduct;
 import com.jellysoft.sundigitalindia.ProductDetailsActivity;
 import com.jellysoft.sundigitalindia.R;
+import com.jellysoft.sundigitalindia.RestaurantDetailsActivity;
 import com.jellysoft.sundigitalindia.ServiceDetailsActivity;
-import com.jellysoft.sundigitalindia.UsedProduct;
+import com.jellysoft.sundigitalindia.TutyCityRstrnt;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
@@ -72,6 +77,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -80,13 +86,14 @@ public class HomeFragment extends Fragment {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ImageSlider image_slider;
+    ImageView jobImage, productImage, serviceImage, matrimonyImage;
     NestedScrollView nestedScrollView;
     Button latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
             textServiceCategories, textServiceCities,
             textMatrimonyCities, textGroomsCategory, textBridesCategory,
             textBrideReligion, textGroomReligion, viewAllBrides, viewAllGrooms,
-            viewAllUsedProduct, viewAllNewProduct;
+            viewAllNewProduct, viewTutyRestaurant, viewAllCityRestaurant;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities;
 //    GridView rvCategory;
@@ -98,6 +105,7 @@ public class HomeFragment extends Fragment {
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
+    ArrayList<ItemIcon> iconList;
     ArrayList<ItemJob> jobLatestList;
     ArrayList<ItemProduct> productLatestList;
     ArrayList<ItemService> serviceLatestList;
@@ -109,7 +117,7 @@ public class HomeFragment extends Fragment {
     HomeProductAdapter latestProductAdapter;
     HomeServiceAdapter latestServiceAdapter;
     HomeMatrimonyAdapter latestMatrimonyAdapter;
-    RecyclerView vertical_courses_list;
+    RecyclerView vertical_courses_list, restaurantList;
     CardView jobCard, productCard, serviceCard, matrimonyCard;
 
     ViewPager mviewPager;
@@ -127,6 +135,7 @@ public class HomeFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         categoryList = new ArrayList<>();
         cityList = new ArrayList<>();
+        iconList = new ArrayList<>();
         jobLatestList = new ArrayList<>();
         productLatestList = new ArrayList<>();
         serviceLatestList = new ArrayList<>();
@@ -143,10 +152,16 @@ public class HomeFragment extends Fragment {
         serviceSection = rootView.findViewById(R.id.serviceSection);
         matrimonySection = rootView.findViewById(R.id.matrimonySection);
 
-        viewAllUsedProduct = rootView.findViewById(R.id.viewAllUsedProducts);
+        jobImage = rootView.findViewById(R.id.jobImage);
+        productImage = rootView.findViewById(R.id.productImage);
+        serviceImage = rootView.findViewById(R.id.serviceImage);
+        matrimonyImage = rootView.findViewById(R.id.matrimonyImage);
+
         viewAllNewProduct = rootView.findViewById(R.id.viewAllNewProducts);
         textProductCategories = rootView.findViewById(R.id.textProductCategories);
         textProductCities = rootView.findViewById(R.id.textProductAllCities);
+        viewTutyRestaurant = rootView.findViewById(R.id.viewTutyRestaurant);
+        viewAllCityRestaurant = rootView.findViewById(R.id.viewAllCityRestaurant);
 
         viewAllServices = rootView.findViewById(R.id.viewAllServices);
         textServiceCategories = rootView.findViewById(R.id.textServiceCategories);
@@ -161,6 +176,7 @@ public class HomeFragment extends Fragment {
 //        textMatrimonyCities = rootView.findViewById(R.id.textMatrimonyAllCities);
 
         vertical_courses_list = rootView.findViewById(R.id.vertical_courses_list);
+        restaurantList = rootView.findViewById(R.id.restaurantList);
 
         image_slider = rootView.findViewById(R.id.image_slider);
         mProgressBar = rootView.findViewById(R.id.progressBar1);
@@ -196,6 +212,9 @@ public class HomeFragment extends Fragment {
             nestedScrollView.smoothScrollTo(0, matrimonyCard.getTop());
         });
 
+        restaurantList.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
+        restaurantList.setLayoutManager(layoutManager);
 
         rvLatestJob.setHasFixedSize(true);
         rvLatestJob.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -293,12 +312,6 @@ public class HomeFragment extends Fragment {
             startActivity(intent);
         });
 
-        viewAllUsedProduct.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), UsedProduct.class);
-            intent.putExtra("isLatest", true);
-            startActivity(intent);
-        });
-
         viewAllServices.setOnClickListener(view -> {
             Intent intent = new Intent(requireActivity(), LatestService.class);
             intent.putExtra("isLatest", true);
@@ -315,6 +328,16 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(requireActivity(), LatestMaleMatrimony.class);
             intent.putExtra("isLatest", true);
             startActivity(intent);
+        });
+
+        viewTutyRestaurant.setOnClickListener(view -> {
+            Intent intent = new Intent(requireActivity(), TutyCityRstrnt.class);
+            intent.putExtra("isLatest", true);
+            startActivity(intent);
+        });
+
+        viewAllCityRestaurant.setOnClickListener(view -> {
+            mviewPager.setCurrentItem(16);
         });
 
 
@@ -354,15 +377,24 @@ public class HomeFragment extends Fragment {
                     JSONObject mainJson = new JSONObject(result);
                     JSONObject jobAppJson = mainJson.getJSONObject(Constant.ARRAY_NAME);
 
-                    JSONArray categoryArray = jobAppJson.getJSONArray("cat_list");
+                    JSONArray navIcons = jobAppJson.getJSONArray("icon");
+                    for (int i = 0; i < navIcons.length(); i++) {
+                        JSONObject jsonObject = navIcons.getJSONObject(i);
+                        ItemIcon itemIcon = new ItemIcon();
+                        itemIcon.setIcon(jsonObject.getString("icon"));
+                        itemIcon.setName(jsonObject.getString("name"));
+                        iconList.add(itemIcon);
+                    }
+
+                    JSONArray categoryArray = jobAppJson.getJSONArray("restaurant_list");
                     for (int i = 0; i < categoryArray.length(); i++) {
                         JSONObject jsonObject = categoryArray.getJSONObject(i);
                         ItemCategory itemCategory = new ItemCategory();
-                        itemCategory.setCategoryId(jsonObject.getInt(Constant.CATEGORY_CID));
+                        itemCategory.setCategoryId(jsonObject.getInt("c_id"));
                         itemCategory.setCounting(jsonObject.getString("num"));
                         itemCategory.setCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
                         itemCategory.setCategoryImage(jsonObject.getString(Constant.CATEGORY_IMAGE));
-                        if(i < 3){
+                        if(i < 6){
                             categoryList.add(itemCategory);
                         }
                     }
@@ -513,6 +545,39 @@ public class HomeFragment extends Fragment {
  @RequiresApi(api = Build.VERSION_CODES.M)
     private void displayData() {
         image_slider.setImageList(img, ScaleTypes.FIT);
+
+        if(!iconList.isEmpty()){
+            for(ItemIcon icon: iconList) {
+                switch (Objects.requireNonNull(icon.getName())) {
+                    case "Job":
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.job).into(jobImage);
+                        break;
+                    case "Product":
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.product).into(productImage);
+                        break;
+                    case "ServiceMan":
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.workers).into(serviceImage);
+                        break;
+                    case "Matrimony":
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(matrimonyImage);
+                        break;
+                }
+            }
+        }
+
+        if (!categoryList.isEmpty()) {
+            adapter = new CategoryAdapter(getActivity(), categoryList);
+            restaurantList.setAdapter(adapter);
+            adapter.setOnItemClickListener(position -> {
+                String categoryName = categoryList.get(position).getCategoryName();
+                String categoryId = String.valueOf(categoryList.get(position).getCategoryId());
+                Log.d("result2", categoryId);
+                Intent intent = new Intent(requireActivity(), RestaurantDetailsActivity.class);
+                intent.putExtra("categoryName", categoryName);
+                intent.putExtra("categoryId", categoryId);
+                startActivity(intent);
+            });
+        }
 
         if (!jobLatestList.isEmpty()) {
             latestAdapter = new HomeJobAdapter(getActivity(), jobLatestList);

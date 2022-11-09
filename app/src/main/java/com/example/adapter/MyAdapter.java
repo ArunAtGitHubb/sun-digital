@@ -20,6 +20,7 @@ import com.example.fragment.MatrimonyFragment;
 import com.example.fragment.ProductCategoryFragment;
 import com.example.fragment.ProductCityFragment;
 import com.example.fragment.ProductFragment;
+import com.example.fragment.RstrntCityFragment;
 import com.example.fragment.ServiceCategoryFragment;
 import com.example.fragment.ServiceCityFragment;
 import com.example.fragment.ServiceFragment;
@@ -70,6 +71,8 @@ public class MyAdapter extends FragmentStatePagerAdapter {
                 return new FemaleMatrimonyReligionFragment();
             case 15:
                 return new MaleMatrimonyReligionFragment();
+            case 16:
+                return new RstrntCityFragment();
             default:
                 return null;
         }
@@ -77,7 +80,7 @@ public class MyAdapter extends FragmentStatePagerAdapter {
     // this counts total number of tabs
     @Override
     public int getCount() {
-        return 16;
+        return 17;
     }
 
 }

@@ -55,7 +55,6 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         holder.matrimonyName.setText(singleItem.getMatrimonyName());
         holder.matrimonyAge.setText(singleItem.getMatrimonyAge());
-        holder.matrimonyJob.setText(singleItem.getMatrimonyCareer());
         holder.matrimonyCity.setText(singleItem.getCity());
         holder.matrimonyGender.setText(singleItem.getMatrimonyGender());
         holder.matrimonyReligion.setText(singleItem.getMatrimonyReligion());
@@ -122,7 +121,7 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView call, whatsapp;
-        TextView matrimonyJob, matrimonyName, text_area, text_caste, text_matrimony_id,
+        TextView matrimonyName, text_area, text_caste, text_matrimony_id,
                 matrimonyAge, matrimonyCity, matrimonyGender, matrimonyReligion;
         LinearLayout lyt_parent;
         Button btnApplyJob;
@@ -137,7 +136,6 @@ public class HomeMatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.View
 
             matrimonyName = itemView.findViewById(R.id.text_name);
             matrimonyAge = itemView.findViewById(R.id.text_age);
-            matrimonyJob = itemView.findViewById(R.id.job);
             matrimonyCity = itemView.findViewById(R.id.city);
             text_area = itemView.findViewById(R.id.area);
             text_caste = itemView.findViewById(R.id.text_caste);
