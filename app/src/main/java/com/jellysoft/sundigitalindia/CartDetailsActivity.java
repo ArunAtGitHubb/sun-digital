@@ -289,6 +289,9 @@ public class CartDetailsActivity extends AppCompatActivity implements AdapterVie
                     JSONObject obj = jobAppJson.getJSONObject(0);
                     Toast.makeText(getApplicationContext(), obj.getString("msg"), Toast.LENGTH_LONG).show();
                     finish();
+                    Intent intent = new Intent(CartDetailsActivity.this, RestaurantDetailsActivity.class);
+                    intent.putExtra("categoryId", mList.get(0).getCatId());
+                    startActivity(intent);
                 }catch (Exception e) {
                     Log.d("err2", e.toString());
                 }

@@ -285,5 +285,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
         hideCart();
+        Intent intent = new Intent(RestaurantDetailsActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
