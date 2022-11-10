@@ -2,7 +2,6 @@ package com.example.util;
 
 import android.util.Base64;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.security.MessageDigest;
