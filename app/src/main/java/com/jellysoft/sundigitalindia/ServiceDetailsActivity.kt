@@ -393,9 +393,7 @@ class ServiceDetailsActivity : AppCompatActivity() {
                         ${getString(R.string.job_phone_lbl)}${objBean!!.servicePhoneNumber}
                         ${getString(R.string.job_address_lbl)}${objBean!!.City}
                         
-                        "View details here: https://www.sundigitalindiajobs.com/service?id=${objBean.id}"
-                        
-                        Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia
+                        "View details here: https://www.sundigitalindiajobs.com/service?id=${objBean.id}
                         """.trimIndent()
                 )
                 sendIntent.type = "text/plain"

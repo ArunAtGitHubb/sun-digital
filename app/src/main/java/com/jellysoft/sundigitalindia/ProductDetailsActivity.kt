@@ -444,9 +444,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         ${getString(R.string.job_phone_lbl)}${objBean!!.productPhoneNumber}
                         ${getString(R.string.job_address_lbl)}${objBean!!.City}
                         
-                        "View details here: https://www.sundigitalindiajobs.com/product?id=${objBean.id}"
-                        
-                        Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia
+                        "View details here: https://www.sundigitalindiajobs.com/product?id=${objBean.id}
                         """.trimIndent()
                 )
                 sendIntent.type = "text/plain"

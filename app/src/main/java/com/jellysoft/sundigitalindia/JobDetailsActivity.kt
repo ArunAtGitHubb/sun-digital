@@ -435,9 +435,7 @@ class JobDetailsActivity : AppCompatActivity() {
                         ${getString(R.string.job_phone_lbl)}${objBean!!.jobPhoneNumber}
                         ${getString(R.string.job_address_lbl)}${objBean!!.city}
                         
-                        "View details here: https://www.sundigitalindiajobs.com/job?id=${objBean.id}"
-                        
-                        Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia
+                        "View details here: https://www.sundigitalindiajobs.com/job?id=${objBean.id}
                         """.trimIndent()
                 )
                 sendIntent.type = "text/plain"

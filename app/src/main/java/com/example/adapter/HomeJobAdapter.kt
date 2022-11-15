@@ -78,9 +78,7 @@ class HomeJobAdapter(private val mContext: Context, private val dataList: ArrayL
                 ${mContext.getString(R.string.job_phone_lbl)}${singleItem.jobPhoneNumber}
                 ${mContext.getString(R.string.job_address_lbl)}${singleItem.city}
                 
-                "View details here: https://www.sundigitalindiajobs.com/job?id=${singleItem.id}"
-                
-                Download Application here https://play.google.com/store/apps/details?id=com.jellysoft.sundigitalindia
+                "View details here: https://www.sundigitalindiajobs.com/job?id=${singleItem.id}
                 """.trimIndent()
             )
             sendIntent.type = "text/plain"
