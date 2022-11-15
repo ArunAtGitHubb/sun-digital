@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.ProductAdapter;
+import com.example.adapter.HomeProductAdapter;
 import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -42,7 +42,7 @@ import cz.msebera.android.httpclient.Header;
 public class NewProduct extends AppCompatActivity {
     public RecyclerView recyclerView;
     ArrayList<ItemProduct> mListItem;
-    ProductAdapter adapter;
+    HomeProductAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -100,8 +100,6 @@ public class NewProduct extends AppCompatActivity {
                             getLatestOrRecent();
                         }
                     }, 1000);
-                } else {
-                    adapter.hideHeader();
                 }
             }
         });
@@ -145,6 +143,7 @@ public class NewProduct extends AppCompatActivity {
                                 objItem.setProductType(jsonObject.getString(Constant.PRODUCT_TYPE));
                                 objItem.setProductName(jsonObject.getString(Constant.PRODUCT_NAME));
                                 objItem.setWebsiteLink(jsonObject.getString(Constant.WEBSITE_LINK));
+                                objItem.setProductArea(jsonObject.getString(Constant.PRODUCT_AREA));
                                 objItem.setProductPhoneNumber(jsonObject.getString(Constant.PRODUCT_PHONE_NO));
                                 objItem.setProductPhoneNumber2(jsonObject.getString(Constant.PRODUCT_PHONE_NO2));
                                 objItem.setProductCategoryName(jsonObject.getString(Constant.CATEGORY_NAME));
@@ -161,9 +160,6 @@ public class NewProduct extends AppCompatActivity {
                         Log.d("mList", mListItem.toString());
                     } else {
                         isOver = true;
-                        if (adapter != null) { // when there is no data in first time
-                            adapter.hideHeader();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -188,7 +184,7 @@ public class NewProduct extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new ProductAdapter(NewProduct.this, mListItem);
+                adapter = new HomeProductAdapter(NewProduct.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

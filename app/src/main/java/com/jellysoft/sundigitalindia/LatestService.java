@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.ServiceAdapter;
+import com.example.adapter.HomeServiceAdapter;
 import com.example.item.ItemService;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -42,7 +42,7 @@ import cz.msebera.android.httpclient.Header;
 public class LatestService extends AppCompatActivity {
     public RecyclerView recyclerView;
     ArrayList<ItemService> mListItem;
-    ServiceAdapter adapter;
+    HomeServiceAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -100,8 +100,6 @@ public class LatestService extends AppCompatActivity {
                             getLatestOrRecent();
                         }
                     }, 1000);
-                } else {
-                    adapter.hideHeader();
                 }
             }
         });
@@ -163,9 +161,6 @@ public class LatestService extends AppCompatActivity {
                         }
                     } else {
                         isOver = true;
-                        if (adapter != null) { // when there is no data in first time
-                            adapter.hideHeader();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -189,7 +184,7 @@ public class LatestService extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new ServiceAdapter(LatestService.this, mListItem);
+                adapter = new HomeServiceAdapter(LatestService.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

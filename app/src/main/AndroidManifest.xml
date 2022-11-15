@@ -83,14 +83,58 @@
 
                 <data android:scheme="https"
                     android:host="www.sundigitalindiajobs.com"
-                    android:pathPrefix="/profile"  />
+                    android:pathPrefix="/link.php"  />
             </intent-filter>
         </activity>
 
-        <activity android:name=".JobDetailsActivity" android:exported="true"/>
-        <activity android:name=".ProductDetailsActivity" android:exported="true" />
-        <activity android:name=".ServiceDetailsActivity" android:exported="true" />
-        <activity android:name=".MatrimonyDetailsActivity" android:exported="true" />
+        <activity android:name=".JobDetailsActivity" android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="www.sundigitalindiajobs.com"
+                    android:pathPrefix="/job"  />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ProductDetailsActivity" android:exported="true" >
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="www.sundigitalindiajobs.com"
+                    android:pathPrefix="/product"  />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ServiceDetailsActivity" android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="www.sundigitalindiajobs.com"
+                    android:pathPrefix="/service"  />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MatrimonyDetailsActivity" android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="https"
+                    android:host="www.sundigitalindiajobs.com"
+                    android:pathPrefix="/matrimony"  />
+            </intent-filter>
+        </activity>
         <activity android:name=".RestaurantDetailsActivity" android:exported="true" />
         <activity android:name=".CartDetailsActivity" android:exported="true" />
 

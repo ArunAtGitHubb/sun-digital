@@ -50,29 +50,29 @@ public class MyAdapter extends FragmentStatePagerAdapter {
             case 4:
                 return new MatrimonyFragment();
             case 5:
-                return new CategoryFragment();
-            case 6:
-                return new CityFragment();
-            case 7:
-                return new ProductCategoryFragment();
-            case 8:
-                return new ProductCityFragment();
-            case 9:
-                return new ServiceCategoryFragment();
-            case 10:
-                return new ServiceCityFragment();
-            case 11:
-                return new FemaleMatrimonyCategoryFragment();
-            case 12:
-                return new MaleMatrimonyCategoryFragment();
-            case 13:
-                return new MatrimonyCityFragment();
-            case 14:
-                return new FemaleMatrimonyReligionFragment();
-            case 15:
-                return new MaleMatrimonyReligionFragment();
-            case 16:
                 return new RstrntCityFragment();
+            case 5+1:
+                return new CategoryFragment();
+            case 7:
+                return new CityFragment();
+            case 8:
+                return new ProductCategoryFragment();
+            case 9:
+                return new ProductCityFragment();
+            case 10:
+                return new ServiceCategoryFragment();
+            case 11:
+                return new ServiceCityFragment();
+            case 12:
+                return new FemaleMatrimonyCategoryFragment();
+            case 13:
+                return new MaleMatrimonyCategoryFragment();
+            case 14:
+                return new MatrimonyCityFragment();
+            case 15:
+                return new FemaleMatrimonyReligionFragment();
+            case 16:
+                return new MaleMatrimonyReligionFragment();
             default:
                 return null;
         }

@@ -3,6 +3,7 @@ package com.example.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,6 +103,19 @@ public class MatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 intent.setData(Uri.parse("tel:"+phone));
                 mContext.startActivity(intent);
             });
+            holder.whatsapp.setOnClickListener(view -> {
+                String phone = "91" + singleItem.getMatrimonyPhoneNumber().replace("+91", "");
+                String url = "https://api.whatsapp.com/send?phone=" + phone;
+                PackageManager pm = mContext.getPackageManager();
+                try {
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                mContext.startActivity(i);
+            });
         }
     }
     @Override
@@ -127,7 +141,7 @@ public class MatrimonyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     class ItemRowHolder extends RecyclerView.ViewHolder {
-        TextView call, whatsapp;
+        Button call, whatsapp;
         TextView matrimonyJob, matrimonyName, matrimonySalary,
                 matrimonyAge, matrimonyCity, matrimonyGender, matrimonyReligion;
         LinearLayout lyt_parent;

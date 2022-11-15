@@ -3,6 +3,7 @@ package com.example.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.item.ItemProduct;
 import com.example.item.ItemService;
-import com.example.util.Constant;
 import com.example.util.PopUpAds;
 import com.example.util.RvOnClickListener;
 import com.jellysoft.sundigitalindia.R;
@@ -104,6 +103,20 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 intent.setData(Uri.parse("tel:"+phone));
                 mContext.startActivity(intent);
             });
+
+            holder.whatsapp.setOnClickListener(view -> {
+                String phone = singleItem.getServicePhoneNumber();
+                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+                PackageManager pm = mContext.getPackageManager();
+                try {
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                mContext.startActivity(i);
+            });
         }
     }
     @Override
@@ -131,7 +144,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     class ItemRowHolder extends RecyclerView.ViewHolder {
         TextView jobTitle, text_job_category, jobid, city, salary, work_time, call;
         LinearLayout lyt_parent;
-        Button btnApplyJob;
+        Button btnApplyJob, whatsapp;
         CardView cardViewType;
         CircleImageView jobImage;
         ImageView share;
@@ -151,6 +164,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             salary = itemView.findViewById(R.id.salary);
             share = itemView.findViewById(R.id.share);
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
+            whatsapp = itemView.findViewById(R.id.whatsapp);
         }
     }
 

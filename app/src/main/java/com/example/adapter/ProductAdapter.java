@@ -3,6 +3,7 @@ package com.example.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -115,6 +116,20 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             });
 
+            holder.whatsapp.setOnClickListener(view -> {
+                String phone = singleItem.getProductPhoneNumber();
+                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+                PackageManager pm = mContext.getPackageManager();
+                try {
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                mContext.startActivity(i);
+            });
+
             switch (singleItem.getProductType()) {
                 case Constant.JOB_TYPE_HOURLY:
                     holder.jobType.setTextColor(mContext.getResources().getColor(R.color.hourly_time_text));
@@ -157,7 +172,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView jobType, company, jobid, call;
         TextView text_job_title, product_price, product_selling_price, product_document, city;
         LinearLayout lyt_parent;
-        Button btnApplyJob;
+        Button btnApplyJob, whatsapp;
         CardView cardViewType;
         CircleImageView jobImage;
         ImageView share;
@@ -180,6 +195,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             jobImage = itemView.findViewById(R.id.image_job);
             share = itemView.findViewById(R.id.share);
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
+            whatsapp = itemView.findViewById(R.id.whatsapp);
         }
     }
 

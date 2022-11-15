@@ -3,6 +3,7 @@ package com.example.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +103,21 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.call.setOnClickListener(view -> {
                 String phone = singleItem.getJobPhoneNumber();
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+phone));
+                intent.setData(Uri.parse("tel:" + phone));
+                mContext.startActivity(intent);
+            });
+
+            holder.whatsapp.setOnClickListener(view -> {
+                String phone = singleItem.getJobPhoneNumber();
+                String url = "https://api.whatsapp.com/send?phone=" + phone.substring(1);
+                PackageManager pm = mContext.getPackageManager();
+                try {
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
                 mContext.startActivity(intent);
             });
 
@@ -148,7 +163,7 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView jobid, call, vacancy;
         TextView text_job_title, jobType, salary, text_time, city, company;
         LinearLayout lyt_parent;
-        Button btnApplyJob;
+        Button btnApplyJob, whatsapp;
         CardView cardViewType;
         CircleImageView jobImage;
         ImageView share;
@@ -171,6 +186,7 @@ public class JobAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             jobImage = itemView.findViewById(R.id.image_job);
             share = itemView.findViewById(R.id.share);
             btnApplyJob = itemView.findViewById(R.id.btn_apply_job);
+            whatsapp = itemView.findViewById(R.id.whatsapp);
         }
     }
 

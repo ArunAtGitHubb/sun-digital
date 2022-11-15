@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.ProductAdapter;
+import com.example.adapter.HomeProductAdapter;
 import com.example.item.ItemProduct;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -43,7 +43,7 @@ import cz.msebera.android.httpclient.Header;
 public class LatestProduct extends AppCompatActivity {
     public RecyclerView recyclerView;
     ArrayList<ItemProduct> mListItem;
-    ProductAdapter adapter;
+    HomeProductAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -101,8 +101,6 @@ public class LatestProduct extends AppCompatActivity {
                             getLatestOrRecent();
                         }
                     }, 1000);
-                } else {
-                    adapter.hideHeader();
                 }
             }
         });
@@ -160,9 +158,7 @@ public class LatestProduct extends AppCompatActivity {
                         Log.d("mList", mListItem.toString());
                     } else {
                         isOver = true;
-                        if (adapter != null) { // when there is no data in first time
-                            adapter.hideHeader();
-                        }
+                        // when there is no data in first time
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -185,7 +181,7 @@ public class LatestProduct extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new ProductAdapter(LatestProduct.this, mListItem);
+                adapter = new HomeProductAdapter(LatestProduct.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

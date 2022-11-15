@@ -41,6 +41,14 @@
             tools:ignore="MissingPrefix" />
 
         <item
+            android:id="@+id/menu_go_restaurant"
+            fontPath="fonts/customBold.otf"
+            android:checked="false"
+            android:icon="@drawable/ic_categories"
+            android:title="Restaurants"
+            tools:ignore="MissingPrefix" />
+
+        <item
             android:id="@+id/menu_go_about"
             android:checkable="false"
             fontPath="fonts/customBold.otf"

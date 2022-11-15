@@ -240,6 +240,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/areaLinear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -253,7 +254,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:gravity="center"
-                            android:text="பகுதி : "
+                            android:text="இடம் : "
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
                             android:textSize="16sp"
@@ -570,46 +571,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/mail"
-                    android:tint="@color/login_line" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/calibrib"
-                    android:paddingTop="5dp"
-                    android:text="மின் அஞ்சல் :"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/mail_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/calibrib"
-                    android:paddingTop="5dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name"
                     android:src="@drawable/ic_call"
                     android:tint="@color/login_line" />
 
@@ -640,6 +601,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pno2Linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -717,46 +679,6 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
-
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/location"
-                    android:tint="@color/login_line" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/calibrib"
-                    android:paddingTop="5dp"
-                    android:text="முகவரி :"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/text_job_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/calibrib"
-                    android:paddingTop="5dp"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
 
             </LinearLayout>
 

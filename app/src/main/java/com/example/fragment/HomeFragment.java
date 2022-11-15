@@ -95,7 +95,8 @@ public class HomeFragment extends Fragment {
             textBrideReligion, textGroomReligion, viewAllBrides, viewAllGrooms,
             viewAllNewProduct, viewTutyRestaurant, viewAllCityRestaurant;
     Button call, whatsapp;
-    TextView categoryViewAll, textJobCategories, textJobAllCities;
+    TextView categoryViewAll, textJobCategories, textJobAllCities,
+            textJob, textProduct, textWorker, textMatrimony;
 //    GridView rvCategory;
     RecyclerView rvLatestJob, rvProducts, rvServices, rvMatrimony;
     TabLayout tabLayout;
@@ -151,6 +152,11 @@ public class HomeFragment extends Fragment {
         productSection = rootView.findViewById(R.id.productSection);
         serviceSection = rootView.findViewById(R.id.serviceSection);
         matrimonySection = rootView.findViewById(R.id.matrimonySection);
+
+        textJob = rootView.findViewById(R.id.textJob);
+        textProduct = rootView.findViewById(R.id.textProduct);
+        textWorker = rootView.findViewById(R.id.textWorker);
+        textMatrimony = rootView.findViewById(R.id.textMatrimony);
 
         jobImage = rootView.findViewById(R.id.jobImage);
         productImage = rootView.findViewById(R.id.productImage);
@@ -285,17 +291,17 @@ public class HomeFragment extends Fragment {
         });
 
 
-        textJobCategories.setOnClickListener(view -> mviewPager.setCurrentItem(5));
-        textJobAllCities.setOnClickListener(view -> mviewPager.setCurrentItem(6));
+        textJobCategories.setOnClickListener(view -> mviewPager.setCurrentItem(6));
+        textJobAllCities.setOnClickListener(view -> mviewPager.setCurrentItem(7));
 
-        textProductCategories.setOnClickListener(view -> mviewPager.setCurrentItem(7));
-        textProductCities.setOnClickListener(view -> mviewPager.setCurrentItem(8));
+        textProductCategories.setOnClickListener(view -> mviewPager.setCurrentItem(8));
+        textProductCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
 
-        textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(9));
-        textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(10));
+        textServiceCategories.setOnClickListener(view -> mviewPager.setCurrentItem(10));
+        textServiceCities.setOnClickListener(view -> mviewPager.setCurrentItem(11));
 
-        textBridesCategory.setOnClickListener(view -> mviewPager.setCurrentItem(11));
-        textGroomsCategory.setOnClickListener(view -> mviewPager.setCurrentItem(12));
+        textBridesCategory.setOnClickListener(view -> mviewPager.setCurrentItem(12));
+        textGroomsCategory.setOnClickListener(view -> mviewPager.setCurrentItem(13));
         textBrideReligion.setOnClickListener(view -> mviewPager.setCurrentItem(14));
         textGroomReligion.setOnClickListener(view -> mviewPager.setCurrentItem(15));
 //        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
@@ -337,7 +343,7 @@ public class HomeFragment extends Fragment {
         });
 
         viewAllCityRestaurant.setOnClickListener(view -> {
-            mviewPager.setCurrentItem(16);
+            mviewPager.setCurrentItem(5);
         });
 
 
@@ -380,9 +386,11 @@ public class HomeFragment extends Fragment {
                     JSONArray navIcons = jobAppJson.getJSONArray("icon");
                     for (int i = 0; i < navIcons.length(); i++) {
                         JSONObject jsonObject = navIcons.getJSONObject(i);
+                        Log.d("json21", jsonObject.toString());
                         ItemIcon itemIcon = new ItemIcon();
                         itemIcon.setIcon(jsonObject.getString("icon"));
                         itemIcon.setName(jsonObject.getString("name"));
+                        itemIcon.setLabel(jsonObject.getString("label"));
                         iconList.add(itemIcon);
                     }
 
@@ -550,15 +558,19 @@ public class HomeFragment extends Fragment {
             for(ItemIcon icon: iconList) {
                 switch (Objects.requireNonNull(icon.getName())) {
                     case "Job":
+                        textJob.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.job).into(jobImage);
                         break;
                     case "Product":
+                        textProduct.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.product).into(productImage);
                         break;
                     case "ServiceMan":
+                        textWorker.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.workers).into(serviceImage);
                         break;
                     case "Matrimony":
+                        textMatrimony.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(matrimonyImage);
                         break;
                 }

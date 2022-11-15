@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("பொருட்கள்"))
         tabLayout.addTab(tabLayout.newTab().setText("வேலை ஆட்கள்"))
         tabLayout.addTab(tabLayout.newTab().setText("திருமண வரன்கள்"))
+        tabLayout.addTab(tabLayout.newTab().setText("Restaurants"))
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_two)))
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one)))
         tabLayout.addTab(tabLayout.newTab().setText("Products Categories"))
@@ -120,7 +121,6 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("ஊர்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
         tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
-        tabLayout.addTab(tabLayout.newTab().setText("Restaurants"))
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         adapter = MyAdapter(supportFragmentManager)
@@ -156,6 +156,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_go_matrimony -> {
                     viewPager.currentItem = 4
+                    return@OnNavigationItemSelectedListener false
+                }
+                R.id.menu_go_restaurant -> {
+                    viewPager.currentItem = 5
                     return@OnNavigationItemSelectedListener false
                 }
                 R.id.menu_go_contact -> {

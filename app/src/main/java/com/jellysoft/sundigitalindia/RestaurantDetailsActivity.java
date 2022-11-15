@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +63,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
     RecyclerView rvFoods;
     ItemFood food;
     static TextView foodsTotalAmount;
+    ProgressBar progressBar;
     FoodsAdapter adapter;
     ArrayList<ItemFood> mList;
     String Id;
@@ -108,6 +110,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         MyApp = MyApplication.getInstance();
         mList = new ArrayList<>();
+        progressBar = findViewById(R.id.progressBar2);
 
         viewCart = findViewById(R.id.viewCart);
         viewCart.setVisibility(View.GONE);
@@ -145,6 +148,13 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
             @Override
             public void onStart() {
                 super.onStart();
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override

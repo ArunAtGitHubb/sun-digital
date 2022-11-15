@@ -22,7 +22,6 @@ import com.example.util.Events;
 import com.example.util.GlobalBus;
 import com.example.util.IsRTL;
 import com.example.util.NetworkUtils;
-import com.example.util.RvOnClickListener;
 import com.example.util.UserUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -147,6 +146,7 @@ public class LatestJob extends AppCompatActivity {
                                 objItem.setJobCompanyName(objJson.getString(Constant.JOB_COMPANY_NAME));
                                 objItem.setJobCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(objJson.getString(Constant.CITY_NAME));
+                                objItem.setJobPhoneNumber(objJson.getString(Constant.JOB_PHONE_NO));
                                 objItem.setJobVacancy(objJson.getString(Constant.JOB_VACANCY));
                                 objItem.setJobDate(objJson.getString(Constant.JOB_DATE));
                                 objItem.setJobSalary(objJson.getString(Constant.JOB_SALARY));
@@ -192,14 +192,11 @@ public class LatestJob extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
 
-            adapter.setOnItemClickListener(new RvOnClickListener() {
-                @Override
-                public void onItemClick(int position) {
-                    String jobId = mListItem.get(position).getId();
-                    Intent intent = new Intent(LatestJob.this, JobDetailsActivity.class);
-                    intent.putExtra("Id", jobId);
-                    startActivity(intent);
-                }
+            adapter.setOnItemClickListener(position -> {
+                String jobId = mListItem.get(position).getId();
+                Intent intent = new Intent(LatestJob.this, JobDetailsActivity.class);
+                intent.putExtra("Id", jobId);
+                startActivity(intent);
             });
 
         }

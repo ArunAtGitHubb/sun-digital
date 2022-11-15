@@ -156,6 +156,7 @@ android:gravity="center"
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/areaLinear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -177,11 +178,11 @@ android:gravity="center"
                             tools:ignore="MissingPrefix" />
 
                         <TextView
-                            android:fontFamily="@font/calibrib"
                             android:id="@+id/text_area"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
+                            android:fontFamily="@font/calibrib"
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textColor="@color/white"
@@ -502,7 +503,9 @@ android:gravity="center"
                     android:textColor="@color/white" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/mailLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -517,28 +520,28 @@ android:gravity="center"
                     android:src="@drawable/mail"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="மின் அஞ்சல் :"
-                    android:textStyle="bold"
-                       android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/mail_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                       android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
             <LinearLayout
@@ -582,6 +585,7 @@ android:gravity="center"
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/pno2Linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -597,27 +601,27 @@ android:gravity="center"
                     android:tint="@color/login_line" />
 
                 <TextView
-                    android:fontFamily="@font/calibrib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
                     android:text="தொலைபேசி எண் 2 :"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:fontFamily="@font/calibrib"
                     android:id="@+id/text_phone2"
-                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -660,12 +664,14 @@ android:gravity="center"
                     android:textColor="@color/white" />
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/addLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="8dp"
 
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -675,28 +681,28 @@ android:gravity="center"
                     android:src="@drawable/location"
                     android:tint="@color/login_line" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
                     android:text="முகவரி :"
-                       android:textSize="16sp"
-                    android:textStyle="bold"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                   <TextView
-                        android:fontFamily="@font/calibrib"
+                <TextView
                     android:id="@+id/text_job_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
+                    android:fontFamily="@font/calibrib"
                     android:paddingTop="5dp"
-                       android:textSize="12sp"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
             <View
