@@ -92,8 +92,8 @@ class HomeJobAdapter(private val mContext: Context, private val dataList: ArrayL
             mContext.startActivity(intent)
         }
         holder.whatsapp.setOnClickListener {
-            val phone = singleItem.jobPhoneNumber
-            val url = "https://api.whatsapp.com/send?phone=" + phone.substring(1)
+            val phone = "91" + singleItem.jobPhoneNumber!!.replace("+91", "")
+            val url = "https://api.whatsapp.com/send?phone=$phone"
             val pm = mContext.packageManager
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)

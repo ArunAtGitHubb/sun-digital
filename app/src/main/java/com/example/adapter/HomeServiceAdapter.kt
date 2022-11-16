@@ -91,8 +91,8 @@ class HomeServiceAdapter(private val mContext: Context, private val dataList: Ar
             mContext.startActivity(intent)
         }
         holder.whatsapp.setOnClickListener { view: View? ->
-            val phone = singleItem.servicePhoneNumber
-            val url = "https://api.whatsapp.com/send?phone=" + phone!!.substring(1)
+            val phone = "91" + singleItem.servicePhoneNumber!!.replace("+91", "")
+            val url = "https://api.whatsapp.com/send?phone=$phone"
             val pm = mContext.packageManager
             try {
                 pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)

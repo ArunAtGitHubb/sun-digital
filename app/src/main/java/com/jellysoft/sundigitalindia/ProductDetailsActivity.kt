@@ -354,8 +354,8 @@ class ProductDetailsActivity : AppCompatActivity() {
             videoView!!.visibility = View.GONE
         }
         setupViewPager(viewPager)
-        tabLayout!!.setupWithViewPager(viewPager)
-        btn_whats!!.setOnClickListener { view: View? ->
+        tabLayout.setupWithViewPager(viewPager)
+        btn_whats.setOnClickListener { view: View? ->
             val phone = "91" + objBean!!.productPhoneNumber!!.replace("+91", "")
             val url = "https://api.whatsapp.com/send?phone=$phone"
             val pm = packageManager
@@ -369,7 +369,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             startActivity(i)
         }
         whatsapp_num!!.setOnClickListener { view: View? ->
-            val phone = "91" + objBean!!.productPhoneNumber!!.replace("+91", "")
+            val phone = "91" + objBean.productPhoneNumber!!.replace("+91", "")
             val url = "https://api.whatsapp.com/send?phone=$phone"
             val pm = packageManager
             try {

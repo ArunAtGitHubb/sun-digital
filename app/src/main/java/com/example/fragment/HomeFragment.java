@@ -302,8 +302,8 @@ public class HomeFragment extends Fragment {
 
         textBridesCategory.setOnClickListener(view -> mviewPager.setCurrentItem(12));
         textGroomsCategory.setOnClickListener(view -> mviewPager.setCurrentItem(13));
-        textBrideReligion.setOnClickListener(view -> mviewPager.setCurrentItem(14));
-        textGroomReligion.setOnClickListener(view -> mviewPager.setCurrentItem(15));
+        textBrideReligion.setOnClickListener(view -> mviewPager.setCurrentItem(15));
+        textGroomReligion.setOnClickListener(view -> mviewPager.setCurrentItem(16));
 //        textMatrimonyCities.setOnClickListener(view -> mviewPager.setCurrentItem(9));
 
         latestViewAll.setOnClickListener(view -> {

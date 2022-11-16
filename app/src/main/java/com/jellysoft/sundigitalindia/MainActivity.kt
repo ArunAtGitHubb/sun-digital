@@ -104,23 +104,23 @@ class MainActivity : AppCompatActivity() {
         val mAdViewLayout = findViewById<LinearLayout>(R.id.adView)
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.viewPager)
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_home)))
-        tabLayout.addTab(tabLayout.newTab().setText("வேலை வாய்ப்பு"))
-        tabLayout.addTab(tabLayout.newTab().setText("பொருட்கள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("வேலை ஆட்கள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("திருமண வரன்கள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("Restaurants"))
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_two)))
-        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one)))
-        tabLayout.addTab(tabLayout.newTab().setText("Products Categories"))
-        tabLayout.addTab(tabLayout.newTab().setText("Products City"))
-        tabLayout.addTab(tabLayout.newTab().setText("சேவை வகைகள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("சேவை ஊர்"))
-        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
-        tabLayout.addTab(tabLayout.newTab().setText("ஊர்"))
-        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்"))
-        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்"))
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_home))) // idx-0
+        tabLayout.addTab(tabLayout.newTab().setText("வேலை வாய்ப்பு")) // idx-1
+        tabLayout.addTab(tabLayout.newTab().setText("பொருட்கள்")) // idx-2
+        tabLayout.addTab(tabLayout.newTab().setText("வேலை ஆட்கள்")) // idx-3
+        tabLayout.addTab(tabLayout.newTab().setText("திருமண வரன்கள்")) // idx-4
+        tabLayout.addTab(tabLayout.newTab().setText("Restaurants")) // idx-5
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_two))) // idx-6
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one))) // idx-7
+        tabLayout.addTab(tabLayout.newTab().setText("Products Categories")) // idx-8
+        tabLayout.addTab(tabLayout.newTab().setText("Products City")) // idx-9
+        tabLayout.addTab(tabLayout.newTab().setText("சேவை வகைகள்")) // idx-10
+        tabLayout.addTab(tabLayout.newTab().setText("சேவை ஊர்")) // idx-11
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்")) // idx-12
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்")) // idx-13
+        tabLayout.addTab(tabLayout.newTab().setText("வரன் ஊர்")) // idx-14
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகள்")) // idx-15
+        tabLayout.addTab(tabLayout.newTab().setText("மணமகன்")) // idx-16
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         adapter = MyAdapter(supportFragmentManager)

@@ -986,7 +986,7 @@
                                 fontPath="fonts/customBold.otf"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Restaurant"
+                                android:text="Restaurants"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"

@@ -3,6 +3,7 @@ package com.jellysoft.sundigitalindia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -13,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.MatrimonyAdapter;
+import com.example.adapter.HomeMatrimonyAdapter;
 import com.example.item.ItemMatrimony;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -41,7 +42,7 @@ import cz.msebera.android.httpclient.Header;
 public class CatMatrimonyFemale extends AppCompatActivity {
     ArrayList<ItemMatrimony> mListItem;
     public RecyclerView recyclerView;
-    MatrimonyAdapter adapter;
+    HomeMatrimonyAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -99,8 +100,6 @@ public class CatMatrimonyFemale extends AppCompatActivity {
                             getCategoryItem();
                         }
                     }, 1000);
-                } else {
-                    adapter.hideHeader();
                 }
             }
         });
@@ -129,6 +128,7 @@ public class CatMatrimonyFemale extends AppCompatActivity {
                     showProgress(false);
 
                 String result = new String(responseBody);
+                Log.d("matrimoy", result);
                 try {
                     JSONObject mainJson = new JSONObject(result);
                     JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
@@ -159,6 +159,7 @@ public class CatMatrimonyFemale extends AppCompatActivity {
                                 objItem.setMatrimonyPhoneNumber(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER));
                                 objItem.setMatrimonyPhoneNumber2(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER2));
                                 objItem.setMatrimonyImage(objJson.getString(Constant.MATRIMONY_IMAGE));
+                                objItem.setCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objItem.setMatrimonySDate(objJson.getString(Constant.MATRIMONY_START_DATE));
                                 objItem.setMatrimonyEDate(objJson.getString(Constant.MATRIMONY_END_DATE));
                                 mListItem.add(objItem);
@@ -166,9 +167,6 @@ public class CatMatrimonyFemale extends AppCompatActivity {
                         }
                     } else {
                         isOver = true;
-                        if (adapter != null) { // when there is no data in first time
-                            adapter.hideHeader();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -191,7 +189,7 @@ public class CatMatrimonyFemale extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new MatrimonyAdapter(CatMatrimonyFemale.this, mListItem);
+                adapter = new HomeMatrimonyAdapter(CatMatrimonyFemale.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

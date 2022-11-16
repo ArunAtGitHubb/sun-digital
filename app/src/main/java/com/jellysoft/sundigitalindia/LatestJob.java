@@ -13,7 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.JobAdapter;
+import com.example.adapter.HomeJobAdapter;
 import com.example.item.ItemJob;
 import com.example.util.API;
 import com.example.util.Constant;
@@ -41,7 +41,7 @@ import cz.msebera.android.httpclient.Header;
 public class LatestJob extends AppCompatActivity {
     public RecyclerView recyclerView;
     ArrayList<ItemJob> mListItem;
-    JobAdapter adapter;
+    HomeJobAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -146,6 +146,7 @@ public class LatestJob extends AppCompatActivity {
                                 objItem.setJobCompanyName(objJson.getString(Constant.JOB_COMPANY_NAME));
                                 objItem.setJobCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objItem.setCity(objJson.getString(Constant.CITY_NAME));
+                                objItem.setJobArea(objJson.getString(Constant.JOB_AREA));
                                 objItem.setJobPhoneNumber(objJson.getString(Constant.JOB_PHONE_NO));
                                 objItem.setJobVacancy(objJson.getString(Constant.JOB_VACANCY));
                                 objItem.setJobDate(objJson.getString(Constant.JOB_DATE));
@@ -186,7 +187,7 @@ public class LatestJob extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new JobAdapter(LatestJob.this, mListItem);
+                adapter = new HomeJobAdapter(LatestJob.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

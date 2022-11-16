@@ -13,10 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.adapter.MatrimonyAdapter;
-import com.example.adapter.ServiceAdapter;
+import com.example.adapter.HomeMatrimonyAdapter;
 import com.example.item.ItemMatrimony;
-import com.example.item.ItemService;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.EndlessRecyclerViewScrollListener;
@@ -45,7 +43,7 @@ import cz.msebera.android.httpclient.Header;
 public class CityMatrimony extends AppCompatActivity {
     ArrayList<ItemMatrimony> mListItem;
     public RecyclerView recyclerView;
-    MatrimonyAdapter adapter;
+    HomeMatrimonyAdapter adapter;
     private ProgressBar progressBar;
     private LinearLayout lyt_not_found;
     boolean isFirst = true, isOver = false;
@@ -107,8 +105,6 @@ public class CityMatrimony extends AppCompatActivity {
                             getCategoryItem();
                         }
                     }, 1000);
-                } else {
-                    adapter.hideHeader();
                 }
             }
         });
@@ -168,15 +164,13 @@ public class CityMatrimony extends AppCompatActivity {
                                 objItem.setMatrimonyPhoneNumber2(objJson.getString(Constant.MATRIMONY_PHONE_NUMBER2));
                                 objItem.setMatrimonyImage(objJson.getString(Constant.MATRIMONY_IMAGE));
                                 objItem.setMatrimonySDate(objJson.getString(Constant.MATRIMONY_START_DATE));
+                                objItem.setCategoryName(objJson.getString(Constant.CATEGORY_NAME));
                                 objItem.setMatrimonyEDate(objJson.getString(Constant.MATRIMONY_END_DATE));
                                 mListItem.add(objItem);
                             }
                         }
                     } else {
                         isOver = true;
-                        if (adapter != null) { // when there is no data in first time
-                            adapter.hideHeader();
-                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -200,7 +194,7 @@ public class CityMatrimony extends AppCompatActivity {
             lyt_not_found.setVisibility(View.GONE);
             if (isFirst) {
                 isFirst = false;
-                adapter = new MatrimonyAdapter(CityMatrimony.this, mListItem);
+                adapter = new HomeMatrimonyAdapter(CityMatrimony.this, mListItem);
                 recyclerView.setAdapter(adapter);
             } else {
                 adapter.notifyDataSetChanged();

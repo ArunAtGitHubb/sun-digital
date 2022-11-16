@@ -1,5 +1,6 @@
 package com.example.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -32,6 +33,7 @@ class HomeMatrimonyAdapter(private val mContext: Context, private val dataList: 
         return ItemRowHolder(v)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
         val holder = viewHolder as ItemRowHolder
         val singleItem = dataList!![position] as ItemMatrimony

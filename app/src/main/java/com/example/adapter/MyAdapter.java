@@ -51,7 +51,7 @@ public class MyAdapter extends FragmentStatePagerAdapter {
                 return new MatrimonyFragment();
             case 5:
                 return new RstrntCityFragment();
-            case 5+1:
+            case 6:
                 return new CategoryFragment();
             case 7:
                 return new CityFragment();

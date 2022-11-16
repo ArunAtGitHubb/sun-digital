@@ -59,6 +59,7 @@ class MatrimonyDetailsActivity : AppCompatActivity() {
     lateinit var text_gender: TextView
     private lateinit var areaLinear: LinearLayout
     private lateinit var pno2Linear: LinearLayout
+    private lateinit var workLinear: LinearLayout
     lateinit var image: ImageSlider
     lateinit var Id: String
     lateinit var databaseHelper: DatabaseHelper
@@ -119,6 +120,7 @@ class MatrimonyDetailsActivity : AppCompatActivity() {
         text_matrimony_id = findViewById(R.id.text_matrimony_id)
         areaLinear = findViewById(R.id.areaLinear)
         pno2Linear = findViewById(R.id.pno2Linear)
+        workLinear = findViewById(R.id.workLinear)
         last_date = findViewById(R.id.last_date)
         btn_whats = findViewById(R.id.btn_whats)
         image = findViewById(R.id.image_slider)
@@ -294,18 +296,16 @@ class MatrimonyDetailsActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     private fun setResult() {
         firstFavourite()
-        matrimonyName!!.text = objBean!!.matrimonyName
-        matrimonyCaste!!.text = objBean!!.categoryName
-        text_gender!!.text = objBean!!.matrimonyGender
-        matrimonyAge!!.text = objBean!!.matrimonyAge
-        matrimonyReligion!!.text = objBean!!.matrimonyReligion
-        text_city!!.text = objBean!!.city
-        matrimonySalary!!.text = objBean!!.matrimonySalary
-        matrimonyJob!!.text = objBean!!.matrimonyCareer
-        matrimonyDate!!.text = objBean!!.matrimonySDate
-        last_date!!.text = objBean!!.matrimonyEDate
-        text_matrimony_id!!.text = "MM" + objBean!!.id
-
+        matrimonyName.text = objBean.matrimonyName
+        matrimonyCaste.text = objBean.categoryName
+        text_gender.text = objBean.matrimonyGender
+        matrimonyAge.text = objBean.matrimonyAge
+        matrimonyReligion.text = objBean.matrimonyReligion
+        text_city.text = objBean.city
+        matrimonySalary.text = objBean.matrimonySalary
+        matrimonyDate.text = objBean.matrimonySDate
+        last_date.text = objBean.matrimonyEDate
+        text_matrimony_id.text = "MM" + objBean.id
 
         if (!objBean.matrimonyArea?.let { isNullOrEmpty(it) }!!){
             text_area.text = objBean.matrimonyArea
@@ -314,17 +314,24 @@ class MatrimonyDetailsActivity : AppCompatActivity() {
             areaLinear.visibility = View.GONE
         }
 
+        if (!objBean.matrimonyCareer?.let { isNullOrEmpty(it) }!!){
+            matrimonyJob.text = objBean.matrimonyCareer
+            workLinear.visibility = View.VISIBLE
+        } else {
+            workLinear.visibility = View.GONE
+        }
+
         if (!objBean.matrimonyPhoneNumber2?.let { isNullOrEmpty(it) }!!){
             val content2 = SpannableString(objBean.matrimonyPhoneNumber2)
             content2.setSpan(UnderlineSpan(), 0, content2.length, 0)
-            matrimonyPhone2!!.text = content2
+            matrimonyPhone2.text = content2
             pno2Linear.visibility = View.VISIBLE
         } else {
             pno2Linear.visibility = View.GONE
         }
 
 
-        val content = SpannableString(objBean!!.matrimonyPhoneNumber)
+        val content = SpannableString(objBean.matrimonyPhoneNumber)
         content.setSpan(UnderlineSpan(), 0, content.length, 0)
         matrimonyPhone!!.text = content
         whatsapp_num!!.text = content

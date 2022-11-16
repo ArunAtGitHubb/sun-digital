@@ -68,6 +68,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var areaLabel: TextView
     private lateinit var emailLabel: TextView
     private lateinit var pno2Label: TextView
+    private lateinit var addLinear: LinearLayout
     private lateinit var mailLinear: LinearLayout
     private lateinit var  pno2Linear: LinearLayout
     private lateinit var  jobTimeLinear: LinearLayout
@@ -134,6 +135,7 @@ class JobDetailsActivity : AppCompatActivity() {
         emailLabel = findViewById(R.id.emailLabel)
         pno2Label = findViewById(R.id.pno2Label)
         addLabel = findViewById(R.id.addLabel)
+        addLinear = findViewById(R.id.addLinear)
         btn_whats = findViewById(R.id.btn_whats)
         image = findViewById(R.id.image)
         salary = findViewById(R.id.salary)
@@ -293,9 +295,9 @@ class JobDetailsActivity : AppCompatActivity() {
 
         if(!isNullOrEmpty(objBean.jobAddress)) {
             jobAddress.text = objBean.jobAddress
-            addLabel.visibility = View.VISIBLE
+            addLinear.visibility = View.VISIBLE
         } else {
-            addLabel.visibility = View.GONE
+            addLinear.visibility = View.GONE
         }
 
         if(!isNullOrEmpty(objBean.jobTime)) {
