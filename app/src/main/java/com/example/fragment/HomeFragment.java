@@ -86,7 +86,7 @@ public class HomeFragment extends Fragment {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ImageSlider image_slider;
-    ImageView jobImage, productImage, serviceImage, matrimonyImage;
+    ImageView jobImage, productImage, serviceImage, matrimonyImage, resImage;
     NestedScrollView nestedScrollView;
     Button latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
@@ -96,13 +96,13 @@ public class HomeFragment extends Fragment {
             viewAllNewProduct, viewTutyRestaurant, viewAllCityRestaurant;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities,
-            textJob, textProduct, textWorker, textMatrimony;
+            textJob, textProduct, textWorker, textMatrimony, textRes;
 //    GridView rvCategory;
     RecyclerView rvLatestJob, rvProducts, rvServices, rvMatrimony;
     TabLayout tabLayout;
     CategoryAdapter adapter;
     CityAdapter adapter1;
-    RelativeLayout jobSection, productSection, serviceSection, matrimonySection;
+    RelativeLayout jobSection, productSection, serviceSection, matrimonySection, resSection;
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment {
     HomeServiceAdapter latestServiceAdapter;
     HomeMatrimonyAdapter latestMatrimonyAdapter;
     RecyclerView vertical_courses_list, restaurantList;
-    CardView jobCard, productCard, serviceCard, matrimonyCard;
+    CardView jobCard, productCard, serviceCard, matrimonyCard, restaurantCard;
 
     ViewPager mviewPager;
     private int pageIndex = 1;
@@ -152,16 +152,19 @@ public class HomeFragment extends Fragment {
         productSection = rootView.findViewById(R.id.productSection);
         serviceSection = rootView.findViewById(R.id.serviceSection);
         matrimonySection = rootView.findViewById(R.id.matrimonySection);
+        resSection = rootView.findViewById(R.id.resSection);
 
         textJob = rootView.findViewById(R.id.textJob);
         textProduct = rootView.findViewById(R.id.textProduct);
         textWorker = rootView.findViewById(R.id.textWorker);
         textMatrimony = rootView.findViewById(R.id.textMatrimony);
+        textRes = rootView.findViewById(R.id.textRes);
 
         jobImage = rootView.findViewById(R.id.jobImage);
         productImage = rootView.findViewById(R.id.productImage);
         serviceImage = rootView.findViewById(R.id.serviceImage);
         matrimonyImage = rootView.findViewById(R.id.matrimonyImage);
+        resImage = rootView.findViewById(R.id.resImage);
 
         viewAllNewProduct = rootView.findViewById(R.id.viewAllNewProducts);
         textProductCategories = rootView.findViewById(R.id.textProductCategories);
@@ -203,6 +206,7 @@ public class HomeFragment extends Fragment {
         productCard = rootView.findViewById(R.id.productCard);
         serviceCard = rootView.findViewById(R.id.serviceCard);
         matrimonyCard = rootView.findViewById(R.id.matrimonyCard);
+        restaurantCard = rootView.findViewById(R.id.restaurantCard);
 
 
         jobSection.setOnClickListener(view -> {
@@ -216,6 +220,10 @@ public class HomeFragment extends Fragment {
         });
         matrimonySection.setOnClickListener(view -> {
             nestedScrollView.smoothScrollTo(0, matrimonyCard.getTop());
+        });
+
+        resSection.setOnClickListener( view -> {
+            nestedScrollView.smoothScrollTo(0, restaurantCard.getTop());
         });
 
         restaurantList.setHasFixedSize(true);
@@ -572,6 +580,10 @@ public class HomeFragment extends Fragment {
                     case "Matrimony":
                         textMatrimony.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(matrimonyImage);
+                        break;
+                    case "Food":
+                        textRes.setText(icon.getLabel());
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(resImage);
                         break;
                 }
             }
