@@ -46,7 +46,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="wrap_content"
 
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -150,7 +150,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="பெயர் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -160,7 +160,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -175,7 +175,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="வயது : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -185,7 +185,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -200,7 +200,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="சாதி : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -210,7 +210,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -225,7 +225,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="மதம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -235,7 +235,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -251,7 +251,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="இடம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -261,7 +261,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -276,7 +276,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="மாவட்டம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView

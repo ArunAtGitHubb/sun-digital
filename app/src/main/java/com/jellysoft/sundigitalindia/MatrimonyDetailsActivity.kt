@@ -242,31 +242,20 @@ class MatrimonyDetailsActivity : AppCompatActivity() {
                                         objJson.getString(Constant.CATEGORY_NAME)
                                     objBean!!.city = objJson.getString(Constant.CITY_NAME)
                                     objBean!!.cid = objJson.getString(Constant.CATEGORY_CID)
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.MATRIMONY_IMAGE),
-                                            ScaleTypes.FIT
-                                        )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.MATRIMONY_IMAGE2),
-                                            ScaleTypes.FIT
-                                        )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.MATRIMONY_IMAGE3),
-                                            ScaleTypes.FIT
-                                        )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.MATRIMONY_IMAGE4),
-                                            ScaleTypes.FIT
-                                        )
-                                    )
-                                    objBean!!.matrimonyBanner = images
+
+                                    images.add(SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE), ScaleTypes.FIT))
+                                    if (!isNullOrEmpty(objJson.getString(Constant.MATRIMONY_IMAGE2))){
+                                        images.add(SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE2), ScaleTypes.FIT))
+                                    }
+                                    if (!isNullOrEmpty(objJson.getString(Constant.MATRIMONY_IMAGE3))){
+                                        images.add(SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE3), ScaleTypes.FIT))
+                                    }
+                                    if (!isNullOrEmpty(objJson.getString(Constant.MATRIMONY_IMAGE4))){
+                                        images.add(SlideModel(objJson.getString(Constant.MATRIMONY_IMAGE4), ScaleTypes.FIT))
+                                    }
+
+                                    objBean.matrimonyBanner = images
+
                                     setResult()
                                 }
                             }

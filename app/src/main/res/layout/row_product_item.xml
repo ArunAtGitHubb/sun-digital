@@ -121,7 +121,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="பெயர் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -131,7 +131,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -146,7 +146,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="அசல் விலை : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -156,7 +156,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -171,7 +171,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="விற்பனை விலை : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -181,7 +181,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -196,7 +196,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="ஆவணம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -206,7 +206,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -222,7 +222,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="இடம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -232,7 +232,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/calibrib"
                             android:textColor="@color/black"
-                            android:textSize="13sp" />
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -247,7 +247,7 @@
                             android:fontFamily="@font/calibrib"
                             android:text="மாவட்டம் : "
                             android:textColor="@color/colorPrimary"
-                            android:textSize="15sp"
+                            android:textSize="13sp"
                             android:textStyle="bold" />
 
                         <TextView

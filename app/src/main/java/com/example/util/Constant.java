@@ -12,8 +12,8 @@ public class Constant implements Serializable {
 
     public static final String IMAGE_PATH = SERVER_URL + "images/";
 
-    public static final String API_URL = "https://jellysofthub.com/mano/sundigital/api.php";
-//    public static final String API_URL = SERVER_URL + "api.php";
+//    public static final String API_URL = "https://jellysofthub.com/mano/sundigital/api.php";
+    public static final String API_URL = SERVER_URL + "api.php";
 
     public static final String INDIVIDUAL = "individual";
     public static final String COMPANY = "company";
