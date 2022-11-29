@@ -99,25 +99,6 @@
                     </RelativeLayout>
 
                     <Button
-                        android:id="@+id/viewAllUsedProducts"
-                        style="?android:attr/buttonBarButtonStyle"
-                        fontPath="fonts/customBold.otf"
-                        android:layout_width="match_parent"
-                        android:layout_height="32dp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/square_button"
-                        android:gravity="center"
-                        android:paddingStart="15dp"
-                        android:paddingTop="2dp"
-                        android:paddingEnd="15dp"
-                        android:text="View All Used Products"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        tools:ignore="MissingPrefix" />
-
-                    <Button
                         android:id="@+id/viewAllNewProducts"
                         style="?android:attr/buttonBarButtonStyle"
                         fontPath="fonts/customBold.otf"

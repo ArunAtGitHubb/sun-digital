@@ -233,37 +233,45 @@ class ProductDetailsActivity : AppCompatActivity() {
                                     objBean!!.productMail = objJson.getString(Constant.PRODUCT_MAIL)
                                     objBean!!.productCategoryName =
                                         objJson.getString(Constant.CATEGORY_NAME)
-                                    objBean!!.productType = objJson.getString(Constant.PRODUCT_TYPE)
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.PRODUCT_IMAGE),
+                                    objBean.productType = objJson.getString(Constant.PRODUCT_TYPE)
+
+                                    images.add(SlideModel(
+                                        objJson.getString(Constant.PRODUCT_IMAGE).replace(" ", "%20"),
+                                        ScaleTypes.FIT)
+                                    )
+
+                                    if (!isNullOrEmpty(objJson.getString(Constant.PRODUCT_IMAGE2))) {
+                                        images.add(SlideModel(
+                                            objJson.getString(Constant.PRODUCT_IMAGE2).replace(" ", "%20"),
                                             ScaleTypes.FIT
                                         )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.PRODUCT_IMAGE2),
+                                        )
+                                    }
+
+                                    if (!isNullOrEmpty(objJson.getString(Constant.PRODUCT_IMAGE3))) {
+                                        images.add(SlideModel(
+                                            objJson.getString(Constant.PRODUCT_IMAGE3).replace(" ", "%20"),
                                             ScaleTypes.FIT
                                         )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.PRODUCT_IMAGE3),
+                                        )
+                                    }
+
+                                    if (!isNullOrEmpty(objJson.getString(Constant.PRODUCT_IMAGE4))) {
+                                        images.add(SlideModel(
+                                            objJson.getString(Constant.PRODUCT_IMAGE4).replace(" ", "%20"),
                                             ScaleTypes.FIT
                                         )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.PRODUCT_IMAGE4),
+                                        )
+                                    }
+
+                                    if (!isNullOrEmpty(objJson.getString(Constant.PRODUCT_IMAGE5))) {
+                                        images.add(SlideModel(
+                                            objJson.getString(Constant.PRODUCT_IMAGE5).replace(" ", "%20"),
                                             ScaleTypes.FIT
                                         )
-                                    )
-                                    images.add(
-                                        SlideModel(
-                                            objJson.getString(Constant.PRODUCT_IMAGE5),
-                                            ScaleTypes.FIT
                                         )
-                                    )
+                                    }
+
                                     objBean!!.productBanner = images
                                 }
                             }
@@ -344,31 +352,21 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 
 
-        image!!.setImageList(objBean!!.productBanner!!, ScaleTypes.FIT)
-        if (objBean!!.url != null && !objBean!!.url!!.isEmpty()) {
+        objBean.productBanner?.let {
+            image.setImageList(it, ScaleTypes.FIT)
+        }
+
+        if (objBean.url != null && !objBean.url!!.isEmpty()) {
             videoView!!.settings.javaScriptEnabled = true
-            videoView!!.settings.pluginState = WebSettings.PluginState.ON
-            videoView!!.loadUrl(objBean!!.url!!)
-            videoView!!.webChromeClient = WebChromeClient()
+            videoView.settings.pluginState = WebSettings.PluginState.ON
+            videoView.loadUrl(objBean.url!!)
+            videoView.webChromeClient = WebChromeClient()
         } else {
-            videoView!!.visibility = View.GONE
+            videoView.visibility = View.GONE
         }
         setupViewPager(viewPager)
         tabLayout.setupWithViewPager(viewPager)
-        btn_whats.setOnClickListener { view: View? ->
-            val phone = "91" + objBean!!.productPhoneNumber!!.replace("+91", "")
-            val url = "https://api.whatsapp.com/send?phone=$phone"
-            val pm = packageManager
-            try {
-                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
-            } catch (e: PackageManager.NameNotFoundException) {
-                e.printStackTrace()
-            }
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url)
-            startActivity(i)
-        }
-        whatsapp_num!!.setOnClickListener { view: View? ->
+        btn_whats.setOnClickListener {
             val phone = "91" + objBean.productPhoneNumber!!.replace("+91", "")
             val url = "https://api.whatsapp.com/send?phone=$phone"
             val pm = packageManager
@@ -381,7 +379,20 @@ class ProductDetailsActivity : AppCompatActivity() {
             i.data = Uri.parse(url)
             startActivity(i)
         }
-        mail_id!!.setOnClickListener { view: View? -> openEmail() }
+        whatsapp_num.setOnClickListener {
+            val phone = "91" + objBean.productPhoneNumber!!.replace("+91", "")
+            val url = "https://api.whatsapp.com/send?phone=$phone"
+            val pm = packageManager
+            try {
+                pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+            } catch (e: PackageManager.NameNotFoundException) {
+                e.printStackTrace()
+            }
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
+        }
+        mail_id.setOnClickListener { openEmail() }
     }
 
     private fun setupViewPager(viewPager: ViewPager?) {

@@ -27,10 +27,9 @@ import com.example.util.UserUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.jellysoft.sundigitalindia.JobDetailsActivity;
 import com.jellysoft.sundigitalindia.NewProduct;
+import com.jellysoft.sundigitalindia.ProductDetailsActivity;
 import com.jellysoft.sundigitalindia.R;
-import com.jellysoft.sundigitalindia.UsedProduct;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -52,7 +51,7 @@ public class ProductFragment extends Fragment {
     RecyclerView rvLatestProduct;
     HomeProductAdapter adapter;
     ViewPager mviewPager;
-    Button viewAllUsedProducts, viewAllNewProducts, textProductCategories, textProductAllCities;
+    Button viewAllNewProducts, textProductCategories, textProductAllCities;
     boolean isFirst = true, isOver = false;
     private int pageIndex = 1;
     final int[] position = {0};
@@ -69,7 +68,6 @@ public class ProductFragment extends Fragment {
         mviewPager = getActivity().findViewById(R.id.viewPager);
         rvLatestProduct = rootView.findViewById(R.id.rv_products);
 
-        viewAllUsedProducts = rootView.findViewById(R.id.viewAllUsedProducts);
         viewAllNewProducts = rootView.findViewById(R.id.viewAllNewProducts);
         textProductCategories = rootView.findViewById(R.id.textProductCategories);
         textProductAllCities = rootView.findViewById(R.id.textProductAllCities);
@@ -89,12 +87,6 @@ public class ProductFragment extends Fragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
             }
-        });
-
-        viewAllUsedProducts.setOnClickListener(view -> {
-            Intent intent = new Intent(requireActivity(), UsedProduct.class);
-            intent.putExtra("isLatest", true);
-            startActivity(intent);
         });
 
         viewAllNewProducts.setOnClickListener(view -> {
@@ -194,7 +186,7 @@ public class ProductFragment extends Fragment {
 
             adapter.setOnItemClickListener(position -> {
                 String jobId = mListItem.get(position).getId();
-                Intent intent = new Intent(getContext(), JobDetailsActivity.class);
+                Intent intent = new Intent(getContext(), ProductDetailsActivity.class);
                 intent.putExtra("Id", jobId);
                 startActivity(intent);
             });

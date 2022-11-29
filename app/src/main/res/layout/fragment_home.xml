@@ -41,7 +41,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="600dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -50,7 +50,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/homeNavigator"
                     android:layout_width="match_parent"
-                    android:layout_height="480dp">
+                    android:layout_height="match_parent">
 
                     <RelativeLayout
                         android:id="@+id/relativeLayout4"
@@ -100,7 +100,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout6"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="150dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.49"
@@ -111,7 +111,7 @@
                         <RelativeLayout
                             android:id="@+id/jobSection"
                             android:layout_width="150dp"
-                            android:layout_height="130dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp">
 
@@ -152,15 +152,17 @@
 
                                         <TextView
                                             android:id="@+id/textJob"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
                                             android:layout_centerHorizontal="true"
-                                            android:layout_marginBottom="5dp"
+                                            android:layout_marginBottom="6dp"
+                                            android:layout_weight="1"
                                             android:ellipsize="end"
-                                            android:maxLines="1"
+                                            android:maxLines="2"
                                             android:text="வேலை வாய்ப்பு"
-                                            android:textColor="@color/black"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
                                             android:textSize="13sp" />
 
                                     </RelativeLayout>
@@ -173,7 +175,7 @@
                         <RelativeLayout
                             android:id="@+id/productSection"
                             android:layout_width="150dp"
-                            android:layout_height="130dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp">
 
@@ -214,15 +216,17 @@
 
                                         <TextView
                                             android:id="@+id/textProduct"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
                                             android:layout_centerHorizontal="true"
                                             android:layout_marginBottom="5dp"
+                                            android:layout_weight="1"
                                             android:ellipsize="end"
-                                            android:maxLines="1"
+                                            android:maxLines="2"
                                             android:text="புதிய பொருள்கள்"
-                                            android:textColor="@color/black"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
                                             android:textSize="13sp" />
 
                                     </RelativeLayout>
@@ -236,7 +240,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout7"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="150dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.49"
@@ -247,7 +251,7 @@
                         <RelativeLayout
                             android:id="@+id/serviceSection"
                             android:layout_width="150dp"
-                            android:layout_height="130dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp">
 
@@ -288,15 +292,17 @@
 
                                         <TextView
                                             android:id="@+id/textWorker"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
                                             android:layout_centerHorizontal="true"
                                             android:layout_marginBottom="5dp"
+                                            android:layout_weight="1"
                                             android:ellipsize="end"
-                                            android:maxLines="1"
+                                            android:maxLines="2"
                                             android:text="வேலை ஆட்கள்"
-                                            android:textColor="@color/black"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
                                             android:textSize="13sp" />
 
                                     </RelativeLayout>
@@ -309,7 +315,7 @@
                         <RelativeLayout
                             android:id="@+id/matrimonySection"
                             android:layout_width="150dp"
-                            android:layout_height="130dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp">
 
@@ -350,15 +356,17 @@
 
                                         <TextView
                                             android:id="@+id/textMatrimony"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
                                             android:layout_centerHorizontal="true"
                                             android:layout_marginBottom="5dp"
+                                            android:layout_weight="1"
                                             android:ellipsize="end"
-                                            android:maxLines="1"
+                                            android:maxLines="2"
                                             android:text="திருமண வரன்"
-                                            android:textColor="@color/black"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
                                             android:textSize="13sp" />
 
                                     </RelativeLayout>
@@ -372,7 +380,7 @@
                     <LinearLayout
                         android:id="@+id/linearLayout7"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="150dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.497"
@@ -383,7 +391,7 @@
                         <RelativeLayout
                             android:id="@+id/resSection"
                             android:layout_width="150dp"
-                            android:layout_height="130dp"
+                            android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp">
 
@@ -424,15 +432,17 @@
 
                                         <TextView
                                             android:id="@+id/textRes"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
                                             android:layout_centerHorizontal="true"
                                             android:layout_marginBottom="5dp"
+                                            android:layout_weight="1"
                                             android:ellipsize="end"
-                                            android:maxLines="1"
+                                            android:maxLines="2"
                                             android:text="வேலை ஆட்கள்"
-                                            android:textColor="@color/black"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/colorPrimary"
                                             android:textSize="13sp" />
 
                                     </RelativeLayout>
