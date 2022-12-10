@@ -54,6 +54,7 @@ import com.example.util.UserUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.jellysoft.sundigitalindia.BloodSearchActivity;
 import com.jellysoft.sundigitalindia.JobDetailsActivity;
 import com.jellysoft.sundigitalindia.LatestFemaleMatrimony;
 import com.jellysoft.sundigitalindia.LatestJob;
@@ -102,7 +103,8 @@ public class HomeFragment extends Fragment {
     TabLayout tabLayout;
     CategoryAdapter adapter;
     CityAdapter adapter1;
-    RelativeLayout jobSection, productSection, serviceSection, matrimonySection, resSection;
+    RelativeLayout jobSection, productSection, serviceSection,
+            matrimonySection, resSection, donateBlood, needBlood;
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
@@ -208,6 +210,9 @@ public class HomeFragment extends Fragment {
         matrimonyCard = rootView.findViewById(R.id.matrimonyCard);
         restaurantCard = rootView.findViewById(R.id.restaurantCard);
 
+        donateBlood = rootView.findViewById(R.id.donateBlood);
+        needBlood = rootView.findViewById(R.id.needBlood);
+
 
         jobSection.setOnClickListener(view -> {
             nestedScrollView.smoothScrollTo(0, jobCard.getTop());
@@ -224,6 +229,11 @@ public class HomeFragment extends Fragment {
 
         resSection.setOnClickListener( view -> {
             nestedScrollView.smoothScrollTo(0, restaurantCard.getTop());
+        });
+
+        needBlood.setOnClickListener(v -> {
+            Intent intent = new Intent(requireActivity(), BloodSearchActivity.class);
+            startActivity(intent);
         });
 
         restaurantList.setHasFixedSize(true);

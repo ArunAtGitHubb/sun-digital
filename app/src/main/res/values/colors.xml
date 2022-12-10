@@ -12,6 +12,7 @@
     <color name="text_content">#929292</color>
     <color name="divider">#ececec</color>
     <color name="bg">#f4f5f4</color>
+    <color name="row_color">#9AF44336</color>
 
     <color name="about_title">#626262</color>
     <color name="about_desc">#8b8b8b</color>
