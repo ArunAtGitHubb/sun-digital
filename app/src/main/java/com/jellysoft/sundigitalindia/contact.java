@@ -1,11 +1,6 @@
 package com.jellysoft.sundigitalindia;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,9 +14,11 @@ import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import com.example.item.ItemAdmin;
-import com.example.item.ItemCity;
-import com.example.item.ItemUser;
 import com.example.util.API;
 import com.example.util.Constant;
 import com.example.util.IsRTL;
@@ -84,7 +81,7 @@ String phones,phones1,ads,mails;
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:91"+num.getText().toString()));
+                intent.setData(Uri.parse("tel:"+num.getText().toString()));
                 startActivity(intent);
             }
         });
@@ -92,7 +89,7 @@ String phones,phones1,ads,mails;
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:91"+num2.getText().toString()));
+                intent.setData(Uri.parse("tel:"+num2.getText().toString()));
                 startActivity(intent);
             }
         });

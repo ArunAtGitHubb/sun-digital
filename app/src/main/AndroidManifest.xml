@@ -62,7 +62,7 @@
         <activity android:name=".CityRstrnt" android:exported="true" />
         <activity android:name=".TutyCityRstrnt" android:exported="true" />
 
-        <activity android:name=".BloodSearchActivity" android:exported="true" />
+        <activity android:name=".BloodSearchActivity" android:exported="true" android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".SplashActivity"

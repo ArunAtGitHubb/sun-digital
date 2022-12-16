@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var tabLayout: TabLayout
     lateinit var viewPager: ViewPager
     lateinit var adapter: MyAdapter
-    lateinit var vi: String
+    var vi: String = "0"
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("பொருட்கள்")) // idx-2
         tabLayout.addTab(tabLayout.newTab().setText("வேலை ஆட்கள்")) // idx-3
         tabLayout.addTab(tabLayout.newTab().setText("திருமண வரன்கள்")) // idx-4
-        tabLayout.addTab(tabLayout.newTab().setText("Restaurants")) // idx-5
+        tabLayout.addTab(tabLayout.newTab().setText("உணவகங்கள்")) // idx-5
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_two))) // idx-6
         tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.menu_one))) // idx-7
         tabLayout.addTab(tabLayout.newTab().setText("Products Categories")) // idx-8
@@ -121,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         tabLayout.addTab(tabLayout.newTab().setText("வரன் ஊர்")) // idx-14
         tabLayout.addTab(tabLayout.newTab().setText("மணமகள்")) // idx-15
         tabLayout.addTab(tabLayout.newTab().setText("மணமகன்")) // idx-16
+        tabLayout.addTab(tabLayout.newTab().setText("இரத்த வங்கி")) // idx-17
         tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         adapter = MyAdapter(supportFragmentManager)

@@ -45,7 +45,7 @@
             fontPath="fonts/customBold.otf"
             android:checked="false"
             android:icon="@drawable/ic_categories"
-            android:title="Restaurants"
+            android:title="உணவகங்கள்"
             tools:ignore="MissingPrefix" />
 
         <item

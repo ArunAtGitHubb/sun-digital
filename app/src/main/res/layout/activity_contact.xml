@@ -93,13 +93,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Contact Number :"
+                    android:fontFamily="@font/tamil"
+                    android:text="Contact Number 2 :"
                     android:textColor="@color/black"
                     android:textSize="19dp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/tamil"
-                    tools:ignore="MissingConstraints"
-                    />
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
 
 
@@ -185,13 +184,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Contact Number :"
+                    android:fontFamily="@font/tamil"
+                    android:text="Contact Mail :"
                     android:textColor="@color/black"
                     android:textSize="19dp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/tamil"
-                    tools:ignore="MissingConstraints"
-                    />
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
 
 
@@ -229,13 +227,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:text="Address :"
+                    android:fontFamily="@font/tamil"
+                    android:text="Contact Address :"
                     android:textColor="@color/black"
                     android:textSize="19dp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/tamil"
-                    tools:ignore="MissingConstraints"
-                    />
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
 
 

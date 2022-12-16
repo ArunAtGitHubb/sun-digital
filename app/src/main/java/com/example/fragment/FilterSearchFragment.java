@@ -104,42 +104,30 @@ public class FilterSearchFragment extends DialogFragment {
         });
 
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                String searchText = edtText.getText().toString();
-//                String jobType = "";
-                int radioSelected = radioGroup.getCheckedRadioButtonId();
-                if (radioSelected != -1) {
-                    switch (radioSelected) {
-                        case R.id.rdFullTime:
-                            jobType = "Full Time";
-                            break;
-                        case R.id.rdHalfTime:
-                            jobType = "Part Time";
-                            break;
-                        case R.id.any:
-                            jobType = "";
-                            break;
-                    }
-                } else {
-                    jobType = "";
+        btnSubmit.setOnClickListener(view -> {
+            int radioSelected = radioGroup.getCheckedRadioButtonId();
+            if (radioSelected != -1) {
+                switch (radioSelected) {
+                    case R.id.rdFullTime:
+                        jobType = "Full Time";
+                        break;
+                    case R.id.rdHalfTime:
+                        jobType = "Part Time";
+                        break;
+                    case R.id.any:
+                        jobType = "";
+                        break;
                 }
-                dismiss();
-
-
-                Log.d("idd", "" + catid);
-                Log.d("idd", "" + cityid);
-//        Log.e("searchText", "" + searchText);
-//        Log.e("companyName", "" + companyName);
-                Log.d("idd", "" + jobType);
-                Intent intent = new Intent(requireActivity(), FilterSearchResultActivity.class);
-                intent.putExtra("categoryId", catid);
-                intent.putExtra("cityId", cityid );
-                intent.putExtra("jobType", jobType);
-                startActivity(intent);
-
+            } else {
+                jobType = "";
             }
+            dismiss();
+            Intent intent = new Intent(requireActivity(), FilterSearchResultActivity.class);
+            intent.putExtra("categoryId", catid);
+            intent.putExtra("cityId", cityid );
+            intent.putExtra("jobType", jobType);
+            startActivity(intent);
+
         });
 
 
@@ -211,15 +199,6 @@ public class FilterSearchFragment extends DialogFragment {
                     e.printStackTrace();
                 }
 
-//                ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(requireActivity(),
-//                        android.R.layout.simple_list_item_1, mCategoryName);
-//                categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                spCategory.setAdapter(new NothingSelectedSpinnerAdapter(categoryAdapter, R.layout.sp_category, requireActivity()));
-//
-//                ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(requireActivity(),
-//                        android.R.layout.simple_list_item_1, mCityName);
-//                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                spCity.setAdapter(new NothingSelectedSpinnerAdapter(cityAdapter, R.layout.sp_city, requireActivity()));
                 spCategory.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -243,7 +222,7 @@ public class FilterSearchFragment extends DialogFragment {
                         ListView listView=dialog.findViewById(R.id.list_view);
 
                         // Initialize array adapter
-                                        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(requireActivity(),
+                        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(requireActivity(),
                         android.R.layout.simple_list_item_1, mCategoryName);
 
                         // set adapter
@@ -271,16 +250,14 @@ public class FilterSearchFragment extends DialogFragment {
                                 // when item selected from list
                                 // set selected item on textView
                                 spCategory.setText(adapter1.getItem(position));
-
-                                        catid = String.valueOf(mListCategory.get(position).getCategoryId());
-
-
+                                catid = String.valueOf(mListCategory.get(position).getCategoryId());
                                 // Dismiss dialog
                                 dialog.dismiss();
                             }
                         });
                     }
                 });
+
                 spCity.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

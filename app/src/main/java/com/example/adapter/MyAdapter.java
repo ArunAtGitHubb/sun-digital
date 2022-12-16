@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.fragment.BloodFragment;
 import com.example.fragment.CategoryFragment;
 import com.example.fragment.CityFragment;
 import com.example.fragment.FemaleMatrimonyCategoryFragment;
@@ -73,6 +74,8 @@ public class MyAdapter extends FragmentStatePagerAdapter {
                 return new FemaleMatrimonyReligionFragment();
             case 16:
                 return new MaleMatrimonyReligionFragment();
+            case 17:
+                return new BloodFragment();
             default:
                 return null;
         }

@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/relativeLayout3"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,42 +20,34 @@
         android:id="@+id/bloodFilter"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:background="@drawable/bg_gredent_10dp"
-        android:paddingLeft="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
-
-    <AutoCompleteTextView
-        android:id="@+id/cityFilter"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:background="@drawable/bg_gredent_10dp"
-        android:hint="Choose District"
-        android:paddingLeft="30dp"
+        android:background="@drawable/border"
+        android:drawableEnd="@drawable/ic_arrow"
+        android:hint="Search Blood"
+        android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.097" />
 
-    <AutoCompleteTextView
-        android:id="@+id/areaFilter"
+    <EditText
+        android:id="@+id/cityFilter"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:background="@drawable/bg_gredent_10dp"
-        android:hint="Choose Area"
+        android:background="@drawable/border"
+        android:drawableEnd="@drawable/dropdown"
+        android:dropDownAnchor="@id/bloodFilter"
+        android:hint="நகரத்தை தேர்ந்தெடு"
+        android:inputType="text"
         android:paddingLeft="30dp"
+        android:paddingRight="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.297" />
+        app:layout_constraintVertical_bias="0.259" />
 
     <Button
         android:id="@+id/searchBtn"
@@ -69,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.405" />
+        app:layout_constraintVertical_bias="0.359" />
 
     <Button
         android:id="@+id/resetBtn"
@@ -80,15 +72,14 @@
         android:textColor="@color/app_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintHorizontal_bias="0.807"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.404" />
+        app:layout_constraintVertical_bias="0.358" />
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="420dp"
-        android:layout_weight="1"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,8 +92,9 @@
                 android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="408dp"
-                android:padding="10dp"
                 android:isScrollContainer="true"
+                android:padding="10dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -117,21 +109,23 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="#"
+                        android:textAlignment="center"
                         android:textColor="@color/app_bg" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Name"
+                        android:textAlignment="center"
                         android:textColor="@color/app_bg" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Phone"
@@ -139,7 +133,7 @@
                         android:textColor="@color/app_bg" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Action"
@@ -147,17 +141,31 @@
                         android:textColor="@color/app_bg" />
                 </TableRow>
             </TableLayout>
-    </ScrollView>
+        </ScrollView>
 
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminateDrawable="@drawable/progress_bg"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateDrawable="@drawable/progress_bg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:background="@drawable/dropdown"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bloodFilter"
+        app:layout_constraintEnd_toEndOf="@+id/bloodFilter"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/bloodFilter"
+        app:layout_constraintVertical_bias="0.545" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

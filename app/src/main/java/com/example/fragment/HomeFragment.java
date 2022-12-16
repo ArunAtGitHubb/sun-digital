@@ -67,6 +67,7 @@ import com.jellysoft.sundigitalindia.R;
 import com.jellysoft.sundigitalindia.RestaurantDetailsActivity;
 import com.jellysoft.sundigitalindia.ServiceDetailsActivity;
 import com.jellysoft.sundigitalindia.TutyCityRstrnt;
+import com.jellysoft.sundigitalindia.contact;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -104,7 +105,7 @@ public class HomeFragment extends Fragment {
     CategoryAdapter adapter;
     CityAdapter adapter1;
     RelativeLayout jobSection, productSection, serviceSection,
-            matrimonySection, resSection, donateBlood, needBlood;
+            matrimonySection, resSection, bloodBankSection, donateBlood, needBlood;
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
@@ -121,7 +122,7 @@ public class HomeFragment extends Fragment {
     HomeServiceAdapter latestServiceAdapter;
     HomeMatrimonyAdapter latestMatrimonyAdapter;
     RecyclerView vertical_courses_list, restaurantList;
-    CardView jobCard, productCard, serviceCard, matrimonyCard, restaurantCard;
+    CardView jobCard, productCard, serviceCard, matrimonyCard, restaurantCard, bloodBankCard;
 
     ViewPager mviewPager;
     private int pageIndex = 1;
@@ -155,6 +156,7 @@ public class HomeFragment extends Fragment {
         serviceSection = rootView.findViewById(R.id.serviceSection);
         matrimonySection = rootView.findViewById(R.id.matrimonySection);
         resSection = rootView.findViewById(R.id.resSection);
+        bloodBankSection = rootView.findViewById(R.id.bloodBankSection);
 
         textJob = rootView.findViewById(R.id.textJob);
         textProduct = rootView.findViewById(R.id.textProduct);
@@ -209,10 +211,10 @@ public class HomeFragment extends Fragment {
         serviceCard = rootView.findViewById(R.id.serviceCard);
         matrimonyCard = rootView.findViewById(R.id.matrimonyCard);
         restaurantCard = rootView.findViewById(R.id.restaurantCard);
+        bloodBankCard = rootView.findViewById(R.id.bloodBankCard);
 
         donateBlood = rootView.findViewById(R.id.donateBlood);
         needBlood = rootView.findViewById(R.id.needBlood);
-
 
         jobSection.setOnClickListener(view -> {
             nestedScrollView.smoothScrollTo(0, jobCard.getTop());
@@ -231,10 +233,20 @@ public class HomeFragment extends Fragment {
             nestedScrollView.smoothScrollTo(0, restaurantCard.getTop());
         });
 
+        bloodBankSection.setOnClickListener(v -> {
+            nestedScrollView.smoothScrollTo(0, bloodBankCard.getTop());
+        });
+
         needBlood.setOnClickListener(v -> {
             Intent intent = new Intent(requireActivity(), BloodSearchActivity.class);
             startActivity(intent);
         });
+
+        donateBlood.setOnClickListener(v -> {
+            Intent intent2 = new Intent(requireActivity(), contact.class);
+            startActivity(intent2);
+        });
+
 
         restaurantList.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3);
