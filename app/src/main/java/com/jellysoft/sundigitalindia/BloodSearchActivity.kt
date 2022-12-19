@@ -416,7 +416,7 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         action.addView(details)
 
                         newRow.setBackgroundResource(R.color.row_color)
-                        newRow.addView(num, TableRow.LayoutParams(50, TableRow.LayoutParams.WRAP_CONTENT, .3f))
+                        newRow.addView(num, TableRow.LayoutParams(30, TableRow.LayoutParams.WRAP_CONTENT, .3f))
                         newRow.addView(name, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
                         newRow.addView(mobile, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
                         newRow.addView(action, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))

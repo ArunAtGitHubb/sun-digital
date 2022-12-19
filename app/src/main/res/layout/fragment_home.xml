@@ -485,7 +485,7 @@
                                         android:padding="6dp">
 
                                         <ImageView
-                                            android:id="@+id/needBloodImage"
+                                            android:id="@+id/bloodImage"
                                             android:layout_width="wrap_content"
                                             android:layout_height="90dp"
                                             android:layout_above="@+id/text"
@@ -495,7 +495,7 @@
                                             android:src="@drawable/need" />
 
                                         <TextView
-                                            android:id="@+id/textRes"
+                                            android:id="@+id/textBlood"
                                             android:layout_width="match_parent"
                                             android:layout_height="40dp"
                                             android:layout_alignParentBottom="true"
@@ -1326,7 +1326,7 @@
                                                     android:src="@drawable/need" />
 
                                                 <TextView
-                                                    android:id="@+id/textJob"
+                                                    android:id="@+id/textBloodNeed"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="40dp"
                                                     android:layout_alignParentBottom="true"
@@ -1390,7 +1390,7 @@
                                                     android:src="@drawable/donate" />
 
                                                 <TextView
-                                                    android:id="@+id/textProduct"
+                                                    android:id="@+id/textBloodDonate"
                                                     android:layout_width="match_parent"
                                                     android:layout_height="40dp"
                                                     android:layout_alignParentBottom="true"

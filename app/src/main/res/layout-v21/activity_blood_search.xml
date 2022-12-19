@@ -38,7 +38,7 @@
         android:background="@drawable/border"
         android:drawableEnd="@drawable/dropdown"
         android:dropDownAnchor="@id/bloodFilter"
-        android:hint="நகரத்தை தேர்ந்தெடு"
+        android:hint="மாவட்டத்தை தேர்ந்தெடு"
         android:inputType="text"
         android:paddingLeft="30dp"
         android:paddingRight="15dp"
@@ -109,7 +109,7 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:layout_width="50dp"
+                        android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="#"

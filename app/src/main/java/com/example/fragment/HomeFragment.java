@@ -88,7 +88,8 @@ public class HomeFragment extends Fragment {
     ProgressBar mProgressBar;
     LinearLayout lyt_not_found;
     ImageSlider image_slider;
-    ImageView jobImage, productImage, serviceImage, matrimonyImage, resImage;
+    ImageView jobImage, productImage, serviceImage, matrimonyImage,
+            resImage, bloodImage, needBloodImg, donateBloodImg;
     NestedScrollView nestedScrollView;
     Button latestViewAll, viewAllServices, viewAllMatrimony,
             textProductCategories, textProductCities,
@@ -98,7 +99,8 @@ public class HomeFragment extends Fragment {
             viewAllNewProduct, viewTutyRestaurant, viewAllCityRestaurant;
     Button call, whatsapp;
     TextView categoryViewAll, textJobCategories, textJobAllCities,
-            textJob, textProduct, textWorker, textMatrimony, textRes;
+            textJob, textProduct, textWorker, textMatrimony, textRes, textBlood,
+            textBloodNeed, textBloodDonate;
 //    GridView rvCategory;
     RecyclerView rvLatestJob, rvProducts, rvServices, rvMatrimony;
     TabLayout tabLayout;
@@ -109,7 +111,7 @@ public class HomeFragment extends Fragment {
 
     ArrayList<ItemCategory> categoryList;
     ArrayList<ItemCity> cityList;
-    ArrayList<ItemIcon> iconList;
+    ArrayList<ItemIcon> iconList, bloodIcons;
     ArrayList<ItemJob> jobLatestList;
     ArrayList<ItemProduct> productLatestList;
     ArrayList<ItemService> serviceLatestList;
@@ -140,6 +142,7 @@ public class HomeFragment extends Fragment {
         categoryList = new ArrayList<>();
         cityList = new ArrayList<>();
         iconList = new ArrayList<>();
+        bloodIcons = new ArrayList<>();
         jobLatestList = new ArrayList<>();
         productLatestList = new ArrayList<>();
         serviceLatestList = new ArrayList<>();
@@ -163,12 +166,18 @@ public class HomeFragment extends Fragment {
         textWorker = rootView.findViewById(R.id.textWorker);
         textMatrimony = rootView.findViewById(R.id.textMatrimony);
         textRes = rootView.findViewById(R.id.textRes);
+        textBlood = rootView.findViewById(R.id.textBlood);
+        textBloodNeed = rootView.findViewById(R.id.textBloodNeed);
+        textBloodDonate = rootView.findViewById(R.id.textBloodDonate);
 
         jobImage = rootView.findViewById(R.id.jobImage);
         productImage = rootView.findViewById(R.id.productImage);
         serviceImage = rootView.findViewById(R.id.serviceImage);
         matrimonyImage = rootView.findViewById(R.id.matrimonyImage);
         resImage = rootView.findViewById(R.id.resImage);
+        bloodImage = rootView.findViewById(R.id.bloodImage);
+        needBloodImg = rootView.findViewById(R.id.needBloodImg);
+        donateBloodImg = rootView.findViewById(R.id.donateBloodImg);
 
         viewAllNewProduct = rootView.findViewById(R.id.viewAllNewProducts);
         textProductCategories = rootView.findViewById(R.id.textProductCategories);
@@ -424,6 +433,17 @@ public class HomeFragment extends Fragment {
                         iconList.add(itemIcon);
                     }
 
+                    JSONArray bloodNavIcons = jobAppJson.getJSONArray("blood");
+                    for (int i = 0; i < bloodNavIcons.length(); i++) {
+                        JSONObject jsonObject = bloodNavIcons.getJSONObject(i);
+                        Log.d("json21", jsonObject.toString());
+                        ItemIcon itemIcon = new ItemIcon();
+                        itemIcon.setIcon(jsonObject.getString("icon"));
+                        itemIcon.setName(jsonObject.getString("name"));
+                        itemIcon.setLabel(jsonObject.getString("label"));
+                        bloodIcons.add(itemIcon);
+                    }
+
                     JSONArray categoryArray = jobAppJson.getJSONArray("restaurant_list");
                     for (int i = 0; i < categoryArray.length(); i++) {
                         JSONObject jsonObject = categoryArray.getJSONObject(i);
@@ -436,6 +456,7 @@ public class HomeFragment extends Fragment {
                             categoryList.add(itemCategory);
                         }
                     }
+
                     JSONArray cityArray = jobAppJson.getJSONArray("city_list");
                     for (int i = 0; i < cityArray.length(); i++) {
                         JSONObject jsonObject = cityArray.getJSONObject(i);
@@ -448,6 +469,7 @@ public class HomeFragment extends Fragment {
                             cityList.add(itemCategory);
                         }
                     }
+
                     JSONArray jobArray1 = jobAppJson.getJSONArray("banner");
                     Log.d("result", jobArray1.toString());
                     for (int i = 0; i < jobArray1.length(); i++) {
@@ -606,6 +628,25 @@ public class HomeFragment extends Fragment {
                     case "Food":
                         textRes.setText(icon.getLabel());
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(resImage);
+                        break;
+                    case "Blood":
+                        textBlood.setText(icon.getLabel());
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.need).into(bloodImage);
+                        break;
+                }
+            }
+        }
+
+        if(!bloodIcons.isEmpty()){
+            for(ItemIcon icon: bloodIcons) {
+                switch (Objects.requireNonNull(icon.getName())) {
+                    case "Need Blood":
+                        textBloodNeed.setText(icon.getLabel());
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.job).into(needBloodImg);
+                        break;
+                    case "Donate Blood":
+                        textBloodDonate.setText(icon.getLabel());
+                        Picasso.get().load(icon.getIcon()).placeholder(R.drawable.product).into(donateBloodImg);
                         break;
                 }
             }
