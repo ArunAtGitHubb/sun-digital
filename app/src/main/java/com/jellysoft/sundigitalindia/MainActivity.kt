@@ -163,6 +163,10 @@ class MainActivity : AppCompatActivity() {
                     viewPager.currentItem = 5
                     return@OnNavigationItemSelectedListener false
                 }
+                R.id.menu_go_blood -> {
+                    viewPager.currentItem = 17
+                    return@OnNavigationItemSelectedListener false
+                }
                 R.id.menu_go_contact -> {
                     val intent2 = Intent(this@MainActivity, contact::class.java)
                     startActivity(intent2)

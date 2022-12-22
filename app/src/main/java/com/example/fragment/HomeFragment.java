@@ -2,6 +2,7 @@ package com.example.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -474,7 +475,7 @@ public class HomeFragment extends Fragment {
                     Log.d("result", jobArray1.toString());
                     for (int i = 0; i < jobArray1.length(); i++) {
                         JSONObject jsonObject = jobArray1.getJSONObject(i);
-                        img.add(new SlideModel(jsonObject.getString("banner"),ScaleTypes.FIT));
+                        img.add(new SlideModel(jsonObject.getString("banner"), ScaleTypes.FIT));
                     }
 
                     JSONArray jobArrayLatest = jobAppJson.getJSONArray("latest_job");
@@ -611,26 +612,32 @@ public class HomeFragment extends Fragment {
                 switch (Objects.requireNonNull(icon.getName())) {
                     case "Job":
                         textJob.setText(icon.getLabel());
+                        textJob.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.job).into(jobImage);
                         break;
                     case "Product":
                         textProduct.setText(icon.getLabel());
+                        textProduct.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.product).into(productImage);
                         break;
                     case "ServiceMan":
                         textWorker.setText(icon.getLabel());
+                        textWorker.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.workers).into(serviceImage);
                         break;
                     case "Matrimony":
                         textMatrimony.setText(icon.getLabel());
+                        textMatrimony.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(matrimonyImage);
                         break;
                     case "Food":
                         textRes.setText(icon.getLabel());
+                        textRes.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.matrimony).into(resImage);
                         break;
                     case "Blood":
                         textBlood.setText(icon.getLabel());
+                        textBlood.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.need).into(bloodImage);
                         break;
                 }
@@ -642,10 +649,12 @@ public class HomeFragment extends Fragment {
                 switch (Objects.requireNonNull(icon.getName())) {
                     case "Need Blood":
                         textBloodNeed.setText(icon.getLabel());
+                        textBloodNeed.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.job).into(needBloodImg);
                         break;
                     case "Donate Blood":
                         textBloodDonate.setText(icon.getLabel());
+                        textBloodDonate.setTypeface(Typeface.DEFAULT_BOLD);
                         Picasso.get().load(icon.getIcon()).placeholder(R.drawable.product).into(donateBloodImg);
                         break;
                 }

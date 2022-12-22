@@ -163,7 +163,8 @@
                                             android:text="வேலை வாய்ப்பு"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 
@@ -227,7 +228,8 @@
                                             android:text="புதிய பொருள்கள்"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 
@@ -303,7 +305,8 @@
                                             android:text="வேலை ஆட்கள்"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 
@@ -367,7 +370,8 @@
                                             android:text="திருமண வரன்"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 
@@ -443,7 +447,8 @@
                                             android:text="வேலை ஆட்கள்"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 
@@ -507,7 +512,8 @@
                                             android:text="இரத்த வங்கி"
                                             android:textAlignment="center"
                                             android:textColor="@color/colorPrimary"
-                                            android:textSize="13sp" />
+                                            android:textSize="13sp"
+                                            android:textStyle="bold" />
 
                                     </RelativeLayout>
 

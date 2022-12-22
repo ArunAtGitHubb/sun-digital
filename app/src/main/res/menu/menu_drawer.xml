@@ -49,6 +49,14 @@
             tools:ignore="MissingPrefix" />
 
         <item
+            android:id="@+id/menu_go_blood"
+            fontPath="fonts/customBold.otf"
+            android:checked="false"
+            android:icon="@drawable/ic_categories"
+            android:title="இரத்த வங்கி"
+            tools:ignore="MissingPrefix" />
+
+        <item
             android:id="@+id/menu_go_about"
             android:checkable="false"
             fontPath="fonts/customBold.otf"

@@ -8,12 +8,14 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +47,7 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
     var mList: ArrayList<ItemFood>? = null
     var MyApp: MyApplication? = null
     lateinit var bloodFilter: Spinner
+    lateinit var bloodDropDown: TextView
     private lateinit var cityFilter: TextView
     private lateinit var searchBtn: Button
     private lateinit var resetBtn: Button
@@ -79,6 +82,7 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         layout = findViewById(R.id.layout)
         progressBar = findViewById(R.id.progressBar2)
         bloodFilter = findViewById(R.id.bloodFilter)
+        bloodDropDown = findViewById(R.id.textView3)
         cityFilter = findViewById(R.id.cityFilter)
         searchBtn = findViewById(R.id.searchBtn)
         resetBtn = findViewById(R.id.resetBtn)
@@ -215,12 +219,14 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             override fun onStart() {
                 super.onStart()
                 bloodFilter.visibility = View.GONE
+                bloodDropDown.visibility = View.GONE
                 progressBar?.visibility = View.VISIBLE
             }
 
             override fun onFinish() {
                 super.onFinish()
                 bloodFilter.visibility = View.VISIBLE
+                bloodDropDown.visibility = View.VISIBLE
                 progressBar?.visibility = View.GONE
             }
 
@@ -333,6 +339,7 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 super.onStart()
                 progressBar?.visibility = View.VISIBLE
             }
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onSuccess(
                 statusCode: Int,
                 headers: Array<Header>,
@@ -343,6 +350,8 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 try {
                     val mainJson = JSONObject(result)
                     val donors = mainJson.getJSONArray(Constant.ARRAY_NAME)
+                    val typeface = resources.getFont(R.font.calibril)
+
                     for (i in 0 until donors.length()) {
                         val donor = donors.getJSONObject(i)
                         Log.d("donor", donor.getString("blood_name"))
@@ -354,25 +363,28 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                             )
 
                         val num = TextView(applicationContext)
+                        num.typeface = typeface
                         num.text = "${i + 1}"
                         num.textAlignment = View.TEXT_ALIGNMENT_CENTER
                         num.setTextColor(Color.BLACK)
                         num.textSize = 16f
 
                         val name = TextView(applicationContext)
+                        name.typeface = typeface
                         name.text = donor.getString("blood_name")
                         name.textAlignment = View.TEXT_ALIGNMENT_CENTER
                         name.setTextColor(Color.BLACK)
-                        name.textSize = 17f
+                        name.textSize = 16f
 
                         val mobile = TextView(applicationContext)
+                        mobile.typeface = typeface
                         mobile.text = donor.getString("blood_phone_number")
-                        mobile.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                        mobile.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
                         if(donor.getString("blood_name").length < 13) {
                             mobile.setPadding(0, 10, 0, 0)
                         }
                         mobile.setTextColor(Color.BLACK)
-                        mobile.textSize = 17f
+                        mobile.textSize = 16f
                         mobile.setOnClickListener {
                             val phone = donor.getString("blood_phone_number")
                             call(phone)
@@ -380,8 +392,9 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
                         val action = LinearLayout(applicationContext)
                         val callBtn = ImageButton(applicationContext)
-                        callBtn.minimumHeight = 100
-                        callBtn.minimumWidth = 100
+                        callBtn.adjustViewBounds = true
+                        callBtn.maxHeight = 100
+                        callBtn.maxWidth = 100
                         callBtn.setBackgroundResource(R.drawable.phone1)
                         callBtn.setOnClickListener {
                             val phone = donor.getString("blood_phone_number")
@@ -389,8 +402,9 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
                         action.addView(callBtn)
                         val whatsapp = ImageButton(applicationContext)
-                        whatsapp.minimumHeight = 100
-                        whatsapp.minimumWidth = 100
+                        whatsapp.adjustViewBounds = true
+                        whatsapp.maxHeight = 100
+                        whatsapp.maxWidth = 100
                         whatsapp.setBackgroundResource(R.drawable.whatsapp1)
                         whatsapp.setOnClickListener {
                             val phone = "91" + donor.getString("blood_phone_number").replace("+91", "")
@@ -407,8 +421,9 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         }
                         action.addView(whatsapp)
                         val details = ImageButton(applicationContext)
-                        details.minimumHeight = 100
-                        details.minimumWidth = 100
+                        details.adjustViewBounds = true
+                        details.maxHeight = 100
+                        details.maxWidth = 100
                         details.setBackgroundResource(R.drawable.search1)
                         details.setOnClickListener {
                             openPopup(it, donor)
@@ -416,8 +431,8 @@ class BloodSearchActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         action.addView(details)
 
                         newRow.setBackgroundResource(R.color.row_color)
-                        newRow.addView(num, TableRow.LayoutParams(30, TableRow.LayoutParams.WRAP_CONTENT, .3f))
-                        newRow.addView(name, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
+                        newRow.addView(num, TableRow.LayoutParams(15, TableRow.LayoutParams.WRAP_CONTENT, .3f))
+                        newRow.addView(name, TableRow.LayoutParams(120, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
                         newRow.addView(mobile, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
                         newRow.addView(action, TableRow.LayoutParams(100, TableRow.LayoutParams.WRAP_CONTENT, 1.0f))
 
